@@ -92,12 +92,12 @@ function createHomepageGoogleMap(_latitude,_longitude){
 
                 for (var i=0; i < locations.length; i++) {
                     if ( map.getBounds().contains(newMarkers[i].getPosition()) ){
-                        // newMarkers[i].setVisible(true); // <- Uncomment this line to use dynamic displaying of markers
+                         newMarkers[i].setVisible(true); // <- Uncomment this line to use dynamic displaying of markers
 
                         //newMarkers[i].setMap(map);
                         //markerCluster.setMap(map);
                     } else {
-                        // newMarkers[i].setVisible(false); // <- Uncomment this line to use dynamic displaying of markers
+                         newMarkers[i].setVisible(false); // <- Uncomment this line to use dynamic displaying of markers
 
                         //newMarkers[i].setMap(null);
                         //markerCluster.setMap(null);

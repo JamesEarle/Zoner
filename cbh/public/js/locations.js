@@ -31,6 +31,11 @@ var locations = [
     ['2479 Murphy Court', "Minneapolis, MN 55402", "$36,000", 48.893534, 2.276616, "property-detail.html", "/img/properties/property-02.jpg", "/img/property-types/construction-site.png"],
     ['3398 Lodgeville Road', "Golden Valley, MN 55427", "$28,000", 48.872570, 2.237349, "property-detail.html", "/img/properties/property-03.jpg", "/img/property-types/cottage.png"],
     ['2479 Murphy Court', "Minneapolis, MN 55402", "$36,000", 48.879344, 2.226191, "property-detail.html", "/img/properties/property-04.jpg", "/img/property-types/garage.png"],
+    
+    ['63 Commerford Street', 'Thorold, ON', '$3,600', 43.109594, -79.220240, "property-detail.html", "/img/properties/property-04.jpg",  "/img/property-types/single-family.png"],
+    //In the future, we can write to this file with the addresses using AJAX, php would normally echo it so just write results to the file and it's the same.
+    //http://stackoverflow.com/questions/23740548/how-to-pass-variables-and-data-from-php-to-javascript
+
      /*
     ['2479 Murphy Court', "Minneapolis, MN 55402", "$36,000", 48.860374, 2.222242, "property-detail.html", "/img/properties/property-05.jpg", "/img/property-types/condominium.png"],
     ['3398 Lodgeville Road', "Golden Valley, MN 55427", "$28,000", 48.845917, 2.265673, "property-detail.html", "/img/properties/property-06.jpg", "/img/property-types/cottage.png"],

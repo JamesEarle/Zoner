@@ -254,8 +254,10 @@
 	<script type="text/javascript" src="assets/js/ie.js"></script>
 	<![endif]-->
 	<script>
-	    _latitude = 48.87;
-	    _longitude = 2.29;
+	    _latitude = 43.117614;
+	    _longitude = -79.247684;
+	    //_latitude = 48.87;
+	    //_longitude = 2.29;
 	    createHomepageGoogleMap(_latitude,_longitude);
 	    $(window).load(function(){
 	        initializeOwl(false);
