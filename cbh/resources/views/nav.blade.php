@@ -1,6 +1,3 @@
-@extends('app')
-
-@section('nav')
 
 <div class="navigation">
     <div class="secondary-navigation">
@@ -33,7 +30,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand nav" id="brand">
-                    <a href="index-google-map-fullscreen.html"><img src="{{ asset('/img/logo.png') }}" alt="brand"></a>
+                    <a href="{{ URL('/') }}"><img class="c_logo" src="{{ asset('/img/CBH_logo.png') }}" alt="brand"></a>
                 </div>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
@@ -106,7 +103,7 @@
                             <li><a href="blog-detail.html">Blog Post Detail</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contactsssss</a></li>
+                    <li><a href="{{ URL('contact') }}">Contact</a></li>
                 </ul>
             </nav><!-- /.navbar collapse-->
             <div class="add-your-property">
@@ -115,5 +112,3 @@
         </header><!-- /.navbar -->
     </div><!-- /.container -->
 </div><!-- /.navigation -->
-
-@endsection

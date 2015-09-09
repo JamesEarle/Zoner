@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('body-tag')
+<body class="page-homepage navigation-fixed-top map-google" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+@stop
+
 @section('content')
 
 <div id="content">
