@@ -11,10 +11,16 @@
 |
 */
 
+/* Static page routes */
 Route::get('/', 'PagesController@welcome');
 
 Route::get('contact','PagesController@contact');
 
 Route::get('about','PagesController@about');
+
+/* Authentication Routes */
+Route::get('create', 'PagesController@createacc');
+
+Route::get('signin', 'PagesController@signin');
 
 

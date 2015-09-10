@@ -5,20 +5,20 @@
 	@include('head')
 </head>
 @yield('body-tag')
+
 	<!-- Wrapper -->
 	<div class="wrapper">
 		<!-- Navigation -->
-		@include('nav')
+		@include('nav')  
 
 	    <!-- Page Content -->
 		@yield('content')
 
-		<!-- Footer -->
-		@include('footer')
+		<!-- Simple footer bar with copyright -->
+		@include('footer-simp')
 
 		<!-- JS Files -->
 		@include('script')
-
 	</div>
 </body>
 </html>

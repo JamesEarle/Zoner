@@ -96,4 +96,12 @@ class PagesController extends Controller
     public function contact() {
         return view('contact');
     }
+
+    public function createacc() {
+        return view('auth.create');
+    }
+
+    public function signin() {
+        return view('auth.signin');
+    }
 }

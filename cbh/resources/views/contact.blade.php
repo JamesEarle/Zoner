@@ -3,6 +3,7 @@
 @section('body-tag')
 <body class="page-sub-page page-contact" id="page-top">
 @stop
+
 @section('content')
 
 <div id="content">

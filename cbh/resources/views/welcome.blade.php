@@ -8,16 +8,12 @@
 
 <div id="content">
 
-    <style>
-        .title {
-            font-size: 96px;
-        }
-    </style>
-    <div class="container">
+    {{--<div class="container">
         <div class="geo-location-wrapper">
             <span class="btn geo-location"><i class="fa fa-map-marker"></i><span class="text">Find My Position</span></span>
         </div>
-    </div>
+    </div> --}}
+    
 
     <!-- Map -->
     <div id="map" class="has-parallax"></div>
@@ -104,11 +100,13 @@
         <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border">Zoner Is Fully Loaded Real Estate Template with <a href="#" class="text-underline">Tons of Features</a>!</h1>
+                    <h1 class="no-bottom-margin no-border"> Experience off campus living <b>the right way</b></h1>
                 </div>
             </div>
         </section><!-- /#banner -->
     </div>
-
 </div>
+
+@include('footer-big')
+
 @endsection

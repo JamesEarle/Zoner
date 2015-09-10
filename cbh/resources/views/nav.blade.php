@@ -8,14 +8,8 @@
             </div>
             <div class="user-area">
                 <div class="actions">
-                    <a href="create-agency.html" class="promoted">Create Agency</a>
-                    <a href="create-account.html" class="promoted"><strong>Register</strong></a>
-                    <a href="sign-in.html">Sign In</a>
-                </div>
-                <div class="language-bar">
-                    <a href="#" class="active"><img src="{{ asset('/img/flags/gb.png') }}" alt=""></a>
-                    <a href="#"><img src="{{ asset('/img/flags/de.png') }}" alt=""></a>
-                    <a href="#"><img src="{{ asset('/img/flags/es.png') }}" alt=""></a>
+                    <a href="{{ URL('create') }}" class="promoted"><strong>Register</strong></a>
+                    <a href="{{ URL('signin') }}">Sign In</a>
                 </div>
             </div>
         </div>

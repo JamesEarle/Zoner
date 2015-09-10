@@ -20,14 +20,16 @@ Default: #53B9D1; (blue)
 Grey dark: #2a2a2a;
 Grey medium: #5a5a5a;
 Grey light: #f3f3f3;
+Dark Blue: #073855;
 
 [Typography]
 
 Body copy:		'Roboto', sans-serif; 14px;
 Headers:		'Roboto', sans-serif;
 
-
+----------------------------
 ### Cross Border Housing ###
+----------------------------
 
 Info regarding color scheme
 Light Blue: #53B9D1
@@ -524,7 +526,7 @@ ul.list-links li a:hover {
     border: none;
     margin-bottom: 0;
     min-height: inherit;
-    padding: 30px 0;
+    padding: 10px 0;
     /**/
     display: table;
     width: 100%;
