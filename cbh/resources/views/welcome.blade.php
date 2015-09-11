@@ -104,6 +104,96 @@
                 </div>
             </div>
         </section><!-- /#banner -->
+        <section id="our-services" class="block">
+            <div class="container">
+                <header class="section-title"><h2>Our Services</h2></header>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="feature-box equal-height">
+                            <figure class="icon"><i class="fa fa-folder"></i></figure>
+                            <aside class="description">
+                                <header><h3>Wide Range of Properties</h3></header>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                <a href="properties-listing.html" class="link-arrow">Read More</a>
+                            </aside>
+                        </div><!-- /.feature-box -->
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="feature-box equal-height">
+                            <figure class="icon"><i class="fa fa-users"></i></figure>
+                            <aside class="description">
+                                <header><h3>14 Agents for Your Service</h3></header>
+                                <p>Aliquam gravida magna et fringilla convallis. Pellentesque habitant morbi </p>
+                                <a href="agents-listing.html" class="link-arrow">Read More</a>
+                            </aside>
+                        </div><!-- /.feature-box -->
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4 col-sm-4">
+                        <div class="feature-box equal-height">
+                            <figure class="icon"><i class="fa fa-money"></i></figure>
+                            <aside class="description">
+                                <header><h3>Best Price Guarantee!</h3></header>
+                                <p>Phasellus non viverra tortor, id auctor leo. Suspendisse id nibh placerat</p>
+                                <a href="#" class="link-arrow">Read More</a>
+                            </aside>
+                        </div><!-- /.feature-box -->
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /#our-services -->
+        <aside id="advertising" class="block">
+            <div class="container">
+                <a href="submit.html">
+                    <div class="banner">
+                        <div class="wrapper">
+                            <span class="title">Do you want your property to be listed here?</span>
+                            <span class="submit">Submit it now! <i class="fa fa-plus-square"></i></span>
+                        </div>
+                    </div><!-- /.banner-->
+                </a>
+            </div>
+        </aside><!-- /#adveritsing-->
+        <section id="testimonials" class="block">
+            <div class="container">
+                <header class="section-title"><h2>Testimonials</h2></header>
+                <div class="owl-carousel testimonials-carousel">
+                    <blockquote class="testimonial">
+                        <figure>
+                            <div class="image">
+                                <img alt="" src="assets/img/client-01.jpg">
+                            </div>
+                        </figure>
+                        <aside class="cite">
+                            <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
+                            <footer>Natalie Jenkins</footer>
+                        </aside>
+                    </blockquote>
+                    <blockquote class="testimonial">
+                        <figure>
+                            <div class="image">
+                                <img alt="" src="assets/img/client-01.jpg">
+                            </div>
+                        </figure>
+                        <aside class="cite">
+                            <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
+                            <footer>Natalie Jenkins</footer>
+                        </aside>
+                    </blockquote>
+                </div><!-- /.testimonials-carousel -->
+            </div><!-- /.container -->
+        </section><!-- /#testimonials -->
+        <section id="partners" class="block">
+            <div class="container">
+                <header class="section-title"><h2>Our Partners</h2></header>
+                <div class="logos">
+                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-01.png') }}" alt=""></a></div>
+                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-02.png') }}" alt=""></a></div>
+                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-03.png') }}" alt=""></a></div>
+                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-04.png') }}" alt=""></a></div>
+                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-05.png') }}" alt=""></a></div>
+                </div>
+            </div><!-- /.container -->
+        </section><!-- /#partners -->
     </div>
 </div>
 
