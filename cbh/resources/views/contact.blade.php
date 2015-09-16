@@ -157,7 +157,7 @@
 	                        <div class="property small">
 	                            <a href="property-detail.html">
 	                                <div class="property-image">
-	                                    <img alt="" src="assets/img/properties/property-06.jpg">
+	                                    <img alt="" src="{{ asset('/img/properties/property-06.jpg') }}">
 	                                </div>
 	                            </a>
 	                            <div class="info">
@@ -169,7 +169,7 @@
 	                        <div class="property small">
 	                            <a href="property-detail.html">
 	                                <div class="property-image">
-	                                    <img alt="" src="assets/img/properties/property-09.jpg">
+	                                    <img alt="" src="{{ asset('/img/properties/property-09.jpg') }}">
 	                                </div>
 	                            </a>
 	                            <div class="info">
@@ -181,7 +181,7 @@
 	                        <div class="property small">
 	                            <a href="property-detail.html">
 	                                <div class="property-image">
-	                                    <img alt="" src="assets/img/properties/property-03.jpg">
+	                                    <img alt="" src="{{ asset('/img/properties/property-03.jpg') }}">
 	                                </div>
 	                            </a>
 	                            <div class="info">
@@ -213,4 +213,17 @@
 </div>
 <!-- end Page Content -->
 
-@stop
+@endsection
+
+{{-- Any pages that use an interactive map need to yield this portion, but app.blade.php yields AFTER script.blade.php,
+	that is an important order. --}}
+@section('map-script')
+<script>
+    //Brock U
+    _latitude = 43.117614;
+    _longitude = -79.247684;
+
+    //Contact map
+    google.maps.event.addDomListener(window, 'load', contactUsMap(_latitude,_longitude, '{{ URL('/img/') }}'));
+</script>
+@endsection

@@ -4,14 +4,24 @@ $.ajaxSetup({
     cache: true
 });
 
+var globalPropertyDetailUrl = "";
+var globalScriptUrl = "";
+var globalImgUrl = "";
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Google Map - Homepage
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(_latitude,_longitude){
+//laravelUrl passes locations.js relative to public directory to cope with changes in wamp.
+function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl,propertyDetailUrl){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("/js/locations.js", function(){
+        //Require global context for jquery getScript to have same scope for URL parameters.
+        globalImgUrl = imgUrl;
+        globalScriptUrl = scriptUrl;
+        globalPropertyDetailUrl = propertyDetailUrl;
+        $.getScript(scriptUrl, function(){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 scrollwheel: false,
@@ -35,14 +45,14 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     boxClass: "infobox-wrapper",
                     enableEventPropagation: true,
                     closeBoxMargin: "0px 0px -8px 0px",
-                    closeBoxURL: "/img/close-btn.png",
+                    closeBoxURL: imgUrl.concat("/close-btn.png"),
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
                 var marker = new MarkerWithLabel({
                     title: locations[i][0],
                     position: new google.maps.LatLng(locations[i][3], locations[i][4]),
                     map: map,
-                    icon: '/img/marker.png',
+                    icon: imgUrl.concat("/marker.png"),
                     labelContent: pictureLabel,
                     labelAnchor: new google.maps.Point(50, 0),
                     labelClass: "marker-style"
@@ -74,7 +84,7 @@ function createHomepageGoogleMap(_latitude,_longitude){
             }
             var clusterStyles = [
                 {
-                    url: '/img/cluster.png',
+                    url: imgUrl.concat('/cluster.png'),
                     height: 37,
                     width: 37
                 }
@@ -134,8 +144,8 @@ function success(position) {
 // Google Map - Property Detail
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function initMap(propertyId) {
-    $.getScript("/js/locations.js", function(){
+function initMap(propertyId,scriptUrl,imgUrl) {
+    $.getScript(scriptUrl, function(){
         var subtractPosition = 0;
         var mapWrapper = $('#property-detail-map.float');
 
@@ -175,7 +185,7 @@ function initMap(propertyId) {
         var marker = new MarkerWithLabel({
             position: markerPosition,
             map: map,
-            icon: '/img/marker.png',
+            icon: imgUrl.concat('/marker.png'),
             labelContent: pictureLabel,
             labelAnchor: new google.maps.Point(50, 0),
             labelClass: "marker-style"
@@ -187,7 +197,11 @@ function initMap(propertyId) {
 // Google Map - Contact
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function contactUsMap(){
+function contactUsMap(_latitude,_longitude,imgUrl){
+    //Icon available on IconFinder.com
+    //Designer: adiante apps. They have a set of similar ones.
+    var pictureLabel = document.createElement("img");
+    pictureLabel.src = imgUrl.concat('/property-types/university.png');
     var mapCenter = new google.maps.LatLng(_latitude,_longitude);
     var mapOptions = {
         zoom: 15,
@@ -202,8 +216,8 @@ function contactUsMap(){
     var marker = new MarkerWithLabel({
         position: mapCenter,
         map: map,
-        icon: '/img/marker.png',
-        //labelContent: pictureLabel,
+        icon: imgUrl.concat('/marker.png'),
+        labelContent: pictureLabel,
         labelAnchor: new google.maps.Point(50, 0),
         labelClass: "marker-style"
     });
@@ -216,7 +230,7 @@ function contactUsMap(){
 function createHomepageOSM(_latitude,_longitude){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("/js/locations.js", function(){
+        $.getScript(scriptUrl, function(){
             var map = L.map('map', {
                 center: [_latitude,_longitude],
                 zoom: 14,

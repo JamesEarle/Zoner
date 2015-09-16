@@ -5,7 +5,6 @@
 	@include('head')
 </head>
 @yield('body-tag')
-
 	<!-- Wrapper -->
 	<div class="wrapper">
 		<!-- Navigation -->
@@ -19,6 +18,8 @@
 
 		<!-- JS Files -->
 		@include('script')
+
+		@yield('map-script')
 	</div>
 </body>
 </html>

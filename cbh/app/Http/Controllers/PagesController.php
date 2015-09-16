@@ -104,4 +104,8 @@ class PagesController extends Controller
     public function signin() {
         return view('auth.signin');
     }
+
+    public function propertydetail() {
+        return view('property.detail');
+    }
 }

@@ -23,4 +23,7 @@ Route::get('create', 'PagesController@createacc');
 
 Route::get('signin', 'PagesController@signin');
 
+/* Property Listings & Individual Properties */
+Route::get('property-detail', 'PagesController@propertydetail');
+
 
