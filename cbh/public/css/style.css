@@ -38,6 +38,12 @@ Orange: #F9A155
 I DID A CTRL+A REPLACE ALL FOR THE DEFAULT BLUE (#53B9D1) WITH CBH BLUE
 DO A CTRL+A REPLACE ALL (EXCLUDING COMMENTS) TO UNDO
 -------------------------------------------------------------------*/
+/* 0. Debugging CSS Elements */
+/* 
+* { 
+    outline: 1px solid red;
+}
+*/
 
 /* 1. Element Styling */
 

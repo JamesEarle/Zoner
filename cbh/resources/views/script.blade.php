@@ -22,6 +22,8 @@
 <script type="text/javascript" src="{{ asset('/js/custom-map.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/locations.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/fileinput.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->

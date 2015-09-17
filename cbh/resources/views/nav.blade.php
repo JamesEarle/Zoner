@@ -3,8 +3,8 @@
     <div class="secondary-navigation">
         <div class="container">
             <div class="contact">
-                <figure><strong>Phone:</strong>+1 810-991-3842</figure>
-                <figure><strong>Email:</strong>zoner@example.com</figure>
+                <figure><strong>Phone:</strong>+1 647-404-3067</figure>
+                <figure><strong>Email:</strong><a href="mailto:requests@cbhousing.com">requests@cbhousing.com</a></figure>
             </div>
             <div class="user-area">
                 <div class="actions">
@@ -47,10 +47,10 @@
                     </li>
                     <li class="has-child"><a href="#">Properties</a>
                         <ul class="child-navigation">
-                            <li><a href="property-detail.html">Property Detail</a></li>
-                            <li><a href="properties-listing.html">Masonry Listing</a></li>
-                            <li><a href="properties-listing-grid.html">Grid Listing</a></li>
-                            <li><a href="properties-listing-lines.html">Lines Listing</a></li>
+                            <li><a href="{{ URL('property-detail') }}">Property Detail</a></li>
+                            <li><a href="{{ URL('list-masonry') }}">Masonry Listing</a></li>
+                            <li><a href="{{ URL('list-grid') }}">Grid Listing</a></li>
+                            <li><a href="{{ URL('list-lines') }}">Lines Listing</a></li>
                         </ul>
                     </li>
                     <li class="has-child"><a href="#">Pages</a>
@@ -90,7 +90,7 @@
                             <li><a href="agency-detail.html">Agency Detail</a></li>
                         </ul>
                     </li>
-                    <li><a href="submit.html">Submit</a></li>
+                    <li><a href="{{ URL('submit') }}">Submit</a></li>
                     <li class="has-child"><a href="#">Blog</a>
                         <ul class="child-navigation">
                             <li><a href="blog.html">Blog Listing</a></li>
@@ -101,7 +101,7 @@
                 </ul>
             </nav><!-- /.navbar collapse-->
             <div class="add-your-property">
-                <a href="submit.html" class="btn btn-default"><i class="fa fa-plus"></i><span class="text">Add Your Property</span></a>
+                <a href="{{ URL('submit') }}" class="btn btn-default"><i class="fa fa-plus"></i><span class="text">Add Your Property</span></a>
             </div>
         </header><!-- /.navbar -->
     </div><!-- /.container -->

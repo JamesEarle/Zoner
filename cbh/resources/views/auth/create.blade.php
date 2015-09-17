@@ -49,11 +49,6 @@
                         <label for="form-create-account-confirm-password">Confirm Password:</label>
                         <input type="password" class="form-control" id="form-create-account-confirm-password" required>
                     </div><!-- /.form-group -->
-                    <div class="checkbox pull-left">
-                        <label>
-                            <input type="checkbox" id="account-type-newsletter" name="account-newsletter">Receive Newsletter
-                        </label>
-                    </div>
                     <div class="form-group clearfix">
                         <button type="submit" class="btn pull-right btn-default" id="account-submit">Create an Account</button>
                     </div><!-- /.form-group -->

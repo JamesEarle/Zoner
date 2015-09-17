@@ -1,4 +1,10 @@
-<footer id="page-footer">
+{{-- I dont think this file is yielded anywhere right now --}}
+
+<?php 
+echo "the unused file";
+?>
+
+{{-- <footer id="page-footer">
     <div class="inner">
         <aside id="footer-main">
             <div class="container">
@@ -11,7 +17,7 @@
                                 id, ornare tortor
                             </p>
                             <hr>
-                            <a href="#" class="link-arrow">Read More</a>
+                            <a href="{{ URL('/about') }}" class="link-arrow">Read More</a>
                         </article>
                     </div><!-- /.col-sm-3 -->
                     <div class="col-md-3 col-sm-3">
@@ -79,4 +85,4 @@
         </aside>
     </div><!-- /.inner -->
 </footer>
-<!-- end Page Footer -->
+<!-- end Page Footer --> --}}

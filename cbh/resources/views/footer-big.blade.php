@@ -10,7 +10,7 @@
                                 Cross border housing enhances and simplifies the off campus living experience for incoming international students. We provide quality guaranteed listings with customizable amenities, discounts at local hot-spots, and ongoing support the entire way.
                             </p>
                             <hr>
-                            <a href="#" class="link-arrow">Read More</a>
+                            <a href="{{ URL('about') }}" class="link-arrow">Read More</a>
                         </article>
                     </div><!-- /.col-sm-3 -->
                     <div class="col-md-3 col-sm-3">

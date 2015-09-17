@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="{{ asset('/css/jquery.slider.min.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('/css/owl.carousel.css') }} " type="text/css">
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('/css/fileinput.min.css') }}" type="text/css">
 
-<title>Zoner CBH</title>
+<title>Cross Border Housing</title>
 {{-- </head> --}}
