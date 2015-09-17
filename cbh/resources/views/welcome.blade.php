@@ -6,6 +6,9 @@
 
 @section('content')
 
+{{-- Include PHP named constants for DB queries --}}
+<?php include_once(app_path()."\\queries.php") ?>
+
 <div id="content">
 
     {{--<div class="container">
@@ -39,33 +42,16 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <select name="country">
-                                        <option value="">Country</option>
-                                        <option value="1">France</option>
-                                        <option value="2">Great Britain</option>
-                                        <option value="3">Spain</option>
-                                        <option value="4">Russia</option>
-                                        <option value="5">United States</option>
-                                    </select>
-                                </div><!-- /.form-group -->
-                                <div class="form-group">
                                     <select name="city">
                                         <option value="">City</option>
-                                        <option value="1">New York</option>
-                                        <option value="2">Los Angeles</option>
-                                        <option value="3">Chicago</option>
-                                        <option value="4">Houston</option>
-                                        <option value="5">Philadelphia</option>
-                                    </select>
-                                </div><!-- /.form-group -->
-                                <div class="form-group">
-                                    <select name="district">
-                                        <option value="">District</option>
-                                        <option value="1">Manhattan</option>
-                                        <option value="2">The Bronx</option>
-                                        <option value="3">Brooklyn</option>
-                                        <option value="4">Queens</option>
-                                        <option value="5">Staten Island</option>
+                                        <?php 
+                                            $results = DB::select(constant('ALL_LOCATIONS'));
+                                            $ctr = 1;
+                                            foreach($results as $data) {
+                                                echo "<option value=\"$ctr\">" . $data->city . "</option>";
+                                                $ctr++;
+                                            }
+                                        ?>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
@@ -73,8 +59,6 @@
                                         <option value="">Property Type</option>
                                         <option value="1">Apartment</option>
                                         <option value="2">Condominium</option>
-                                        <option value="3">Cottage</option>
-                                        <option value="4">Flat</option>
                                         <option value="5">House</option>
                                     </select>
                                 </div><!-- /.form-group -->
@@ -199,4 +183,18 @@
 
 @include('footer-big')
 
+@endsection
+
+@section('map-script')
+<script>
+    //Brock U
+    _latitude = 43.117614;
+    _longitude = -79.247684;
+
+    //Main screen map
+    createHomepageGoogleMap(_latitude,_longitude,'{{ asset('/js/locations.js') }}', '{{ URL('/img/') }}', '{{ URL('/property-detail/') }}');
+    $(window).load(function(){
+        initializeOwl(false);
+    });
+</script>
 @endsection
