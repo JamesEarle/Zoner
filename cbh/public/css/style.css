@@ -16,6 +16,10 @@ Assigned to:	ThemeStarz
 
 [Color codes]
 
+Dark Blue: #073855;
+Green - #538901
+Dark grey #2a2a2a
+
 Default: #53B9D1; (blue)
 Grey dark: #2a2a2a;
 Grey medium: #5a5a5a;
@@ -31,19 +35,24 @@ Headers:		'Roboto', sans-serif;
 ### Cross Border Housing ###
 ----------------------------
 
-Info regarding color scheme
-Light Blue: #53B9D1
+Info regarding color scheme for CBH
+Light Blue: #53b9d1
 Orange: #F9A155
 
-I DID A CTRL+A REPLACE ALL FOR THE DEFAULT BLUE (#53B9D1) WITH CBH BLUE
+
+//NOTE - considering cooling these colours to appear flatter, too bright against white text
+//and the google maps
+
+
+I DID A CTRL+A REPLACE ALL FOR THE DEFAULT BLUE (#073855) WITH CBH BLUE (#53b9d1)
 DO A CTRL+A REPLACE ALL (EXCLUDING COMMENTS) TO UNDO
 -------------------------------------------------------------------*/
 /* 0. Debugging CSS Elements */
-/* 
+ /*
 * { 
     outline: 1px solid red;
-}
-*/
+}*/
+
 
 /* 1. Element Styling */
 

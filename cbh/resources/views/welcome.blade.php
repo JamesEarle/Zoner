@@ -42,13 +42,22 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
+                                    <select name="province">
+                                        <option value="">Province</option>
+                                        <option value="1">ON</option>
+                                        <option value="2">BC</option>
+                                        <option value="3">MO</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <select name="city">
                                         <option value="">City</option>
                                         <?php 
+                                            // $prov = ''; //define a variable based on the selected province
                                             $results = DB::select(constant('ALL_LOCATIONS'));
                                             $ctr = 1;
                                             foreach($results as $data) {
-                                                echo "<option value=\"$ctr\">" . $data->city . "</option>";
+                                                echo "<option value='$ctr'>" . $data->city . "</option>";
                                                 $ctr++;
                                             }
                                         ?>
@@ -94,31 +103,37 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
                         <div class="feature-box equal-height">
-                            <figure class="icon"><i class="fa fa-folder"></i></figure>
+                            <a href="{{ URL('list-lines') }}">
+                                <figure class="icon"><i class="fa fa-folder"></i></figure>
+                            </a>
                             <aside class="description">
-                                <header><h3>Wide Range of Properties</h3></header>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                <a href="properties-listing.html" class="link-arrow">Read More</a>
+                                <header><h3>Options</h3></header>
+                                <p>Explore our wide range of properties</p>
+                                <a href="{{ URL('list-lines') }}" class="link-arrow">Read More</a>
                             </aside>
                         </div><!-- /.feature-box -->
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="feature-box equal-height">
-                            <figure class="icon"><i class="fa fa-users"></i></figure>
+                            <a href="{{ URL('contact') }}">                        
+                                <figure class="icon"><i class="fa fa-users"></i></figure>
+                            </a>
                             <aside class="description">
-                                <header><h3>14 Agents for Your Service</h3></header>
-                                <p>Aliquam gravida magna et fringilla convallis. Pellentesque habitant morbi </p>
-                                <a href="agents-listing.html" class="link-arrow">Read More</a>
+                                <header><h3>Trusted Service</h3></header>
+                                <p>You can count on our reliable support, any day of the week.</p>
+                                <a href="{{ URL('contact') }}" class="link-arrow">Read More</a>
                             </aside>
                         </div><!-- /.feature-box -->
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4 col-sm-4">
                         <div class="feature-box equal-height">
-                            <figure class="icon"><i class="fa fa-money"></i></figure>
+                            <a href="{{ URL('about') }}">
+                                <figure class="icon"><i class="fa fa-money"></i></figure>
+                            </a>
                             <aside class="description">
-                                <header><h3>Best Price Guarantee!</h3></header>
-                                <p>Phasellus non viverra tortor, id auctor leo. Suspendisse id nibh placerat</p>
-                                <a href="#" class="link-arrow">Read More</a>
+                                <header><h3>Quality Guarantee</h3></header>
+                                <p>We provide a quality guarantee for each and every home you live in.</p>
+                                <a href="{{ URL('about') }}" class="link-arrow">Read More</a>
                             </aside>
                         </div><!-- /.feature-box -->
                     </div><!-- /.col-md-4 -->
