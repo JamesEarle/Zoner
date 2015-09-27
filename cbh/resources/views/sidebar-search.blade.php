@@ -1,7 +1,7 @@
 <!-- sidebar -->
 
 {{-- Used for all DB queries as constants  --}}
-<?php include_once(app_path()."\\queries.php") ?>
+<?php include_once(app_path()."/queries.php") ?>
 
 <div class="col-md-3 col-sm-3">
     <section id="sidebar">

@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
 
     public function __construct() {
-        include_once(app_path()."\\queries.php");
+        include_once(app_path()."/queries.php");
     }
 
     /**

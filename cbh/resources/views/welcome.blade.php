@@ -7,7 +7,7 @@
 @section('content')
 
 {{-- Include PHP named constants for DB queries --}}
-<?php include_once(app_path()."\\queries.php") ?>
+<?php include_once(app_path()."/queries.php"); ?>
 
 <div id="content">
 
