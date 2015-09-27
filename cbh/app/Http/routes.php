@@ -21,6 +21,8 @@ Route::get('about','PagesController@about');
 /* Authentication Routes */
 Route::get('create', 'AuthController@createacc');
 
+Route::post('create', 'AuthController@store');
+
 Route::get('signin', 'AuthController@signin');
 
 /* Property Listings & Individual Properties */

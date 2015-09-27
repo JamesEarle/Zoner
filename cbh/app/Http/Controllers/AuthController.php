@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Hash;
+use DB;
+use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+
+    public function __construct() {
+        include_once(app_path()."\\queries.php");
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,10 +41,10 @@ class AuthController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -83,6 +89,43 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }   
+
+    public function store() {
+
+        $input = Request::all();
+
+        if($input['account-type'] == 'student') {
+            
+            DB::insert(
+                constant('INSERT_INTO_USERS') . 'VALUES (\''
+                . uniqid() .'\', \''
+                . $input['form-create-account-full-name'] . '\', \''
+                . $input['form-create-account-email'] . '\', \''
+                . Hash::make($input['form-create-account-password']) . '\', \''
+                . date("Y-m-d H:i:s") . '\', \''
+                . date("Y-m-d H:i:s") . '\')'
+            );  
+
+            session()->flash('message', 'Thanks for signing up! Should you need any support, our best and brightest are available around the clock to help you.');
+            session()->flash('title', 'You Rock!');
+
+            return redirect('/');
+
+        } else { //landlord
+
+            DB::insert(
+                constant('INSERT_INTO_LANDLORDS') . 'VALUES (\''
+                . uniqid() .'\', \''
+                . $input['form-create-account-full-name'] . '\', \''
+                . $input['form-create-account-email'] . '\', \''
+                . Hash::make($input['form-create-account-password']) . '\', \''
+                . date("Y-m-d H:i:s") . '\', \''
+                . date("Y-m-d H:i:s") . '\')'
+            );
+
+            return redirect('/');
+        }
     }
 
     public function createacc() {

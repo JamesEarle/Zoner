@@ -145,6 +145,7 @@ function success(position) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function initMap(propertyId,scriptUrl,imgUrl) {
+    globalImgUrl = imgUrl;
     $.getScript(scriptUrl, function(){
         var subtractPosition = 0;
         var mapWrapper = $('#property-detail-map.float');
@@ -185,7 +186,7 @@ function initMap(propertyId,scriptUrl,imgUrl) {
         var marker = new MarkerWithLabel({
             position: markerPosition,
             map: map,
-            icon: imgUrl.concat('/marker.png'),
+            icon: globalImgUrl.concat('/marker.png'),
             labelContent: pictureLabel,
             labelAnchor: new google.maps.Point(50, 0),
             labelClass: "marker-style"

@@ -108,6 +108,6 @@
     _longitude = -79.247684;
 
     //Contact map
-    google.maps.event.addDomListener(window, 'load', contactUsMap(_latitude,_longitude, '{{ URL('/img/') }}'));
+    google.maps.event.addDomListener(window, 'load', contactUsMap(_latitude,_longitude, "{{ URL('/img/') }}"));
 </script>
 @endsection

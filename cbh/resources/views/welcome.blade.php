@@ -181,7 +181,7 @@
     _longitude = -79.247684;
 
     //Main screen map
-    createHomepageGoogleMap(_latitude,_longitude,'{{ asset('/js/locations.js') }}', '{{ URL('/img/') }}', '{{ URL('/property-detail/') }}');
+    createHomepageGoogleMap(_latitude,_longitude,"{{ asset('/js/locations.js') }}", "{{ URL('/img/') }}", "{{ URL('/property-detail/') }}");
     $(window).load(function(){
         initializeOwl(false);
     });

@@ -24,6 +24,8 @@
 <script type="text/javascript" src="{{ asset('/js/locations.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/fileinput.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/jquery.magnific-popup.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/jquery.fitvids.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/jquery.raty.min.js') }}"></script>
 <!--[if gt IE 8]>
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->
