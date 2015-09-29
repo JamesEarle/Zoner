@@ -29,7 +29,7 @@
                         	A startup from St. Catharines, Ontario, and winner of entrepeneurship competitions like Monster Pitch and Scotiabank's Startup Weekend, our goal is to make off campus living as easy as possible for international or non-local students. 
                         </div>
                         <hr class="divider">
-                        <a href="agent-detail.html" class="image"><img alt="" src="{{ asset('/img/agent-01.jpg') }}"></a>
+                        <a href="agent-detail.html" class="image"><img alt="" src="{{ asset('/img/portraits/alex.jpg') }}"></a>
                         <a href="agent-detail.html"><h3>Alex Mohr</h3></a>
                         <figure class="subtitle">CEO</figure>
                         <div class="background-image"><img alt="" src="{{ asset('/img/about-us-bg.jpg') }}"></div>
@@ -58,7 +58,7 @@
                             </div><!-- /.col-md-5 -->
                             <div class="col-md-5 col-sm-5">
                                 <div class="member">
-                                    <a href="agent-detail.html" class="image"><img alt="" src="{{ asset('/img/member-01.jpg') }}"></a>
+                                    <a href="agent-detail.html" class="image"><img alt="" src="{{ asset('/img/portraits/preston.jpg') }}"></a>
                                     <div class="tag">CTO</div>
                                     <div class="wrapper">
                                         <a href="agent-detail.html"><h3>Preston Engstrom</h3></a>
