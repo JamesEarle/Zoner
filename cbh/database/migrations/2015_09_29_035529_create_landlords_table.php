@@ -29,6 +29,6 @@ class CreateLandlordsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('locations');
+        Schema::drop('landlords');
     }
 }
