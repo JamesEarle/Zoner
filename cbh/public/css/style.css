@@ -969,6 +969,12 @@ ul.list-links li a:hover {
   font-size: 36px;
   font-weight: lighter;
 }
+
+#about-us #ceo-section .circle {
+  border-radius: 50%;
+  width:250px;
+  height:250px;
+}
 #about-us #ceo-section h3 {
   color: #073855;
   font-size: 24px;
@@ -981,6 +987,19 @@ ul.list-links li a:hover {
   margin: 20px 0;
   width: 70%;
 }
+#about-us #ceo-section .wrapper {
+  margin-left: 39.5%;
+  margin-right: 39.5%;
+  max-width: 250px;
+  margin-top: 10px;
+}
+
+#about-us .circle {
+  border-radius: 50%;
+  width:140px;
+  height:140px;
+}
+
 #about-us .image {
   display: inline-block;
   margin-bottom: 10px;
@@ -2200,6 +2219,7 @@ ul.list-links li a:hover {
   font-weight: bold;
   margin-bottom: 5px;
   margin-top: 0;
+  margin-left: 15px;
 }
 .member .image {
   left: 0;
@@ -2212,8 +2232,9 @@ ul.list-links li a:hover {
 .member dl {
   border-top: 2px solid #f3f3f3;
   font-size: 12px;
-  margin-top: 10px;
+  margin-top: 15px;
   padding-top: 10px;
+  margin-left: 20px;
 }
 .member dl dd {
   margin-bottom: 4px;

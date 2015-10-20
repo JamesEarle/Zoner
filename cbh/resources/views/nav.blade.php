@@ -29,55 +29,11 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{URL('/')}}">Homepage</a>
-                    </li>
-                    <li class="active"><a href="{{ URL('list-lines') }}">Properties</a>
-                    </li>
-                    <li class="has-child"><a href="#">Pages</a>
-                        <ul class="child-navigation">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="agent-detail.html">Agent Detail</a></li>
-                            <li><a href="invoice-print.html">Invoice</a></li>
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="my-properties.html">My Properties</a></li>
-                            <li><a href="bookmarked.html">Bookmarked Properties</a></li>
-                            <li><a href="create-account.html">Create Account</a></li>
-                            <li><a href="create-agency.html">Create Agency</a></li>
-                            <li><a href="sign-in.html">Sign In</a></li>
-                            <li class="has-child"><a href="#">Error Pages</a>
-                                <ul class="child-navigation">
-                                    <li><a href="403.html">403</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                    <li><a href="500.html">500</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                            <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                            <li><a href="sticky-footer.html">Sticky Footer</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="shortcodes.html">Shortcodes</a></li>
-                            <li><a href="timeline.html">Timeline</a></li>
-                            <li><a href="terms-conditions.html">Terms &amp; Conditions</a></li>
-                            <li><a href="rtl.html">RTL Support</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-child"><a href="#">Agents &amp; Agencies</a>
-                        <ul class="child-navigation">
-                            <li><a href="agents-listing.html">Agents Listing</a></li>
-                            <li><a href="agent-detail.html">Agent Detail</a></li>
-                            <li><a href="agencies-listing.html">Agencies Listing</a></li>
-                            <li><a href="agency-detail.html">Agency Detail</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ URL('submit') }}">Submit</a></li>
-                    <li class="has-child"><a href="#">Blog</a>
-                        <ul class="child-navigation">
-                            <li><a href="blog.html">Blog Listing</a></li>
-                            <li><a href="blog-detail.html">Blog Post Detail</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ URL('contact') }}">Contact</a></li>
+                    <li class="active"><a href="{{ URL('/')}}">Homepage</a></li>
+                    <li class="active"><a href="{{ URL('list-lines') }}">Properties</a></li>
+                    <li class="active"><a href="{{ URL('about') }}">About Us</a></li>
+                    <li class="active"><a href="{{ URL('submit') }}">Submit</a></li>
+                    <li class="active"><a href="{{ URL('contact') }}">Contact</a></li>
                 </ul>
             </nav><!-- /.navbar collapse-->
             <div class="add-your-property">
