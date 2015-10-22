@@ -26,7 +26,10 @@
                 {!! Form::open(['url' => 'create']) !!}
                     <div class="radio" id="create-account-user">
                         <label>
-                            {!! Form::radio('account-type', 'student', ['id' => 'account-type-user', 'required' => 'required']) !!}
+                            {!! 
+                                Form::radio('account-type', 'student', 
+                                ['id' => 'account-type-user', 'required' => 'required']) 
+                            !!}
                             <span>Student</span>
                         </label>
                     </div>
@@ -41,35 +44,31 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        {!! Form::label('form-create-full-name', 'Full Name:') !!}
+                        {!! Form::label('form-create-account-full-name', 'Full Name:') !!}
                         {!! 
                             Form::text('form-create-account-full-name', 
-                            null, 
-                            ['class' => 'form-control', 'id' => 'form-create-account-full-name', 'required' => 'required'])
+                            null, ['class' => 'form-control', 'id' => 'form-create-account-full-name', 'required' => 'required'])
                         !!}
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         {!! Form::label('form-create-account-email', 'Email:') !!}
                         {!! 
                             Form::email('form-create-account-email', 
-                            null, 
-                            ['class' => 'form-control', 'id' => 'form-create-account-email', 'required' => 'required']) 
+                            null, ['class' => 'form-control', 'id' => 'form-create-account-email', 'required' => 'required']) 
                         !!}
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         {!! Form::label('form-create-account-password', 'Password:') !!}
                         {!! 
                             Form::password('form-create-account-password', 
-                            null, 
-                            ['class' => 'form-control', 'id' => 'form-create-account-password', 'required' => 'required']) 
+                            null, ['class' => 'form-control', 'id' => 'form-create-account-password', 'required' => 'required']) 
                         !!}
                     </div><!-- /.form-group -->
                     <div class="form-group">
                         {!! Form::label('form-create-account-confirm-password', 'Confirm Password:') !!}
                         {!! 
                             Form::password('form-create-account-confirm-password', 
-                            null, 
-                            ['class' => 'form-control', 'id' => 'form-create-account-confirm-password', 'required' => 'required']) 
+                            null, ['class' => 'form-control', 'id' => 'form-create-account-confirm-password', 'required' => 'required']) 
                         !!}
                     </div><!-- /.form-group -->
                     <div class="form-group clearfix">

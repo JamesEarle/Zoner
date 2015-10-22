@@ -87,7 +87,7 @@
                 </div><!-- /.submit-step -->
             </aside><!-- /.col-md-3 -->
         </div><!-- /.row -->
-        <form role="form" id="form-submit" class="form-submit" action="thank-you.html">
+        {!! Form::open(['url' => 'submit', 'files' => 'true']) !!}
             <div class="row">
                 <div class="block">
                     <div class="col-md-9 col-sm-9">
@@ -97,26 +97,25 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="submit-title">Title</label>
-                                            <input type="text" class="form-control" id="submit-title" name="title" required>
-                                        </div><!-- /.form-group -->
+                                            {!! Form::label('submit-title', 'Title') !!}
+                                            {!! Form::text('submit-title', null, ['class' => 'form-control', 'id' => 'submit-title', 'required' => 'required']) !!}
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="submit-price">Price</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">$</span>
-                                                <input type="text" class="form-control" id="submit-price" name="price" pattern="\d*" required>
+                                                <span class="input-group-addon">$/mo.</span>
+                                                {!! Form::text('price', null, ['class' => 'form-control', 'id' => 'submit-price', 'pattern' => '\d*', 'required' => 'required']) !!}
                                             </div>
                                         </div><!-- /.form-group -->
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="submit-description">Description</label>
-                                    <textarea class="form-control" id="submit-description" rows="8" name="submit-description" required></textarea>
+                                    {!! Form::label('submit-description', 'Submit Description') !!}
+                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'required' => 'required']) !!}
                                 </div><!-- /.form-group -->
                             </section><!-- /#basic-information -->
-
                             <section>
                                 <div class="row">
                                     <div class="block clearfix">
@@ -124,138 +123,210 @@
                                             <section id="summary">
                                                 <header><h2>Summary</h2></header>
                                                 <div class="form-group">
-                                                    <label for="submit-location">Location</label>
-                                                    <select name="type" id="submit-location">
-                                                        <option value="1">New York</option>
-                                                        <option value="2">Los Angeles</option>
-                                                        <option value="3">Chicago</option>
-                                                        <option value="4">Houston</option>
-                                                        <option value="5">Philadelphia</option>
-                                                    </select>
+                                                    {!! Form::label('submit-address', 'Address') !!}
+                                                    {!! Form::text('submit-address', null, ['class' => 'submit-address', 'id' => 'submit-address']) !!}
+                                                </div><!-- /.form-group -->
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            {!! Form::label('submit-city', 'City') !!}
+                                                            {!! Form::text('submit-city', null, ['class' => 'submit-city', 'id' => 'submit-city']) !!}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            {!! Form::label('submit-province', 'Province') !!}
+                                                            {!! Form::text('submit-province', null, 
+                                                            ['class' => 'submit-province', 'id' => 'submit-province']) !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    {!! Form::label('submit-property-type', 'Property Type') !!}
+                                                    {!! Form::select('submit-property-type',['single room' => 'Single Room', 'apartment' => 'Apartment', 'house' => 'House']) !!}
+                                                </div><!-- /.form-group -->
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            {!! Form::label('submit-distance-to-school', 'Distance to School') !!}
+                                                            <div class="input-group">
+                                                                {!! Form::text('submit-distance-to-school', null, ['class' => 'form-control', 'id' => 'submit-distance-to-school', 'required' => 'required']) !!}
+                                                                <span class="input-group-addon">km</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            {!! Form::label('submit-walk-to-bus','Walk to bus') !!}
+                                                            <div class="input-group">
+                                                                {!! Form::text('submit-walk-to-bus', null, ['class' => 'form-control', 'id' => 'submit-walk-to-bus', 'required' => 'required']) !!}
+                                                                <span class="input-group-addon">min</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="submit-property-type">Property Type</label>
-                                                            <select name="type" id="submit-property-type">
-                                                                <option value="1">Apartment</option>
-                                                                <option value="2">Condominium</option>
-                                                                <option value="3">Cottage</option>
-                                                                <option value="4">Flat</option>
-                                                                <option value="5">House</option>
-                                                            </select>
+                                                            {!! Form::label('submit-rooms', 'Rooms') !!}
+                                                            {!! Form::text('submit-rooms', null, ['class' => 'form-control', 'id' => 'submit-rooms', 'pattern' => '\d*', 'required' => 'required']) !!}
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="submit-status">Status</label>
-                                                            <select name="type" id="submit-status">
-                                                                <option value="1">Sale</option>
-                                                                <option value="2">Rent</option>
-                                                            </select>
+                                                            {!! Form::label('submit-baths', 'Baths') !!}
+                                                            {!! Form::text('submit-baths', null, ['class' => 'form-control', 'id' => 'submit-baths', 'pattern' => '\d*', 'required' => 'required']) !!}
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                 </div><!-- /.row -->
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="submit-Beds">Beds</label>
-                                                            <input type="text" class="form-control" id="submit-Beds" name="Beds" pattern="\d*" required>
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-md-6 -->
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="submit-Baths">Baths</label>
-                                                            <input type="text" class="form-control" id="submit-Baths" name="Baths" pattern="\d*" required>
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-md-6 -->
-                                                </div><!-- /.row -->
-                                                <div class="row">
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="submit-area">Area</label>
+                                                            {!! Form::label('submit-area', 'Area') !!}
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="submit-area" name="area" pattern="\d*" required>
-                                                                <span class="input-group-addon">m<sup>2</sup></span>
+                                                                {!! Form::text('submit-area', null, ['class' => 'form-control', 'id' => 'submit-area', 'pattern' => '\d*', 'required' => 'required']) !!}
+                                                                <span class="input-group-addon">ft<sup>2</sup></span>
                                                             </div>
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="submit-garages">Garages</label>
-                                                            <input type="text" class="form-control" id="submit-garages" name="garages" pattern="\d*" required>
+                                                            {!! Form::label('submit-garage', 'Garage') !!}
+                                                            {!! Form::select('submit-garage', ['no' => 'No', 'yes' => 'Yes'])!!}
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                 </div><!-- /.row -->
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">Allow user rating <i class="fa fa-question-circle tool-tip"  data-toggle="tooltip" data-placement="right" title="Users can give you a stars rating which is displayed in property detail"></i>
-                                                    </label>
-                                                </div>
                                             </section><!-- /#summary -->
                                         </div><!-- /.col-md-6 -->
                                          <div class="col-md-6 col-sm-6">
-                                            <section id="place-on-map">
-                                                <header class="section-title">
-                                                    <h2>Place on Map</h2>
-                                                    <span class="link-arrow geo-location">Get My Position</span>
-                                                </header>
-                                                <div class="form-group">
-                                                    <label for="address-map">Address</label>
-                                                    <input type="text" class="form-control" id="address-map" name="address">
-                                                </div><!-- /.form-group -->
-                                                <label for="address-map">Or drag the marker to property position</label>
-                                                <div id="submit-map"></div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" id="latitude" name="latitude" readonly>
-                                                        </div><!-- /.form-group -->
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" id="longitude" name="longitude" readonly>
-                                                        </div><!-- /.form-group -->
+                                            <section class="block" id="gallery">
+                                                <header><h2>Gallery</h2></header>
+                                                <div class="center">
+                                                    <div class="form-group">
+                                                        {{-- Make the images below be images[] later, for now only accept one picture. Also add 'multiple=>true--}}
+                                                        {!! 
+                                                            Form::file('image', [
+                                                                'id' => 'file-upload', 
+                                                                'type' => 'file',
+                                                                'class' => 'file', 
+                                                                'data-show-upload' => 'false', 
+                                                                'data-show-caption' => 'false', 
+                                                                'data-show-remove' => 'false', 
+                                                                'accept' => 'image/jpeg,image/png', 
+                                                                'data-browse-class' => 'btn btn-default', 
+                                                                'data-browse-label' => 'Browse Images'
+                                                            ])
+                                                        !!}
+                                                        <figure class="note">You can upload all images at once!</figure> 
+                                                        <hr>
+                                                        <figure class="note"><strong>Must remain below 3mb total.</strong></figure>
                                                     </div>
                                                 </div>
-                                            </section><!-- /#place-on-map -->
+                                            </section>
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.block -->
                                 </div><!-- /.row -->
-                            </section>
-
-                            <section class="block" id="gallery">
-                                <header><h2>Gallery</h2></header>
-                                <div class="center">
-                                    <div class="form-group">
-                                        <input id="file-upload" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Browse Images">
-                                        <figure class="note"><strong>Hint:</strong> You can upload all images at once!</figure>
-                                    </div>
-                                </div>
                             </section>
 
                             <section id="property-features" class="block">
                                 <section>
                                     <header><h2>Property Features</h2></header>
                                     <ul class="submit-features">
-                                        <li><div class="checkbox"><label><input type="checkbox">Air conditioning</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Heating</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Internet</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Microwave</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Smoking allowed</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Use of pool</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Toaster</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Coffee pot</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Cable TV</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Parquet</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Roof terrace</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Terrace</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Iron</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Hi-Fi</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Beach</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox">Garage</label></div></li>
+                                        <li><div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('ac-and-heat', 'Air Conditioning & Heating') !!}
+                                                    Air Conditioning &amp; Heating
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('bedding', 'Bedding') !!}
+                                                    Bedding
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('internet', 'Internet') !!}
+                                                    Internet
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('microwave', 'Microwave') !!}
+                                                    Microwave
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('smoking', 'Smoking Allowed') !!}
+                                                    Smoking Allowed
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('pool-gym', 'Pool or Gym') !!}
+                                                    Pool or Gym
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('toaster', 'Toaster') !!}
+                                                    Toaster
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('pots-pans', 'Pots & Pans') !!}
+                                                    Pots &amp; Pans
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('tv', 'Cable TV') !!}
+                                                    Cable TV
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('park', 'Nearby Park') !!}
+                                                    Nearby Park
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('balcony', 'Balcony') !!}
+                                                    Balcony
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('washer-dryer', 'Washer & Dryer') !!}
+                                                    Washer &amp; Dryer
+                                                </label>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </section>
                             </section>
@@ -279,24 +350,24 @@
                     <div class="col-md-9 col-sm-9">
                         <div class="center">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default large">Proceed to Payment</button>
+                                {!! Form::submit('Submit!', ['class' => 'btn btn-default large'])!!}
                             </div><!-- /.form-group -->
-                            <figure class="note block">By clicking the “Proceed to Payment” or “Submit” button you agree with our <a href="terms-conditions.html">Terms and conditions</a></figure>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <aside class="submit-step">
                             <figure class="step-number">3</figure>
                             <div class="description">
-                                <h4>Review Information and Proceed to Payment</h4>
-                                <p>Carefully check entered information and than click button to submit them.
+                                <h4>Review Information and Submit!</h4>
+                                <p>Carefully check entered information and then your submission is complete.
                                 </p>
                             </div>
                         </aside><!-- /.submit-step -->
                     </div><!-- /.col-md-3 -->
                 </div>
             </div>
-        </form><!-- /#form-submit -->
+            {!! Form::token() !!}
+        {!! Form::close() !!}
     </div><!-- /.container -->
 </div>
 <!-- end Page Content -->
@@ -322,7 +393,7 @@
         var marker = new MarkerWithLabel({
             position: mapCenter,
             map: map,
-            icon: 'assets/img/marker.png',
+            icon: '{{ asset("/img/marker.png") }}',
             labelAnchor: new google.maps.Point(50, 0),
             draggable: true
         });

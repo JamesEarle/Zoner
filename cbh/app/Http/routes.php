@@ -19,14 +19,14 @@ Route::get('contact','PagesController@contact');
 Route::get('about','PagesController@about');
 
 /* Authentication Routes */
-Route::get('create', 'AuthController@createacc');
-
+Route::get( 'create', 'AuthController@createacc');
 Route::post('create', 'AuthController@store');
 
 Route::get('signin', 'AuthController@signin');
 
 /* Property Listings & Individual Properties */
 Route::get('submit', 'PropertyController@submit');
+Route::post('submit', 'PropertyController@store');
 
 Route::get('property-detail', 'PropertyController@propertydetail');
 
