@@ -205,10 +205,11 @@
                                                     <div class="form-group">
                                                         {{-- Make the images below be images[] later, for now only accept one picture. Also add 'multiple=>true--}}
                                                         {!! 
-                                                            Form::file('image', [
+                                                            Form::file('images[]', [
                                                                 'id' => 'file-upload', 
                                                                 'type' => 'file',
                                                                 'class' => 'file', 
+                                                                'multiple' => 'true',
                                                                 'data-show-upload' => 'false', 
                                                                 'data-show-caption' => 'false', 
                                                                 'data-show-remove' => 'false', 
@@ -219,7 +220,7 @@
                                                         !!}
                                                         <figure class="note">You can upload all images at once!</figure> 
                                                         <hr>
-                                                        <figure class="note"><strong>Must remain below 3mb total.</strong></figure>
+                                                        <figure class="note"><strong>PNG and JPG files only.</strong></figure> 
                                                     </div>
                                                 </div>
                                             </section>

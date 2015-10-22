@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use DB;
 use Hash;
 use Request;
+use Input;
+use Validator;
+use Session;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -45,9 +48,15 @@ class PropertyController extends Controller
     public function store()
     {
         $input = Request::all();
+        $id = uniqid();
+        $destPath = 'uploads/' . $id;
 
+        mkdir($destPath);
+
+        //echo ini_get('post_max_size');
+
+        // Create a string to hold all features associated with a property, stored in a single cell of the DB
         $features = '| ';
-
         $features .= isset($_POST['ac-and-heat']) ? $_POST['ac-and-heat']   . ' | ' : '';
         $features .= isset($_POST['microwave']) ? $_POST['microwave']       . ' | ' : '';
         $features .= isset($_POST['toaster']) ? $_POST['toaster']           . ' | ' : '';
@@ -61,36 +70,54 @@ class PropertyController extends Controller
         $features .= isset($_POST['tv']) ? $_POST['tv']                     . ' | ' : '';
         $features .= isset($_POST['washer-dryer']) ? $_POST['washer-dryer'] . ' | ' : '';
 
-        echo $features;
-        echo '<br>';
-        echo '<br>';
+        $images = Input::file('images');
+        $image_count = count($images);
+        $image_upload = 0;
 
-        // $images = $input['images'];
-        // var_dump($images);
+        //Enforcing file formats of JPG or PNG.
+        $rules = ['image/jpeg', 'image/png'];
+        
+        foreach ($images as $img) 
+        {
+             if(in_array($img->getClientMimeType(), $rules)) 
+            {   
+                //move to location 'uploads/{property_id}/imagename.jpg'
+                $upload_success = $img->move($destPath, $img->getClientOriginalName());
+                $image_upload++;
+            }
+        }
 
+        if($image_upload == $image_count) 
+        {
+            Session::flash('success', 'Upload Successful!');
+            
+            DB::insert( constant('INSERT_INTO_PROPERTIES') . ' VALUES(\''
+                . $id . '\', \''
+                . $input['submit-title'] . '\', \''
+                . $input['submit-description'] . '\', \''
+                . $input['submit-address'] . '\', \''
+                . $input['submit-city'] . '\', \''
+                . $input['submit-province'] . '\', \''
+                . $input['submit-property-type'] . '\', \''
+                . $destPath . '\', \''
+                . $features . '\', \''
+                . $input['submit-rooms'] . '\', \''
+                . $input['submit-baths'] . '\', \''
+                . $input['submit-distance-to-school'] . '\', \''
+                . $input['submit-walk-to-bus'] . '\', \''
+                . date("Y-m-d H:i:s") . '\', \''
+                . date("Y-m-d H:i:s") . '\', \''
+                . date("Y-m-d H:i:s") . '\');'
+                );
 
-        echo ( constant('INSERT_INTO_PROPERTIES') . ' VALUES(\''
-            . uniqid() . '\', \''
-            . $input['submit-title'] . '\', \''
-            . $input['submit-description'] . '\', \''
-            . $input['submit-address'] . '\', \''
-            . $input['submit-city'] . '\', \''
-            . $input['submit-province'] . '\', \''
-            . $input['submit-property-type'] . '\', \''
-            . $input['image'] . '\', \''
-            . $features . '\', \''
-            . $input['submit-rooms'] . '\', \''
-            . $input['submit-baths'] . '\', \''
-            . $input['submit-distance-to-school'] . '\', \''
-            . $input['submit-walk-to-bus'] . '\', \''
-            . date("Y-m-d H:i:s") . '\', \''
-            . date("Y-m-d H:i:s") . '\', \''
-            . date("Y-m-d H:i:s") . '\')'
-            );
+            return redirect('/');
+        } else {
+            Session::flash('error', 'Error uploading files.');
+        }
 
         // echo "<hr>";
 
-        var_dump($input);
+        // var_dump($input);
     }
 
     /**
