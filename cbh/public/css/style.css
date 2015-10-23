@@ -3535,9 +3535,12 @@ ul.list-links li a:hover {
   margin-bottom: 60px;
 }
 
-/****
-  T
-****/
+/* Propety submit form styling*/
+#submit-form {
+    margin-left: 17.5%;
+    margin-right: -17.5%;
+}
+
 .tag {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;

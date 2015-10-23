@@ -46,7 +46,7 @@
                                         <option value="">Province</option>
                                         <option value="1">ON</option>
                                         <option value="2">BC</option>
-                                        <option value="3">MO</option>
+                                        <option value="3">QC</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

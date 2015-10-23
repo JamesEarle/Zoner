@@ -5,6 +5,10 @@
 @stop
 
 @section('content')
+
+{{-- Include the Queries for DB access --}}
+<?php include_once(app_path()."/queries.php"); ?>
+
 <div id="page-content">
     <!-- Breadcrumb -->
     <div class="container">
@@ -36,40 +40,52 @@
                             </div>
                         </figure>
                     </section>
+                    <?php 
+                        $results = DB::select(constant('ALL_PROPERTIES'));
+
+                        foreach($results as $row) {
+                    ?>  
                     <section id="properties" class="display-lines">
                         <div class="property">
-                            <figure class="tag status">For Sale</figure>
-                            <figure class="type" title="Apartment"><img src="{{ asset('/img/property-types/apartment.png') }}" alt=""></figure>
+                            <?php
+                                $img_dir = scandir($row->image);
+                                // Always start at index 2, indices 0,1 are reserved for '.' and '..'
+                                $img = $row->image . '/' . $img_dir[2];
+                            ?>
                             <div class="property-image">
-                                <figure class="ribbon">On Hold</figure>
                                 <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-01.jpg') }}">
+                                    <?php echo '<img alt="" src="' . $img . '">'; ?>
                                 </a>
                             </div>
                             <div class="info">
                                 <header>
-                                    <a href="property-detail.html"><h3>4862 Palmer Road</h3></a>
-                                    <figure>Worthington, OH 43085</figure>
+                                    <a href="property-detail.html"><h3><?php echo stripslashes($row->address); ?></h3></a>
+                                    <figure><?php echo stripslashes($row->city) . ', ' . stripslashes($row->province); ?></figure>
                                 </header>
-                                <div class="tag price">$ 38,000</div>
+                                <div class="tag price">$ <?php echo $row->price; ?></div>
                                 <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
+                                    <p><?php 
+                                            $desc = stripslashes($row->description);
+                                            if(strlen($desc) > 150) {
+                                                echo substr($desc, 0, 170) . '...';
+                                            } else {
+                                                echo $desc;
+                                            }
+                                        ?>
                                     </p>
                                     <dl>
-                                        <dt>Status:</dt>
-                                            <dd>Sale</dd>
                                         <dt>Area:</dt>
-                                            <dd>860 m<sup>2</sup></dd>
+                                            <dd><?php echo $row->area; ?>ft<sup>2</sup></dd>
                                         <dt>Beds:</dt>
-                                            <dd>3</dd>
+                                            <dd><?php echo $row->rooms; ?></dd>
                                         <dt>Baths:</dt>
-                                            <dd>2</dd>
+                                            <dd><?php echo $row->baths; ?></dd>
                                     </dl>
                                 </aside>
                                 <a href="property-detail.html" class="link-arrow">Read More</a>
                             </div>
                         </div><!-- /.property -->
+                        <?php } // This ends the foreach loop ?>
                         <div class="property">
                             <figure class="type" title="House Boat"><img src="{{ asset('/img/property-types/houseboat.png') }}" alt=""></figure>
                             <div class="property-image">

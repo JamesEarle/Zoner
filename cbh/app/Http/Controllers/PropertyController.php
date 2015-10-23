@@ -90,21 +90,24 @@ class PropertyController extends Controller
         if($image_upload == $image_count) 
         {
             Session::flash('success', 'Upload Successful!');
-            
+            //NOTE MUST CALL stripslashes(str) ON ACCESS TO ALL STRING FIELDS
             DB::insert( constant('INSERT_INTO_PROPERTIES') . ' VALUES(\''
                 . $id . '\', \''
-                . $input['submit-title'] . '\', \''
-                . $input['submit-description'] . '\', \''
-                . $input['submit-address'] . '\', \''
-                . $input['submit-city'] . '\', \''
-                . $input['submit-province'] . '\', \''
+                . true . '\', \''
+                . $input['submit-price'] . '\', \''
+                . $input['submit-area'] . '\', \''
+                . addslashes($input['submit-title']) . '\', \''
+                . addslashes($input['submit-description']) . '\', \''
+                . addslashes($input['submit-address']) . '\', \''
+                . addslashes($input['submit-city']) . '\', \''
+                . addslashes($input['submit-province']) . '\', \''
                 . $input['submit-property-type'] . '\', \''
-                . $destPath . '\', \''
                 . $features . '\', \''
                 . $input['submit-rooms'] . '\', \''
                 . $input['submit-baths'] . '\', \''
                 . $input['submit-distance-to-school'] . '\', \''
                 . $input['submit-walk-to-bus'] . '\', \''
+                . $destPath . '\', \''
                 . date("Y-m-d H:i:s") . '\', \''
                 . date("Y-m-d H:i:s") . '\', \''
                 . date("Y-m-d H:i:s") . '\');'

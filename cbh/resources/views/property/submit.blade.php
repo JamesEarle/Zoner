@@ -17,76 +17,6 @@
 
     <div class="container">
         <header><h1>Add Your Property</h1></header>
-        <div class="row">
-            <!-- Submit-->
-            <div class="col-md-9 col-sm-9">
-                <section id="submit" class="submit">
-                    <section id="select-package">
-                        <div class="table-responsive submit-pricing">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Your Package:</th>
-                                    <th class="title">Free</th>
-                                    <th class="title">Silver</th>
-                                    <th class="title">Gold</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="prices">
-                                    <td></td>
-                                    <td>$0</td>
-                                    <td>$20</td>
-                                    <td>$40</td>
-                                </tr>
-                                <tr>
-                                    <td>Property Submit Limit</td>
-                                    <td>1</td>
-                                    <td>20</td>
-                                    <td>Unlimited</td>
-                                </tr>
-                                <tr>
-                                    <td>Agent Profiles</td>
-                                    <td>1</td>
-                                    <td>10</td>
-                                    <td>Unlimited</td>
-                                </tr>
-                                <tr>
-                                    <td>Agency Profiles</td>
-                                    <td class="not-available"><i class="fa fa-times"></i></td>
-                                    <td>5</td>
-                                    <td>Unlimited</td>
-                                </tr>
-                                <tr>
-                                    <td>Featured Properties</td>
-                                    <td class="not-available"><i class="fa fa-times"></i></td>
-                                    <td class="available"><i class="fa fa-check"></i></td>
-                                    <td class="available"><i class="fa fa-check"></i></td>
-                                </tr>
-                                <tr class="buttons">
-                                    <td></td>
-                                    <td class="package-selected" data-package="free"><button type="button" class="btn btn-default small">Select</button></td>
-                                    <td data-package="silver"><button type="button" class="btn btn-default small">Select</button></td>
-                                    <td data-package="gold"><button type="button" class="btn btn-default small">Select</button></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div><!-- /.submit-pricing -->
-                    </section><!-- /#select-package -->
-                </section><!-- /#submit -->
-            </div><!-- /.col-md-9 -->
-            <aside class="col-md-3 col-sm-3">
-                <div class="submit-step">
-                    <figure class="step-number">1</figure>
-                    <div class="description">
-                        <h4>Select Your Price Package</h4>
-                        <p>Choose from price packages one that suit your need. If you have chosen package before,
-                            it will be automatically selected.
-                        </p>
-                    </div>
-                </div><!-- /.submit-step -->
-            </aside><!-- /.col-md-3 -->
-        </div><!-- /.row -->
         {!! Form::open(['url' => 'submit', 'files' => 'true']) !!}
             <div class="row">
                 <div class="block">
@@ -106,14 +36,14 @@
                                             <label for="submit-price">Price</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$/mo.</span>
-                                                {!! Form::text('price', null, ['class' => 'form-control', 'id' => 'submit-price', 'pattern' => '\d*', 'required' => 'required']) !!}
+                                                {!! Form::text('submit-price', null, ['class' => 'form-control', 'id' => 'submit-price', 'pattern' => '\d*', 'required' => 'required']) !!}
                                             </div>
                                         </div><!-- /.form-group -->
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('submit-description', 'Submit Description') !!}
-                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'required' => 'required']) !!}
+                                    {!! Form::label('submit-description', 'Description') !!}
+                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'placeholder' => 'Be descriptive! Giving as much detail as possible will increase the attention to your home.', 'required' => 'required']) !!}
                                 </div><!-- /.form-group -->
                             </section><!-- /#basic-information -->
                             <section>
@@ -137,20 +67,20 @@
                                                         <div class="form-group">
                                                             {!! Form::label('submit-province', 'Province') !!}
                                                             {!! Form::text('submit-province', null, 
-                                                            ['class' => 'submit-province', 'id' => 'submit-province']) !!}
+                                                            ['class' => 'submit-province', 'id' => 'submit-province', 'maxlength' => '2', 'placeholder' => 'e.g. ON']) !!}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     {!! Form::label('submit-property-type', 'Property Type') !!}
-                                                    {!! Form::select('submit-property-type',['single room' => 'Single Room', 'apartment' => 'Apartment', 'house' => 'House']) !!}
+                                                    {!! Form::select('submit-property-type',['house' => 'House', 'apartment' => 'Apartment', 'single room' => 'Single Room', 'other' => 'Other']) !!}
                                                 </div><!-- /.form-group -->
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             {!! Form::label('submit-distance-to-school', 'Distance to School') !!}
                                                             <div class="input-group">
-                                                                {!! Form::text('submit-distance-to-school', null, ['class' => 'form-control', 'id' => 'submit-distance-to-school', 'required' => 'required']) !!}
+                                                                {!! Form::text('submit-distance-to-school', null, ['class' => 'form-control', 'id' => 'submit-distance-to-school', 'pattern' => '\d*', 'required' => 'required']) !!}
                                                                 <span class="input-group-addon">km</span>
                                                             </div>
                                                         </div>
@@ -159,7 +89,7 @@
                                                         <div class="form-group">
                                                             {!! Form::label('submit-walk-to-bus','Walk to bus') !!}
                                                             <div class="input-group">
-                                                                {!! Form::text('submit-walk-to-bus', null, ['class' => 'form-control', 'id' => 'submit-walk-to-bus', 'required' => 'required']) !!}
+                                                                {!! Form::text('submit-walk-to-bus', null, ['class' => 'form-control', 'id' => 'submit-walk-to-bus','pattern' => '\d*', 'required' => 'required']) !!}
                                                                 <span class="input-group-addon">min</span>
                                                             </div>
                                                         </div>
@@ -169,13 +99,13 @@
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             {!! Form::label('submit-rooms', 'Rooms') !!}
-                                                            {!! Form::text('submit-rooms', null, ['class' => 'form-control', 'id' => 'submit-rooms', 'pattern' => '\d*', 'required' => 'required']) !!}
+                                                            {!! Form::text('submit-rooms', null, ['class' => 'form-control', 'id' => 'submit-rooms', 'pattern' => '\d*', 'placeholder'=>'e.g. 4', 'required' => 'required']) !!}
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             {!! Form::label('submit-baths', 'Baths') !!}
-                                                            {!! Form::text('submit-baths', null, ['class' => 'form-control', 'id' => 'submit-baths', 'pattern' => '\d*', 'required' => 'required']) !!}
+                                                            {!! Form::text('submit-baths', null, ['class' => 'form-control', 'id' => 'submit-baths', 'pattern' => '\d*',  'placeholder'=>'e.g. 2', 'required' => 'required']) !!}
                                                         </div><!-- /.form-group -->
                                                     </div><!-- /.col-md-6 -->
                                                 </div><!-- /.row -->
@@ -334,37 +264,19 @@
                             <hr>
                         </section>
                     </div><!-- /.col-md-9 -->
-                    <div class="col-md-3 col-sm-3">
-                        <aside class="submit-step">
-                            <figure class="step-number">2</figure>
-                            <div class="description">
-                                <h4>Enter Information About Property</h4>
-                                <p>Type information about your property. Be descriptive.
-                                </p>
-                            </div>
-                        </aside><!-- /.submit-step -->
-                    </div><!-- /.col-md-3 -->
                 </div>
             </div><!-- /.row -->
             <div class="row">
                 <div class="block">
                     <div class="col-md-9 col-sm-9">
                         <div class="center">
-                            <div class="form-group">
-                                {!! Form::submit('Submit!', ['class' => 'btn btn-default large'])!!}
-                            </div><!-- /.form-group -->
+                            <div id="submit-form">
+                                <div class="form-group">
+                                    {!! Form::submit('Submit!', ['class' => 'btn btn-default large'])!!}
+                                </div><!-- /.form-group -->
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
-                        <aside class="submit-step">
-                            <figure class="step-number">3</figure>
-                            <div class="description">
-                                <h4>Review Information and Submit!</h4>
-                                <p>Carefully check entered information and then your submission is complete.
-                                </p>
-                            </div>
-                        </aside><!-- /.submit-step -->
-                    </div><!-- /.col-md-3 -->
                 </div>
             </div>
             {!! Form::token() !!}
