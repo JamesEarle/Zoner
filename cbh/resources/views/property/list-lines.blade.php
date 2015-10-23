@@ -60,14 +60,14 @@
                             <div class="info">
                                 <header>
                                     <a href="property-detail.html"><h3><?php echo stripslashes($row->address); ?></h3></a>
-                                    <figure><?php echo stripslashes($row->city) . ', ' . stripslashes($row->province); ?></figure>
+                                    <figure><?php echo stripslashes($row->city) . ', ' . stripslashes(strtoupper($row->province)); ?></figure>
                                 </header>
                                 <div class="tag price">$ <?php echo $row->price; ?></div>
                                 <aside>
                                     <p><?php 
                                             $desc = stripslashes($row->description);
                                             if(strlen($desc) > 150) {
-                                                echo substr($desc, 0, 170) . '...';
+                                                echo substr($desc, 0, 155) . '...';
                                             } else {
                                                 echo $desc;
                                             }
