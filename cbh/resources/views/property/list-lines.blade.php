@@ -54,13 +54,13 @@
                             ?>
                             <div class="property-image">
                                 <a href="property-detail.html">
-                                    <?php echo '<img alt="" src="' . $img . '">'; ?>
+                                    <?php echo '<img alt="" style="background-position:center;" src="' . $img . '">'; ?>
                                 </a>
                             </div>
                             <div class="info">
                                 <header>
                                     <a href="property-detail.html"><h3><?php echo stripslashes($row->address); ?></h3></a>
-                                    <figure><?php echo stripslashes($row->city) . ', ' . stripslashes(strtoupper($row->province)); ?></figure>
+                                    <figure><?php echo stripslashes($row->city) . ', ' . $row->province; ?></figure>
                                 </header>
                                 <div class="tag price">$ <?php echo $row->price; ?></div>
                                 <aside>

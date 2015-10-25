@@ -66,8 +66,21 @@
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
                                                             {!! Form::label('submit-province', 'Province') !!}
-                                                            {!! Form::text('submit-province', null, 
-                                                            ['class' => 'submit-province', 'id' => 'submit-province', 'maxlength' => '2', 'placeholder' => 'e.g. ON']) !!}
+                                                            {!! Form::select('submit-province', 
+                                                                ['AB' => 'Alberta', 
+                                                                 'BC' => 'British Columbia', 
+                                                                 'MB' => 'Manitoba', 
+                                                                 'NB' => 'New Brunswick', 
+                                                                 'NL' => 'Newfoundland & Labrador', 
+                                                                 'NS' => 'Nova Scotia', 
+                                                                 'NT' => 'Northwest Territories', 
+                                                                 'NU' => 'Nunavut', 
+                                                                 'ON' => 'Ontario', 
+                                                                 'PE' => 'Prince Edward Island', 
+                                                                 'QC' => 'Quebec', 
+                                                                 'SK' => 'Saskatchewan', 
+                                                                 'YT' => 'Yukon'], 
+                                                                ['class' => 'submit-province', 'id' => 'submit-province', 'selected' => 'ON']) !!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,7 +161,7 @@
                                                                 'data-browse-label' => 'Browse Images'
                                                             ])
                                                         !!}
-                                                        <figure class="note">You can upload all images at once!</figure> 
+                                                        <figure class="note">Square photos will appear best.</figure> 
                                                         <hr>
                                                         <figure class="note"><strong>PNG and JPG files only.</strong></figure> 
                                                     </div>

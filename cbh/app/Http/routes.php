@@ -15,6 +15,7 @@
 Route::get('/', 'PagesController@welcome');
 
 Route::get('contact','PagesController@contact');
+Route::post('contact', 'PagesController@mail');
 
 Route::get('about','PagesController@about');
 

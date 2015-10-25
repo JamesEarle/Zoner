@@ -100,7 +100,7 @@ class PropertyController extends Controller
                 . addslashes($input['submit-description']) . '\', \''
                 . addslashes($input['submit-address']) . '\', \''
                 . addslashes($input['submit-city']) . '\', \''
-                . addslashes($input['submit-province']) . '\', \''
+                . $input['submit-province'] . '\', \''
                 . $input['submit-property-type'] . '\', \''
                 . $features . '\', \''
                 . $input['submit-rooms'] . '\', \''

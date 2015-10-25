@@ -30,20 +30,21 @@
 	                                <section id="address">
 	                                    <header><h3>Address</h3></header>
 	                                    <address>
-	                                        <strong>Your Company</strong><br>
-	                                        4877 Spruce Drive<br>
-	                                        West Newton, PA 15089
+	                                        <strong>Cross Border Housing Inc.</strong>
+	                                        <br>
+	                                        	1812 Isaac Brock Boulevard
+	                                        <br>
+	                                        	St. Catharines, ON L2S 3A1
 	                                    </address>
-	                                    +1 (734) 123-4567<br>
-	                                    <a href="#">hello@example.com</a><br>
-	                                    <strong>skype: </strong>your.company
+	                                    +1 (647) 404-3067<br>
+	                                    <a href="mailto:info@cbhousing.ca">info@cbhousing.ca</a><br>
 	                                </section><!-- /#address -->
 	                                <section id="social">
 	                                    <header><h3>Social Profiles</h3></header>
 	                                    <div class="agent-social">
-	                                        <a href="#" class="fa fa-twitter btn btn-grey-dark"></a>
-	                                        <a href="#" class="fa fa-facebook btn btn-grey-dark"></a>
-	                                        <a href="#" class="fa fa-linkedin btn btn-grey-dark"></a>
+	                                        <a href="https://twitter.com/CBHBrock" class="fa fa-twitter btn btn-grey-dark"></a>
+	                                        <a href="https://www.facebook.com/Crossborderhousing" class="fa fa-facebook btn btn-grey-dark"></a>
+	                                        <a href="https://www.linkedin.com/company/cross-border-housing-inc-?trk=company_logo" class="fa fa-linkedin btn btn-grey-dark"></a>
 	                                    </div>
 	                                </section><!-- /#social -->
 	                            </div><!-- /.col-md-4 -->
@@ -56,34 +57,35 @@
 	                    <hr class="thick">
 	                    <section id="form">
 	                        <header><h3>Send Us a Message</h3></header>
-	                        <form role="form" id="form-contact" method="post"  class="clearfix">
+	                        {!! Form::open(['url' => 'contact', 'class' => 'clearfix']) !!}
 	                            <div class="row">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
-	                                        <label for="form-contact-name">Your Name<em>*</em></label>
-	                                        <input type="text" class="form-control" id="form-contact-name" name="form-contact-name" required>
+	                                    	{!! Form::label('form-contact-name', 'Your Name*', ['required' => 'required']) !!}
+	                                    	{!! Form::text('form-contact-name', null, ['class' => 'form-control', 'id' => 'form-contact-name'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-6 -->
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
-	                                        <label for="form-contact-email">Your Email<em>*</em></label>
-	                                        <input type="email" class="form-control" id="form-contact-email" name="form-contact-email" required>
+	                                    	{!! Form::label('form-contact-email', 'Your Email*', ['required' => 'required']) !!}
+	                                    	{!! Form::text('form-contact-email', null, ['class' => 'form-control', 'id' => 'form-contact-email'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-6 -->
 	                            </div><!-- /.row -->
 	                            <div class="row">
 	                                <div class="col-md-12">
 	                                    <div class="form-group">
-	                                        <label for="form-contact-message">Your Message<em>*</em></label>
-	                                        <textarea class="form-control" id="form-contact-message" rows="8" name="form-contact-message" required></textarea>
+	                                    	{!! Form::label('form-contact-message', 'Your Message*', ['required' => 'required']) !!}
+	                                    	{!! Form::textarea('form-contact-message', null, ['class' => 'form-control', 'id' => 'form-contact-message'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-12 -->
 	                            </div><!-- /.row -->
 	                            <div class="form-group clearfix">
-	                                <button type="submit" class="btn pull-right btn-default" id="form-contact-submit">Send a Message</button>
+	                            	{!! Form::submit('Send a Message', ['class' => 'btn pull-right btn-default', 'id' => 'form-contact-submit']) !!}
 	                            </div><!-- /.form-group -->
 	                            <div id="form-status"></div>
-	                        </form><!-- /#form-contact -->
+	                        	{!! Form::token() !!}
+	                        {!! Form::close() !!}
 	                    </section>
 	                </section><!-- /#agent-detail -->
 	            </div><!-- /.col-md-9 -->
@@ -104,7 +106,7 @@
 @section('map-script')
 <script>
     //Brock U
-    _latitude = 43.117614;
+    _latitude = 43.118324;
     _longitude = -79.247684;
 
     //Contact map
