@@ -61,14 +61,14 @@
 	                            <div class="row">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
-	                                    	{!! Form::label('form-contact-name', 'Your Name*', ['required' => 'required']) !!}
-	                                    	{!! Form::text('form-contact-name', null, ['class' => 'form-control', 'id' => 'form-contact-name'])!!}
+	                                    	{!! Form::label('form-contact-name', 'Your Name*') !!}
+	                                    	{!! Form::text('form-contact-name', null, ['class' => 'form-control', 'id' => 'form-contact-name', 'required' => 'required'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-6 -->
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                    	{!! Form::label('form-contact-email', 'Your Email*', ['required' => 'required']) !!}
-	                                    	{!! Form::text('form-contact-email', null, ['class' => 'form-control', 'id' => 'form-contact-email'])!!}
+	                                    	{!! Form::email('form-contact-email', null, ['class' => 'form-control', 'id' => 'form-contact-email', 'required' => 'required'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-6 -->
 	                            </div><!-- /.row -->
@@ -76,7 +76,7 @@
 	                                <div class="col-md-12">
 	                                    <div class="form-group">
 	                                    	{!! Form::label('form-contact-message', 'Your Message*', ['required' => 'required']) !!}
-	                                    	{!! Form::textarea('form-contact-message', null, ['class' => 'form-control', 'id' => 'form-contact-message'])!!}
+	                                    	{!! Form::textarea('form-contact-message', null, ['class' => 'form-control', 'id' => 'form-contact-message', 'required' => 'required'])!!}
 	                                    </div><!-- /.form-group -->
 	                                </div><!-- /.col-md-12 -->
 	                            </div><!-- /.row -->

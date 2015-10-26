@@ -50,11 +50,16 @@
                             <?php
                                 $img_dir = scandir($row->image);
                                 // Always start at index 2, indices 0,1 are reserved for '.' and '..'
+
                                 $img = $row->image . '/' . $img_dir[2];
+                                $info = getimagesize($img);
+
+                                $width = $info[0];
+                                $height = $info[1];
                             ?>
                             <div class="property-image">
                                 <a href="property-detail.html">
-                                    <?php echo '<img alt="" style="background-position:center;" src="' . $img . '">'; ?>
+                                    <?php echo '<img alt="" src="' . $img . '">'; ?>
                                 </a>
                             </div>
                             <div class="info">
@@ -75,7 +80,7 @@
                                     </p>
                                     <dl>
                                         <dt>Area:</dt>
-                                            <dd><?php echo $row->area; ?>ft<sup>2</sup></dd>
+                                            <dd><?php echo $row->area; ?> ft<sup>2</sup></dd>
                                         <dt>Beds:</dt>
                                             <dd><?php echo $row->rooms; ?></dd>
                                         <dt>Baths:</dt>
