@@ -117,10 +117,6 @@ class PropertyController extends Controller
         } else {
             Session::flash('error', 'Error uploading files.');
         }
-
-        // echo "<hr>";
-
-        // var_dump($input);
     }
 
     /**

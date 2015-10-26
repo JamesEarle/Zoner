@@ -36,7 +36,7 @@
 	                                        <br>
 	                                        	St. Catharines, ON L2S 3A1
 	                                    </address>
-	                                    +1 (647) 404-3067<br>
+	                                    +1 (705) 440-8237<br>
 	                                    <a href="mailto:info@cbhousing.ca">info@cbhousing.ca</a><br>
 	                                </section><!-- /#address -->
 	                                <section id="social">

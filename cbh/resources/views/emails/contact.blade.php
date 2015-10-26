@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Contact Questions</h2>
+		<h2>Contact Questions from {{ $name }}</h2>
 
 		<div>{!! $email !!} </div>
 		<div>{{ $name}} </div>

@@ -25,11 +25,20 @@ class PagesController extends Controller
     public function mail() {
 
     	$input = Request::all();
-    	var_dump($input);
-
+    	// var_dump($input);
     	//TODO: Finish and test with Mail::send('emails.contact', 'key' => 'value', function() {//give parameters here. })
-    	echo $input['form-contact-name'];
+    	// echo $input['form-contact-name'];
 
-    	return view('contact');
+    	Mail::send('emails.contact', 
+    		['name'  => $input['form-contact-name'], 
+    		 'email' => $input['form-contact-email'], 
+    		 'body'  => $input['form-contact-message']],
+    		 function($message) use($input) {
+    		 	$message->from($input['form-contact-email'], $input['form-contact-name']);
+    		 	$message->to('j_earle@hotmail.com', 'James Earle');
+    		 	$message->subject('Question From: ' . $input['form-contact-name']);
+    		 });
+
+    	return redirect('/');
     }
 }
