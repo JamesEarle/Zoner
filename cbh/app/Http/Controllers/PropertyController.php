@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Hash;
+use Auth;
 use Request;
 use Input;
 use Validator;
@@ -46,14 +47,20 @@ class PropertyController extends Controller
      * @return Response
      */
     public function store()
-    {
+    {   
+        if(!Auth::check()) {
+            return redirect('submit');
+        }
+
         $input = Request::all();
+
+        //echo var_dump($input);
+        //break;
+
         $id = uniqid();
         $destPath = 'uploads/' . $id;
 
         mkdir($destPath);
-
-        //echo ini_get('post_max_size');
 
         // Create a string to hold all features associated with a property, stored in a single cell of the DB
         $features = '| ';
@@ -70,17 +77,24 @@ class PropertyController extends Controller
         $features .= isset($_POST['tv']) ? $_POST['tv']                     . ' | ' : '';
         $features .= isset($_POST['washer-dryer']) ? $_POST['washer-dryer'] . ' | ' : '';
 
+        // Images
+        $featured_image = $input['featured']; //Input::file('featured');
+
         $images = Input::file('images');
         $image_count = count($images);
         $image_upload = 0;
 
         //Enforcing file formats of JPG or PNG.
         $rules = ['image/jpeg', 'image/png'];
+
+        // Move our featured image to the destination folder.
+        if(in_array($featured_image->getClientMimeType(), $rules)) {
+            $upload_success = $featured_image->move($destPath, $featured_image->getClientOriginalName());
+        }
         
-        foreach ($images as $img) 
-        {
-             if(in_array($img->getClientMimeType(), $rules)) 
-            {   
+        // Move the remaining images in the gallery to the destination folder.
+        foreach ($images as $img) {
+             if(in_array($img->getClientMimeType(), $rules)) {   
                 //move to location 'uploads/{property_id}/imagename.jpg'
                 $upload_success = $img->move($destPath, $img->getClientOriginalName());
                 $image_upload++;
@@ -107,7 +121,9 @@ class PropertyController extends Controller
                 . $input['submit-baths'] . '\', \''
                 . $input['submit-distance-to-school'] . '\', \''
                 . $input['submit-walk-to-bus'] . '\', \''
+                . $destPath . '/' . $featured_image->getClientOriginalName() . '\', \''
                 . $destPath . '\', \''
+                . Auth::user()->email . '\', \''
                 . date("Y-m-d H:i:s") . '\', \''
                 . date("Y-m-d H:i:s") . '\', \''
                 . date("Y-m-d H:i:s") . '\');'

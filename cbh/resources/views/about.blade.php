@@ -89,38 +89,7 @@
                             </div><!-- /.col-md-4 -->
                         </div><!-- /.row -->
                     </section><!-- /#our-tem -->
-
-                    <section id="fun-facts" class="block counting-numbers">
-                        <header class="center"><h2 class="no-border">Fun Facts</h2></header>
-                        <div class="row">
-                            <div class="fun-facts">
-                                <div class="col-md-3">
-                                    <div class="number-wrapper">
-                                        <div class="number" data-from="1" data-to="136">136</div>
-                                        <figure>Properties Listed</figure>
-                                    </div><!-- /.number-wrapper -->
-                                </div><!-- /.col-md-3 -->
-                                <div class="col-md-3">
-                                    <div class="number-wrapper">
-                                        <div class="number" data-from="1" data-to="2145">2145</div>
-                                        <figure>Satisfied Clients</figure>
-                                    </div><!-- /.number-wrapper -->
-                                </div><!-- /.col-md-3 -->
-                                <div class="col-md-3">
-                                    <div class="number-wrapper">
-                                        <div class="number" data-from="1" data-to="468">468</div>
-                                        <figure>Properties Sold</figure>
-                                    </div><!-- /.number-wrapper -->
-                                </div><!-- /.col-md-3 -->
-                                <div class="col-md-3">
-                                    <div class="number-wrapper">
-                                        <div class="number" data-from="1" data-to="5475">5475</div>
-                                        <figure>Days Spent Helping You</figure>
-                                    </div><!-- /.number-wrapper -->
-                                </div><!-- /.col-md-3 -->
-                            </div><!-- /.fun-facts -->
-                        </div><!-- /.row -->
-                    </section><!-- /#fun-facts -->
+                    <br><hr><br>
                     {{-- make testimonials work  --}}
                     {{-- <section id="testimonials" class="block"> --}}
                         {{-- <header class="center"><h2 class="no-border">What other said about us</h2></header> --}}

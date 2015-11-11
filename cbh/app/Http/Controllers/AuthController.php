@@ -98,6 +98,7 @@ class AuthController extends Controller
         $input = Request::all();
         $isLandlord = $input['account-type'] == 'landlord';
         $email = $input['form-create-account-email'];
+        $password = $input['form-create-account-password'];
 
         $constraintCheck = DB::select(constant('USER_BY_EMAIL') . "'$email'");
 
@@ -122,7 +123,16 @@ class AuthController extends Controller
                 . date("Y-m-d H:i:s") . '\')'
             );  
 
-        return redirect('/');
+        if(Auth::attempt(array(
+            'email' => $email,
+            'password' => $password))) {
+            // Successful login
+            return redirect('/');
+        } else {
+            // Failed login for alternate reason.
+            return redirect('create')->with('message', 'alt');
+        }
+
     }
 
     public function doSignin() {

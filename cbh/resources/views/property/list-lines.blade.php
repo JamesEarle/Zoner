@@ -50,12 +50,14 @@
                             <?php
                                 $img_dir = scandir($row->image);
                                 // Always start at index 2, indices 0,1 are reserved for '.' and '..'
+                                //echo var_dump($row);
+                                $img = $row->{'featured-image'};
+                                //$img = $row->image . '/' . $img_dir[2];
 
-                                $img = $row->image . '/' . $img_dir[2];
-                                $info = getimagesize($img);
-
-                                $width = $info[0];
-                                $height = $info[1];
+                                // Should consider below if we want varying sizes for thumbnails.
+                                // $info = getimagesize($img);
+                                // $width = $info[0];
+                                // $height = $info[1];
                             ?>
                             <div class="property-image">
                                 <a href="property-detail.html">
@@ -74,6 +76,9 @@
                                             if(strlen($desc) > 150) {
                                                 echo substr($desc, 0, 155) . '...';
                                             } else {
+                                                while(strlen($desc) < 150) {
+                                                    $desc .= "<br>";
+                                                }
                                                 echo $desc;
                                             }
                                         ?>

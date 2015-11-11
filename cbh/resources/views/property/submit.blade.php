@@ -23,6 +23,19 @@
                     <div class="col-md-9 col-sm-9">
                         <section id="submit-form">
                             <section id="basic-information">
+                                <?php
+                                    if(!Auth::check()) {
+                                        echo "<p style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</p>";
+                                    } else {
+                                        $email = Auth::user()->email;
+
+                                        $isLandlord = DB::select(constant('USER_BY_EMAIL') . "'$email'")[0]->landlord;
+
+                                        if(!$isLandlord) {
+                                            echo "<p style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</p>";
+                                        }
+                                    }
+                                ?>
                                 <header><h2>Basic Information</h2></header>
                                 <div class="row">
                                     <div class="col-md-8">
@@ -146,7 +159,31 @@
                                                 <header><h2>Gallery</h2></header>
                                                 <div class="center">
                                                     <div class="form-group">
+                                                        <h3><strong>Featured Image</strong></h3>
+                                                        <figure class="note">
+                                                            Your featured image is the first picture people see of your home. Be sure it's something that represents your property well! <br><strong><emph>Square photos will render the best on our website.</emph></strong>
+                                                        </figure> 
+                                                        {!! 
+                                                            Form::file('featured', [
+                                                                'id' => 'file-upload', 
+                                                                'type' => 'file',
+                                                                'class' => 'file',
+                                                                'data-show-upload' => 'false', 
+                                                                'data-show-caption' => 'false', 
+                                                                'data-show-remove' => 'false', 
+                                                                'accept' => 'image/jpeg,image/png', 
+                                                                'data-browse-class' => 'btn btn-default', 
+                                                                'data-browse-label' => 'Featured Image'
+                                                            ])
+                                                        !!}
+                                                    </div>
+                                                    <hr>
+                                                    <div class="form-group">
+                                                        <h3><strong>Image Gallery</strong></h3>
                                                         {{-- Make the images below be images[] later, for now only accept one picture. Also add 'multiple=>true--}}
+                                                        <figure class="note">
+                                                            Your image gallery allows you to add any additional photos you like. Be sure that these photos provide a good perspective of your property.
+                                                        </figure> 
                                                         {!! 
                                                             Form::file('images[]', [
                                                                 'id' => 'file-upload', 
@@ -161,8 +198,6 @@
                                                                 'data-browse-label' => 'Browse Images'
                                                             ])
                                                         !!}
-                                                        <figure class="note">Square photos will appear best.</figure> 
-                                                        <hr>
                                                         <figure class="note"><strong>PNG and JPG files only.</strong></figure> 
                                                     </div>
                                                 </div>
