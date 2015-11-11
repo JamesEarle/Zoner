@@ -20,10 +20,12 @@ Route::post('contact', 'PagesController@mail');
 Route::get('about','PagesController@about');
 
 /* Authentication Routes */
-Route::get( 'create', 'AuthController@createacc');
+Route::get('create', 'AuthController@createacc');
 Route::post('create', 'AuthController@store');
 
 Route::get('signin', 'AuthController@signin');
+Route::post('signin', 'AuthController@doSignin');
+Route::get('logout', 'AuthController@doLogout');
 
 /* Property Listings & Individual Properties */
 Route::get('submit', 'PropertyController@submit');

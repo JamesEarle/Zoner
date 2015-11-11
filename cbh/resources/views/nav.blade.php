@@ -8,8 +8,19 @@
             </div>
             <div class="user-area">
                 <div class="actions">
-                    <a href="{{ URL('create') }}" class="promoted"><strong>Register</strong></a>
-                    <a href="{{ URL('signin') }}">Sign In</a>
+                    <?php
+                        if(Auth::check()) {
+                            echo Auth::user()->name;
+                        ?>
+                            <a href="{{ URL('logout') }}">Logout</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="{{ URL('create') }}" class="promoted"><strong>Register</strong></a>
+                            <a href="{{ URL('signin') }}">Sign In</a>
+                        <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

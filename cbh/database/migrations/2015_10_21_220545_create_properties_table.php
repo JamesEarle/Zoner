@@ -14,7 +14,7 @@ class CreatePropertiesTable extends Migration
     {
         //ADd subscription for landlords later. Free, Silver, Gold. Use $table->enum('package', array('free', 'silver', 'gold'));
         Schema::create('properties', function(Blueprint $table){
-            $table->string('id', 13);
+            $table->string('id', 13)->unique();
             $table->boolean('vacant')->default(false);
             $table->integer('price');
             $table->integer('area');
@@ -29,7 +29,9 @@ class CreatePropertiesTable extends Migration
             $table->integer('baths');
             $table->double('distance_to_school');
             $table->double('time_to_bus');
+            $table->string('featured-image');
             $table->string('image');
+            $table->string('landlord-email');
             $table->timestamp('posted_at');
             $table->timestamps();
         });

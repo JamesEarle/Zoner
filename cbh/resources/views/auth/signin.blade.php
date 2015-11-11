@@ -18,21 +18,36 @@
 
     <div class="container">
         <header><h1>Sign In</h1></header>
+        <p class=""> </p>
+        <p class=""> </p>
+            <p class=""> </p>
+                <p class=""> </p>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                <form role="form" id="form-create-account" method="post" >
+                {!! Form::open(['url' => 'signin']) !!}
                     <div class="form-group">
-                        <label for="form-create-account-email">Email:</label>
-                        <input type="email" class="form-control" id="form-create-account-email" required>
+                        <?php
+                            // Checking session errors that are returned on invalid form input
+                            switch(Session::get('message')) {
+                                case 'not-found':
+                                    echo '<p style="background-color:#ffcece;">It seems this email is not in our records.</p>';
+                                    break;
+                                case 'bad-pass':
+                                    echo '<p style="background-color:#ffcece;">Incorrect email/password combination.</p>';
+                                    break;
+                            }
+                        ?>
+                        {!! Form::label('form-account-email', 'Email') !!}
+                        {!! Form::email('form-account-email', null, ['class' => 'form-control']) !!}
                     </div><!-- /.form-group -->
                     <div class="form-group">
-                        <label for="form-create-account-password">Password:</label>
-                        <input type="password" class="form-control" id="form-create-account-password" required>
+                        {!! Form::label('form-account-password', 'Password') !!}
+                        {!! Form::password('form-account-password', null, ['class' => 'form-control']) !!}
                     </div><!-- /.form-group -->
                     <div class="form-group clearfix">
-                        <button type="submit" class="btn pull-right btn-default" id="account-submit">Sign to My Account</button>
+                        {!! Form::submit('Sign In', ['class' => 'btn pull-right btn-default', 'id' => 'account-submit']) !!}
                     </div><!-- /.form-group -->
-                </form>
+                {!! Form::close() !!}
                 <hr>
                 <div class="center"><a href="#">I don't remember my password</a></div>
             </div>
