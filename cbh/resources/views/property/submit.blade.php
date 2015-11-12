@@ -173,7 +173,8 @@
                                                                 'data-show-remove' => 'false', 
                                                                 'accept' => 'image/jpeg,image/png', 
                                                                 'data-browse-class' => 'btn btn-default', 
-                                                                'data-browse-label' => 'Featured Image'
+                                                                'data-browse-label' => 'Featured Image',
+                                                                'required' => 'required'
                                                             ])
                                                         !!}
                                                     </div>
