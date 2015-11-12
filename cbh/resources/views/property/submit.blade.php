@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('submit-description', 'Description') !!}
-                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'placeholder' => 'Be descriptive! Giving as much detail as possible will increase the attention to your home.', 'required' => 'required']) !!}
+                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'placeholder' => 'Be descriptive! Giving as much detail as possible will increase the attention to your home. 150 characters minimum.', 'required' => 'required', 'pattern' => '.{150,}']) !!}
                                 </div><!-- /.form-group -->
                             </section><!-- /#basic-information -->
                             <section>
