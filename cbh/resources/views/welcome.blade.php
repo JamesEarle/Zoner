@@ -169,7 +169,50 @@
         </section><!-- /#partners -->
     </div>
 </div>
+<?php
 
+    $properties = DB::select(constant('ALL_PROPERTIES'));
+    $file = fopen("js/locations.js", "w") or die("Cannot create file!!");
+    $client = curl_init();
+    fwrite($file, 
+        "shortGlobalImgUrl = globalImgUrl.substring(0, globalImgUrl.length - 3);\nvar locations = [");
+
+    // Need a track on the number of rows so when creating the file we can put right number of commas. 
+    $count = count($properties);
+    $i = 0;
+
+    foreach ($properties as $row) {
+        // Pass the address to the Google Maps API. Returns JSON object with details.
+        $address = urlencode("{$row->address} {$row->city} {$row->province}");
+        $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Canada";
+
+        // Set curl exec options.
+        curl_setopt($client, CURLOPT_URL, $url);
+        curl_setopt($client, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($client, CURLOPT_PROXYPORT, 3128);
+        curl_setopt($client, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($client, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $response_as_json = curl_exec($client);
+        $response = json_decode($response_as_json);
+
+        // Get lat and lng for interactive map pin.
+        $lat = ($response->results[0]->geometry->location->lat);
+        $lng = ($response->results[0]->geometry->location->lng);
+
+        $f_image = $row->{'featured-image'};
+
+        // Append comma to string if not the last element.
+        $append = ++$i == $count ? "" : ", "; 
+
+        $curr_prop = "\n\t['{$row->address}', '{$row->city}, {$row->province}', '\${$row->price}', $lat, $lng, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/$f_image'), globalImgUrl.concat(\"/property-types/home.png\")]$append";
+
+        fwrite($file, $curr_prop);
+    }
+
+    fwrite($file, "\n];");
+    fclose($file);
+?>
 @include('footer-big')
 
 @endsection

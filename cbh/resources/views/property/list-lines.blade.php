@@ -18,7 +18,7 @@
         </ol>
     </div>
     <!-- end Breadcrumb -->
-
+    <?php $results = DB::select(constant('ALL_PROPERTIES')); ?>
     <div class="container">
         <div class="row">
             <!-- Results -->
@@ -27,7 +27,7 @@
                     <header><h1>Properties Listing</h1></header>
                     <section id="search-filter">
                         <figure><h3><i class="fa fa-search"></i>Search Results:</h3>
-                            <span class="search-count">28</span>
+                            <span class="search-count"><?php echo count($results); ?></span>
                             <div class="sorting">
                                 <div class="form-group">
                                     <select name="sorting">
@@ -41,8 +41,6 @@
                         </figure>
                     </section>
                     <?php 
-                        $results = DB::select(constant('ALL_PROPERTIES'));
-
                         foreach($results as $row) {
                     ?>  
                     <section id="properties" class="display-lines">
@@ -50,9 +48,8 @@
                             <?php
                                 $img_dir = scandir($row->image);
                                 // Always start at index 2, indices 0,1 are reserved for '.' and '..'
-                                //echo var_dump($row);
+
                                 $img = $row->{'featured-image'};
-                                //$img = $row->image . '/' . $img_dir[2];
 
                                 // Should consider below if we want varying sizes for thumbnails.
                                 // $info = getimagesize($img);
@@ -95,72 +92,9 @@
                                 <a href="property-detail.html" class="link-arrow">Read More</a>
                             </div>
                         </div><!-- /.property -->
-                        <?php } // This ends the foreach loop ?>
-                        <div class="property">
-                            <figure class="type" title="House Boat"><img src="{{ asset('/img/property-types/houseboat.png') }}" alt=""></figure>
-                            <div class="property-image">
-                                <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-03.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <header>
-                                    <a href="property-detail.html"><h3>987 Cantebury Drive</h3></a>
-                                    <figure>Golden Valley, MN 55427</figure>
-                                </header>
-                                <div class="tag price">$ 38,000</div>
-                                <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
-                                    </p>
-                                    <dl>
-                                        <dt>Status:</dt>
-                                        <dd>Sale</dd>
-                                        <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                        <dt>Beds:</dt>
-                                        <dd>3</dd>
-                                        <dt>Baths:</dt>
-                                        <dd>2</dd>
-
-                                    </dl>
-                                </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
-                            </div>
-                        </div><!-- /.property -->
-                        <div class="property no-border">
-                            <figure class="type" title="Single Family"><img src="{{ asset('/img/property-types/single-family.png') }}" alt=""></figure>
-                            <figure class="tag status">For Rent</figure>
-                            <div class="property-image">
-                                <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-02.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <header>
-                                    <a href="property-detail.html"><h3>2479 Murphy Court</h3></a>
-                                    <figure>Minneapolis, MN 55402 </figure>
-                                </header>
-                                <div class="tag price">$ 100,000</div>
-                                <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
-                                    </p>
-                                    <dl>
-                                        <dt>Status:</dt>
-                                        <dd>Sale</dd>
-                                        <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                        <dt>Beds:</dt>
-                                        <dd>3</dd>
-                                        <dt>Baths:</dt>
-                                        <dd>2</dd>
-
-                                    </dl>
-                                </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
-                            </div>
-                        </div><!-- /.property -->
+                        <?php 
+                            } // This ends the foreach loop 
+                        ?>
 
                         <section id="advertising">
                             <a href="{{ URL('submit') }}">
@@ -172,103 +106,6 @@
                                 </div><!-- /.banner-->
                             </a>
                         </section><!-- /#adveritsing-->
-
-                        <div class="property">
-                            <figure class="tag status">For Sale</figure>
-                            <figure class="type" title="Garage"><img src="{{ asset('/img/property-types/garage.png') }}" alt=""></figure>
-                            <div class="property-image">
-                                <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-05.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <header>
-                                    <a href="property-detail.html"><h3>3542 Bryan Street</h3></a>
-                                    <figure>Lexington, NC 27292 </figure>
-                                </header>
-                                <div class="tag price">$ 75,000</div>
-                                <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
-                                    </p>
-                                    <dl>
-                                        <dt>Status:</dt>
-                                        <dd>Sale</dd>
-                                        <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                        <dt>Beds:</dt>
-                                        <dd>3</dd>
-                                        <dt>Baths:</dt>
-                                        <dd>2</dd>
-                                    </dl>
-                                </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
-                            </div>
-                        </div><!-- /.property -->
-                        <div class="property">
-                            <figure class="tag status">For Sale</figure>
-                            <figure class="type" title="Apartment"><img src="{{ asset('/img/property-types/apartment.png') }}" alt=""></figure>
-                            <div class="property-image">
-                                <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-06.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <header>
-                                    <a href="property-detail.html"><h3>2186 Rinehart Road</h3></a>
-                                    <figure>Doral, FL 33178</figure>
-                                </header>
-                                <div class="tag price">$ 238,000</div>
-                                <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
-                                    </p>
-                                    <dl>
-                                        <dt>Status:</dt>
-                                        <dd>Sale</dd>
-                                        <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                        <dt>Beds:</dt>
-                                        <dd>3</dd>
-                                        <dt>Baths:</dt>
-                                        <dd>2</dd>
-                                    </dl>
-                                </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
-                            </div>
-                        </div><!-- /.property -->
-                        <div class="property">
-                            <figure class="type" title="Villa"><img src="{{ asset('/img/property-types/villa.png') }}" alt=""></figure>
-                            <div class="property-image">
-                                <a href="property-detail.html">
-                                    <img alt="" src="{{ asset('/img/properties/property-08.jpg') }}">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <header>
-                                    <a href="property-detail.html"><h3>1949 Tennessee Avenue</h3></a>
-                                    <figure>Westland, MI 48185 </figure>
-                                </header>
-                                <div class="tag price">$ 38,000</div>
-                                <aside>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt...
-                                    </p>
-                                    <dl>
-                                        <dt>Status:</dt>
-                                        <dd>Sale</dd>
-                                        <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                        <dt>Beds:</dt>
-                                        <dd>3</dd>
-                                        <dt>Baths:</dt>
-                                        <dd>2</dd>
-
-                                    </dl>
-                                </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
-                            </div>
-                        </div><!-- /.property -->
 
                         <!-- Pagination -->
                         <div class="center">
