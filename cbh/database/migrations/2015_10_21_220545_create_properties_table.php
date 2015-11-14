@@ -12,10 +12,12 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-        //ADd subscription for landlords later. Free, Silver, Gold. Use $table->enum('package', array('free', 'silver', 'gold'));
+        //Add subscription for landlords later. Free, Silver, Gold. Use $table->enum('package', array('free', 'silver', 'gold'));
         Schema::create('properties', function(Blueprint $table){
             $table->string('id', 13)->unique();
             $table->boolean('vacant')->default(false);
+            $table->double('latitude');
+            $table->double('longitude');
             $table->integer('price');
             $table->integer('area');
             $table->string('title', 60);

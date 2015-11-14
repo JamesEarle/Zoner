@@ -25,14 +25,15 @@
                             <section id="basic-information">
                                 <?php
                                     if(!Auth::check()) {
-                                        echo "<p style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</p>";
+                                        echo "<h2 style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</h2>";
                                     } else {
                                         $email = Auth::user()->email;
 
                                         $isLandlord = DB::select(constant('USER_BY_EMAIL') . "'$email'")[0]->landlord;
 
+                                        // Should consider defining these errors as constants, similar to queries.php. 
                                         if(!$isLandlord) {
-                                            echo "<p style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</p>";
+                                            echo "<h2 style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</h2>";
                                         }
                                     }
                                 ?>

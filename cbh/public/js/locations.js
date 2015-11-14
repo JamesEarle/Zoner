@@ -1,8 +1,6 @@
 shortGlobalImgUrl = globalImgUrl.substring(0, globalImgUrl.length - 3);
 var locations = [
-	['63 Commerford Street', 'Thorold, ON', '$450', 43.1096457, -79.2204212, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/5642be5e35845/home.jpg'), globalImgUrl.concat("/property-types/home.png")], 
-	['12 Commerford Street', 'Thorold, ON', '$450', 43.1092094, -79.2232908, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56441942eae37/2800.jpg'), globalImgUrl.concat("/property-types/home.png")], 
-	['234 Summers Drive', 'Thorold, ON', '$400', 43.1114555, -79.2208386, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56442b50a21ff/nice modern home.jpg'), globalImgUrl.concat("/property-types/home.png")], 
-	['33 Baxter Crescent', 'Thorold, ON', '$500', 43.1103829, -79.2288065, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56442c1d8edf6/modern pool.jpg'), globalImgUrl.concat("/property-types/home.png")], 
-	['46 Mount Forest Drive', 'Brampton, ON', '$123', 43.7329798, -79.8046357, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56444118a650b/2800.jpg'), globalImgUrl.concat("/property-types/home.png")]
+	['12 Commerford Street', 'Thorold, ON', '$450', 43.1092094, -79.2232908, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56479567a1f22/home.jpg'), globalImgUrl.concat("/property-types/home.png")], 
+	['63 Commerford Street', 'Thorold, ON', '$500', 43.1096457, -79.2204212, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/564797502123a/IMG_2460.JPG'), globalImgUrl.concat("/property-types/home.png")], 
+	['500 Glenridge Ave', 'St. Catharines, ON', '$500', 43.1201777, -79.2467251, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/564798feb532c/deis-architecture.png'), globalImgUrl.concat("/property-types/home.png")]
 ];

@@ -25,13 +25,13 @@
                     // Checking session errors that are returned on invalid form input
                     switch(Session::get('message')) {
                         case 'email-in-use':
-                            echo '<p style="background-color:#ffcece;">It seems that email is in use, please try again.</p>';
+                            echo '<h2 style="background-color:#ffcece;">It seems that email is in use, please try again.</h2>';
                             break;
                         case 'confirm':
-                            echo '<p style="background-color:#ffcece;">Please correctly confirm your password.</p>';
+                            echo '<h2 style="background-color:#ffcece;">Please correctly confirm your password.</h2>';
                             break;
                         case 'alt':
-                            echo '<p style="background-color:#ffcece;">We\'ve encountered an error, please try again later.</p>';
+                            echo '<h2 style="background-color:#ffcece;">We\'ve encountered an error, please try again later.</h2>';
                             break;
                     }
                 ?>

@@ -49,6 +49,7 @@ class PropertyController extends Controller
     public function store()
     {   
         if(!Auth::check()) {
+            // Can probably do a redirect with all the $input so the user doesn't have to retype everything.
             return redirect('submit');
         }
 
@@ -61,6 +62,42 @@ class PropertyController extends Controller
         $destPath = 'uploads/' . $id;
 
         mkdir($destPath);
+
+        // Call Maps API to access the lat and lng of each property, but we only do this once per upload. Needs to be
+        // stored in the DB
+        $ch = curl_init();
+
+        $address = $input['submit-address'] . ' ' . $input['submit-city'] . ' ' . $input['submit-province'];
+        $address = urlencode($address);
+        $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Canada";
+
+        //     // Set curl exec options.
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $response_as_json = curl_exec($ch);
+        $response = json_decode($response_as_json);
+
+        $debug = false;
+
+        if($debug) {
+            echo $response_as_json, '<br>';
+            echo var_dump($response);
+            return view('property.submit');
+
+        }
+
+        // Get lat and lng for interactive map pin.
+        $lat = ($response->results[0]->geometry->location->lat);
+        $lng = ($response->results[0]->geometry->location->lng);
+        // $lat = 43.117614;
+        // $lng = -79.247684;
+        // Terminate the curl session.
+        curl_close($ch);
+
 
         // Create a string to hold all features associated with a property, stored in a single cell of the DB
         $features = '| ';
@@ -92,12 +129,15 @@ class PropertyController extends Controller
             $upload_success = $featured_image->move($destPath, $featured_image->getClientOriginalName());
         }
         
-        // Move the remaining images in the gallery to the destination folder.
-        foreach ($images as $img) {
-             if(in_array($img->getClientMimeType(), $rules)) {   
-                //move to location 'uploads/{property_id}/imagename.jpg'
-                $upload_success = $img->move($destPath, $img->getClientOriginalName());
-                $image_upload++;
+        // Move the remaining images in the gallery to the destination folder. Images are optional so check 
+        // if the variable is set first.
+        if(isset($_POST['images'])) {
+            foreach ($images as $img) {
+                if(in_array($img->getClientMimeType(), $rules)) {   
+                    //move to location 'uploads/{property_id}/imagename.jpg'
+                    $upload_success = $img->move($destPath, $img->getClientOriginalName());
+                    $image_upload++;
+                }
             }
         }
 
@@ -108,6 +148,8 @@ class PropertyController extends Controller
             DB::insert( constant('INSERT_INTO_PROPERTIES') . ' VALUES(\''
                 . $id . '\', \''
                 . true . '\', \''
+                . $lat . '\', \''
+                . $lng . '\', \''
                 . $input['submit-price'] . '\', \''
                 . $input['submit-area'] . '\', \''
                 . addslashes($input['submit-title']) . '\', \''
