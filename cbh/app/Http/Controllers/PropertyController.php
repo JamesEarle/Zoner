@@ -40,28 +40,27 @@ class PropertyController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store()
-    {   
-        if(!Auth::check()) {
-            // Can probably do a redirect with all the $input so the user doesn't have to retype everything.
-            return redirect('submit');
-        }
+    // Check post for isset in the case of every feature possible to be associated with a property. Format as 
+    // a pipe separate string.
+    public function getFeatures() {
+        $features = '| ';
+        $features .= isset($_POST['ac-and-heat']) ? $_POST['ac-and-heat']   . ' | ' : '';
+        $features .= isset($_POST['microwave']) ? $_POST['microwave']       . ' | ' : '';
+        $features .= isset($_POST['toaster']) ? $_POST['toaster']           . ' | ' : '';
+        $features .= isset($_POST['park']) ? $_POST['park']                 . ' | ' : '';
+        $features .= isset($_POST['bedding']) ? $_POST['bedding']           . ' | ' : '';
+        $features .= isset($_POST['smoking']) ? $_POST['smoking']           . ' | ' : '';
+        $features .= isset($_POST['pots-pans']) ? $_POST['pots-pans']       . ' | ' : '';
+        $features .= isset($_POST['balcony']) ? $_POST['balcony']           . ' | ' : '';
+        $features .= isset($_POST['internet']) ? $_POST['internet']         . ' | ' : '';
+        $features .= isset($_POST['pool-gym']) ? $_POST['pool-gym']         . ' | ' : '';
+        $features .= isset($_POST['tv']) ? $_POST['tv']                     . ' | ' : '';
+        $features .= isset($_POST['washer-dryer']) ? $_POST['washer-dryer'] . ' | ' : '';
 
-        $input = Request::all();
+        return $features;
+    }
 
-        //echo var_dump($input);
-        //break;
-
-        $id = uniqid();
-        $destPath = 'uploads/' . $id;
-
-        mkdir($destPath);
+    public function getCoords($input) {
 
         // Call Maps API to access the lat and lng of each property, but we only do this once per upload. Needs to be
         // stored in the DB
@@ -81,45 +80,51 @@ class PropertyController extends Controller
         $response_as_json = curl_exec($ch);
         $response = json_decode($response_as_json);
 
-        $debug = false;
-
-        if($debug) {
-            echo $response_as_json, '<br>';
-            echo var_dump($response);
-            return view('property.submit');
-
-        }
+        // Return values storage.
+        $results = [0.0, 0.0];
 
         // Get lat and lng for interactive map pin.
-        $lat = ($response->results[0]->geometry->location->lat);
-        $lng = ($response->results[0]->geometry->location->lng);
-        // $lat = 43.117614;
-        // $lng = -79.247684;
+        $results[0] = ($response->results[0]->geometry->location->lat);
+        $results[1] = ($response->results[0]->geometry->location->lng);
+
         // Terminate the curl session.
         curl_close($ch);
 
+        return $results;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store()
+    {   
+        if(!Auth::check()) {
+            // Can probably do a redirect with all the $input so the user doesn't have to retype everything.
+            return redirect('submit');
+        }
+
+        // Get input
+        $input = Request::all();
+
+        // Set property ID and create destination folder for images. 
+        $id = uniqid();
+        $destPath = 'uploads/' . $id;
+        mkdir($destPath);
+
+        // Get coordinates (lat, lng) for the given address. This calls the Google Maps API.
+        $coords = $this->getCoords($input);
+        $lat = $coords[0];
+        $lng = $coords[1];
 
         // Create a string to hold all features associated with a property, stored in a single cell of the DB
-        $features = '| ';
-        $features .= isset($_POST['ac-and-heat']) ? $_POST['ac-and-heat']   . ' | ' : '';
-        $features .= isset($_POST['microwave']) ? $_POST['microwave']       . ' | ' : '';
-        $features .= isset($_POST['toaster']) ? $_POST['toaster']           . ' | ' : '';
-        $features .= isset($_POST['park']) ? $_POST['park']                 . ' | ' : '';
-        $features .= isset($_POST['bedding']) ? $_POST['bedding']           . ' | ' : '';
-        $features .= isset($_POST['smoking']) ? $_POST['smoking']           . ' | ' : '';
-        $features .= isset($_POST['pots-pans']) ? $_POST['pots-pans']       . ' | ' : '';
-        $features .= isset($_POST['balcony']) ? $_POST['balcony']           . ' | ' : '';
-        $features .= isset($_POST['internet']) ? $_POST['internet']         . ' | ' : '';
-        $features .= isset($_POST['pool-gym']) ? $_POST['pool-gym']         . ' | ' : '';
-        $features .= isset($_POST['tv']) ? $_POST['tv']                     . ' | ' : '';
-        $features .= isset($_POST['washer-dryer']) ? $_POST['washer-dryer'] . ' | ' : '';
+        // as a pipe separated string
+        $features = $this->getFeatures();
 
-        // Images
-        $featured_image = $input['featured']; //Input::file('featured');
-
-        $images = Input::file('images');
-        $image_count = count($images);
-        $image_upload = 0;
+        // Get the featured image. This is required in the form as a property needs a thumbnail.
+        $featured_image = $input['featured'];
 
         //Enforcing file formats of JPG or PNG.
         $rules = ['image/jpeg', 'image/png'];
@@ -128,10 +133,18 @@ class PropertyController extends Controller
         if(in_array($featured_image->getClientMimeType(), $rules)) {
             $upload_success = $featured_image->move($destPath, $featured_image->getClientOriginalName());
         }
+
+        $image_upload = 0;
+        $image_count = 0;
         
         // Move the remaining images in the gallery to the destination folder. Images are optional so check 
         // if the variable is set first.
         if(isset($_POST['images'])) {
+
+            // Get the remaining images, if there are any. An extra gallery is optional.
+            $images = Input::file('images');
+            $image_count = count($images);
+
             foreach ($images as $img) {
                 if(in_array($img->getClientMimeType(), $rules)) {   
                     //move to location 'uploads/{property_id}/imagename.jpg'
@@ -141,9 +154,9 @@ class PropertyController extends Controller
             }
         }
 
-        if($image_upload == $image_count) 
-        {
+        if($image_upload == $image_count || !isset($_POST['images'])) {
             Session::flash('success', 'Upload Successful!');
+
             //NOTE MUST CALL stripslashes(str) ON ACCESS TO ALL STRING FIELDS
             DB::insert( constant('INSERT_INTO_PROPERTIES') . ' VALUES(\''
                 . $id . '\', \''

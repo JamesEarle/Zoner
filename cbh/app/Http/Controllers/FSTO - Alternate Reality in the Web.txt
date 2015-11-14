@@ -1,0 +1,61 @@
+FSTO - Alternate Reality in the Web
+
+@jerome_etienne
+
+8th most active user on GitHub, lol
+
+Virtual Reality vs. Augmented Reality, quite different
+
+Tools of the trade?
+	
+	Occulus - VR device. Acquired by facebook for $2B
+
+	Steam VR - HTC device. Used for major games, put out by Valve.
+
+	Hololens - Augmented Reality (AR) not the same as the above. SDK $3000, but wireless
+
+	Google Glass - AR Device, $1500, stopped in early 2015. 
+
+	Google Cardboard - VR device, very cheap, using your phone. $20 for the rest of the device.
+
+	Daqri and the smart helmet.
+
+
+VR is about being set in a new reality.
+AR is about adding to the users current reality.
+
+Anaglyph style coding for VR is available in three.js (Red and Blue glasses)
+	Cool and retro but not very efficient
+
+Parallax barrier.
+	You see an image from three perspectives (like the bill boards that change based where you're standing)
+	No need for glasses
+	also available in three.js
+
+	Stereo Effect - three.js again, left eye and right eye (similar to crossing them)
+
+	WebVR - Google and Mozilla. 
+
+	Too many platforms to pick... don't want to focus on a single one, othewise you'll recode multiple times.
+
+	WebVR Boilerplate codes once and focuses on the popular ones, nobody wants the exotic ones.
+
+	Available on github.
+
+AR is not as simple, working hard but it's not there yet 
+
+	Needs are much more demanding.
+		Video feed that is processed and 3D mapping is overlayed on top, then display both.
+
+	To satisfy camera needs just use mobile phone (not on iOS)
+
+	ARToolkit on GitHub open source library, from Daqri.
+
+	Next Open Source to be released from them is the core, four.js 
+
+	WebAR - Augmented Reality for the web, AR on top of three.js.
+
+		Runs on Android!
+		https://github.com/jeromeetienne/threex.webar
+
+	Can use markers as placeholders near devices, e.g. by fridge, or machiner in a shop to display live information about it.
