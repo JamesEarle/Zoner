@@ -6,5 +6,5 @@ var locations = [
 	['94 Keefer Road', 'Thorold, ON', '$700', 43.1089223, -79.2289621, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/5647a2f81a8e7/IMG_0939.JPG'), globalImgUrl.concat("/property-types/home.png")], 
 	['108 Jabson Street', 'St. Catharines, ON', '$300', 43.1354108, -79.2275716, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/5647b11d010f4/IMG_1008.JPG'), globalImgUrl.concat("/property-types/home.png")], 
 	['123 Fake Street', 'Thorold, ON', '$500', 43.1236091, -79.1989299, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/56480aa13a340/microsoft-hq.jpg'), globalImgUrl.concat("/property-types/home.png")], 
-	['83 Winterberry Crescent', 'Thorold, ON', '$700', 43.1170321, -79.2276325, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/5648da0f9515b/IMG_0931.JPG'), globalImgUrl.concat("/property-types/home.png")]
+	['16 Baker Drive', 'St. Catharines, ON', '$500', 43.2070652, -79.2344236, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/uploads/5648e604452b0/IMG_7735.JPG'), globalImgUrl.concat("/property-types/home.png")]
 ];

@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('submit-description', 'Description') !!}
-                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'placeholder' => 'Be descriptive! Giving as much detail as possible will increase the attention to your home. 150 characters minimum.', 'required' => 'required', 'pattern' => '.{150,}']) !!}
+                                    {!! Form::textarea('submit-description', null, ['class' => 'form-control', 'id' => 'submit-description', 'rows' => '8', 'placeholder' => 'Be descriptive! Giving as much detail as possible will increase the attention to your home. 150 characters minimum.', 'required' => 'required', 'onblur' => 'checkConstraints(this);']) !!}
                                 </div><!-- /.form-group -->
                             </section><!-- /#basic-information -->
                             <section>
@@ -333,6 +333,20 @@
         {!! Form::close() !!}
     </div><!-- /.container -->
 </div>
+
+<!-- Constraint checking on form inputs.  -->
+<script type="text/javascript">
+        function checkConstraints(e) {
+            if(e.value.length < 140) {
+                e.style.backgroundColor = "#FFCECE";
+                alert("Your description must be at least 140 characters");
+            } else {
+                // Reset to grey, valid input.
+                e.style.backgroundColor = "#F3F3F3";   
+            }
+        }
+    </script>
+
 <!-- end Page Content -->
 @stop
 
