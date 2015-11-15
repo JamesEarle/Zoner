@@ -72,11 +72,6 @@
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <div class="price-range">
-                                        <input id="price-input" type="text" name="price" value="1000;299000">
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-default">Search Now</button>
                                 </div><!-- /.form-group -->
                             </form><!-- /#form-map -->
@@ -172,7 +167,7 @@
 <?php
 
     $properties = DB::select(constant('ALL_PROPERTIES'));
-    
+
     $file = fopen("js/locations.js", "w") or die("Cannot create file!!");
 
     fwrite($file, 
@@ -184,7 +179,7 @@
 
     foreach ($properties as $row) {
 
-        //Only accessing this row property because the name contains a slash. Direct string insertion is difficult.
+        //Only accessing this row property because the name contains a dash. Direct string insertion is difficult.
         $f_image = $row->{'featured-image'};
         $append = ++$i == $count ? "" : ", "; 
 

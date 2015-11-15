@@ -21,6 +21,8 @@ function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl,propertyD
         globalImgUrl = imgUrl;
         globalScriptUrl = scriptUrl;
         globalPropertyDetailUrl = propertyDetailUrl;
+
+        // Access locations array. Center at Brock University.
         $.getScript(scriptUrl, function(){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
@@ -33,6 +35,7 @@ function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl,propertyD
             var newMarkers = [];
             for (i = 0; i < locations.length; i++) {
                 var pictureLabel = document.createElement("img");
+                // Label is uploads/asd29asd58awd8/<filename>.jpg
                 pictureLabel.src = locations[i][7];
                 var boxText = document.createElement("div");
                 infoboxOptions = {
@@ -48,6 +51,8 @@ function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl,propertyD
                     closeBoxURL: imgUrl.concat("/close-btn.png"),
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
+                
+                // To create custom markers follow same as below but alter the labelClass that is used.
                 var marker = new MarkerWithLabel({
                     title: locations[i][0],
                     position: new google.maps.LatLng(locations[i][3], locations[i][4]),

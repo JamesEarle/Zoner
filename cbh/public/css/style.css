@@ -3791,6 +3791,7 @@ ul.list-links li a:hover {
   width: 100%;
 }
 
+/* Default marker style for regular properties submitted by landlords. */
 .marker-style {
   border: 3px solid #53B9D1;
   text-align: center;
@@ -3800,6 +3801,23 @@ ul.list-links li a:hover {
   margin-left: -17px !important;
   margin-top: -46px !important;
 }
+
+/* For fixed locations like groceries, the school, bus terminal, etc. Defines an orange bubble, that will use 
+a different icon than the house. These will be pre loaded and .concat() to the var locations array. */
+.fixed-marker-style {
+  border: 3px solid #F9A155;
+  text-align: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  margin-left: -17px !important;
+  margin-top: -46px !important;
+}
+
+/*
+  For the above, need to think about the infopanel that pops up for places like Zehrs. What should be displayed?
+*/
+
 .marker-style img {
   position: absolute !important;
   top: -1px !important;

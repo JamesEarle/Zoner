@@ -70,15 +70,26 @@ class PropertyController extends Controller
         $address = urlencode($address);
         $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Canada";
 
-        //     // Set curl exec options.
+        /*
+            The above call allows users to enter bad input, but this results strange behavior from the Maps API. 
+            e.g. I enter 123 Fake Street, Thorold, and the API was smart enough to just place a pointer on the 
+            lat and lng of Thorold, ignoring the street it couldn't find. How can we account for this? If the user 
+            enters bad input we should try to prompt them to reenter, but this requires detection. 
+
+            As an additional example of the API being smart, 108 Jacobson Ave is still found when I type "108 Jabson Street"
+            It will be difficult to decipher it has been found or not.
+
+            Maybe we shouldn't even put the user's direct input into the DB, the return from the API will be cleaner.
+        */
+
+        // Set curl exec options.
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-        $response_as_json = curl_exec($ch);
-        $response = json_decode($response_as_json);
+        $response = json_decode(curl_exec($ch));
 
         // Return values storage.
         $results = [0.0, 0.0];
@@ -103,7 +114,7 @@ class PropertyController extends Controller
     {   
         if(!Auth::check()) {
             // Can probably do a redirect with all the $input so the user doesn't have to retype everything.
-            return redirect('submit');
+            return redirect('signin');
         }
 
         // Get input

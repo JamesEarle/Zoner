@@ -16,6 +16,14 @@
                     </select>
                 </div><!-- /.form-group -->
                 <div class="form-group">
+                    <select name="province">
+                        <option value="">Province</option>
+                        <option value="1">ON</option>
+                        <option value="2">BC</option>
+                        <option value="3">QC</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <select name="city">
                         <option value="">City</option>
                         <?php 
@@ -36,11 +44,6 @@
                         <option value="5">House</option>
                     </select>
                 </div><!-- /.form-group -->
-                <div class="form-group">
-                    <div class="price-range">
-                        <input id="price-input" type="text" name="price" value="1000;299000">
-                    </div>
-                </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Search Now</button>
                 </div><!-- /.form-group -->
