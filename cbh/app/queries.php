@@ -6,6 +6,8 @@ define("ALL_LOCATIONS", "SELECT * FROM `locations`");
 
 define("ALL_PROPERTIES", "SELECT * FROM `properties`");
 
+define("PROPERTIES_BY_DATE_DESC", "SELECT * FROM `properties` ORDER BY `created_at` DESC");
+
 define("LOCATIONS_BY_PROVINCE", "SELECT * FROM `locations` WHERE `province`=");
 
 define("USER_BY_EMAIL", "SELECT * FROM `users` WHERE `email`=");

@@ -42,12 +42,12 @@
                         <label>
                             {!! 
                                 Form::radio('account-type', 'student', 
-                                ['id' => 'account-type-user', 'required' => 'required']) 
+                                ['id' => 'account-type-user', 'required' => 'required', 'class' => 'checked']) 
                             !!}
                             <span>Student</span>
                         </label>
                     </div>
-                    <div class="radio" id="agent-switch" data-agent-state="">
+                    <div class="radio" id="create-account-landlord">
                         <label>
                             {!! 
                                 Form::radio('account-type', 'landlord', 

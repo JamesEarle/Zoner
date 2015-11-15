@@ -3,22 +3,12 @@
         <header class="section-title"><h2>Testimonials</h2></header>
         <div class="owl-carousel testimonials-carousel">
             <blockquote class="testimonial">
-                <figure>
-                    <div class="image">
-                        <img alt="" src="{{ asset('/img/client-01.jpg') }}">
-                    </div>
-                </figure>
                 <aside class="cite">
                     <p>This is literally the greatest website anybody on this planet has ever used. How did I ever survive to be this age without someone making this site for me? </p>
                     <footer>James Earle</footer>
                 </aside>
             </blockquote>
             <blockquote class="testimonial">
-                <figure>
-                    <div class="image">
-                        <img alt="" src="{{ asset('/img/client-01.jpg') }}">
-                    </div>
-                </figure>
                 <aside class="cite">
                     <p>My web developer James Earle made this absolutely amazing website, and he is definitely a real human being that's so awesome it pushes the boundaries of modern science.</p>
                     <footer>Alex Mohr</footer>

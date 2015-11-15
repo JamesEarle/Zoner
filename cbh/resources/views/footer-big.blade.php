@@ -15,29 +15,44 @@
                     </div><!-- /.col-sm-3 -->
                     <div class="col-md-3 col-sm-3">
                         <article>
+
+                            <?php include_once(app_path()."/queries.php"); ?>
+
+                            <?php
+                                $results = DB::select(constant("PROPERTIES_BY_DATE_DESC"));
+
+                                if (count($results) < 2) die("Lacking sufficient properties");
+                            ?>
+
                             <h3>Recent Properties</h3>
                             <div class="property small">
-                                <a href="property-detail.html">
+                                <a href="{{ URL('property-detail') }}">
                                     <div class="property-image">
-                                        <img alt="" src="{{ asset('/img/properties/property-06.jpg') }}">
+                                        <?php 
+                                            $img = $results[0]->{'featured-image'};
+                                            echo "<img alt=\"\" src=\"$img\" />";
+                                        ?>
                                     </div>
                                 </a>
                                 <div class="info">
-                                    <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                    <figure>Doral, FL 33178 </figure>
-                                    <div class="tag price">$ 72,000</div>
+                                    <a href="{{ URL('property-detail') }}"><h4><?php echo $results[0]->address ?></h4></a>
+                                    <figure><?php echo $results[0]->city, " ", $results[0]->province; ?></figure>
+                                    <div class="tag price">$<?php echo $results[0]->price; ?></div>
                                 </div>
                             </div><!-- /.property -->
                             <div class="property small">
-                                <a href="property-detail.html">
+                                <a href="{{ URL('property-detail') }}">
                                     <div class="property-image">
-                                        <img alt="" src="{{ asset('/img/properties/property-09.jpg') }}">
+                                        <?php 
+                                            $img = $results[1]->{'featured-image'};
+                                            echo "<img alt=\"\" src=\"$img\" />";
+                                        ?>
                                     </div>
                                 </a>
                                 <div class="info">
-                                    <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                    <figure>Minneapolis, MN 55402</figure>
-                                    <div class="tag price">$ 36,000</div>
+                                    <a href="{{ URL('property-detail') }}"><h4><?php echo $results[1]->address ?></h4></a>
+                                    <figure><?php echo $results[0]->city, " ", $results[1]->province; ?></figure>
+                                    <div class="tag price">$<?php echo $results[1]->price; ?></div>
                                 </div>
                             </div><!-- /.property -->
                         </article>
@@ -61,11 +76,9 @@
                         <article>
                             <h3>Useful Links</h3>
                             <ul class="list-unstyled list-links">
-                                <li><a href="#">All Properties</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Login and Register Account</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Terms and Conditions</a></li>
+                                <li><a href="{{ URL('/list-lines')}}">All Properties</a></li>
+                                <li><a href="{{ URL('/faq')}}">FAQ</a></li>
+                                <li><a href="{{ asset('/tos.pdf')}}">Terms and Conditions</a></li>
                             </ul>
                         </article>
                     </div><!-- /.col-sm-3 -->
