@@ -191,8 +191,12 @@
     fwrite($file, "\n];");
     fclose($file);
 
-    // Still need to do this, but don't have permission on Windows for some reason???
-    // chmod("js/locations.js", 0777);
+    // Write the correct permissions to the locations.js file, otherwise we can't write to it on page load.
+    $cmd = [];
+    exec("sudo chmod a+rwx js/locations.js", $cmd);
+    
+    // For debugging purposes. Output should normally be empty on the chmod call.
+    //echo var_dump($cmd);
 ?>
 @include('footer-big')
 
