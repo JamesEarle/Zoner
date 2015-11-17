@@ -15,15 +15,19 @@
         </ol>
     </div>
     <!-- end Breadcrumb -->
-
+    <?php 
+        if(!isset($data)) {
+            echo '<h2 style="background-color:#ffcece;">Whoops! Looks like something went wrong.</h2>';
+            die('Data unset, property ID not found.');
+        } ?>
     <div class="container">
         <div class="row">
             <!-- Property Detail Content -->
             <div class="col-md-9 col-sm-9">
                 <section id="property-detail">
                     <header class="property-title">
-                        <h1>987 Cantebury Drive</h1>
-                        <figure>Golden Valley, MN 55427</figure>
+                        <h1>{!! $data->address !!}</h1>
+                        <figure>{!! $data->city . ', ' . $data->province !!}</figure>
                         <span class="actions">
                             <!--<a href="#" class="fa fa-print"></a>-->
                             <a href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
@@ -31,24 +35,22 @@
                     </header>
                     <section id="property-gallery">
                         <div class="owl-carousel property-carousel">
+                            {{-- There is always minimum one photo, enforced by form submission. --}}
+                            <?php 
+                                $all_images = scandir($data->image);
+
+                                for($i=2;$i<count($all_images);$i++) {
+                                    $img = $data->image . '/' . $all_images[$i];
+                            ?>
                             <div class="property-slide">
-                                <a href="{{ asset('/img/properties/property-detail-01.jpg') }}" class="image-popup">
-                                    <div class="overlay"><h3>Front View</h3></div>
-                                    <img alt="" src="{{ asset('/img/properties/property-detail-01.jpg') }}">
+                                <a href="{{ asset($img) }}" class="image-popup">
+                                    <div class="overlay"><h3></h3></div>
+                                    <img alt="" src="{{ asset($img) }}">
                                 </a>
                             </div><!-- /.property-slide -->
-                            <div class="property-slide">
-                                <a href="{{ asset('/img/properties/property-detail-02.jpg') }}" class="image-popup">
-                                    <div class="overlay"><h3>Bedroom</h3></div>
-                                    <img alt="" src="{{ asset('/img/properties/property-detail-02.jpg') }}">
-                                </a>
-                            </div><!-- /.property-slide -->
-                            <div class="property-slide">
-                                <a href="{{ asset('/img/properties/property-detail-03.jpg') }}" class="image-popup">
-                                    <div class="overlay"><h3>Bathroom</h3></div>
-                                    <img alt="" src="{{ asset('/img/properties/property-detail-03.jpg') }}">
-                                </a>
-                            </div><!-- /.property-slide -->
+                            <?php 
+                                } // End the for loop
+                            ?>
                         </div><!-- /.property-carousel -->
                     </section>
                     <div class="row">
@@ -57,21 +59,17 @@
                                 <header><h2>Quick Summary</h2></header>
                                 <dl>
                                     <dt>Location</dt>
-                                        <dd>Chicago, IL 60610</dd>
+                                        <dd>{!! $data->city . ', ' . $data->province !!}</dd>
                                     <dt>Price</dt>
-                                        <dd><span class="tag price">$78,000</span></dd>
+                                        <dd><span class="tag price">$ {!! $data->price !!}</span></dd>
                                     <dt>Property Type:</dt>
-                                        <dd>House</dd>
-                                    <dt>Status:</dt>
-                                        <dd>Sale</dd>
+                                        <dd>{!! $data->{'property_type'} !!}</dd>
                                     <dt>Area:</dt>
-                                        <dd>860 m<sup>2</sup></dd>
-                                    <dt>Beds:</dt>
-                                        <dd>3</dd>
+                                        <dd>{!! $data->area !!}ft<sup>2</sup></dd>
+                                    <dt>Beds</dt>
+                                        <dd>{!! $data->rooms !!}</dd>
                                     <dt>Baths:</dt>
-                                        <dd>2</dd>
-                                    <dt>Garages:</dt>
-                                        <dd>2</dd>
+                                        <dd>{!! $data->baths !!}</dd>
                                     {{-- <dt>Rating:</dt> --}}
                                         {{-- <dd><div class="rating rating-overall" data-score="4"></div></dd> --}}
                                 </dl>
@@ -80,57 +78,35 @@
                         <div class="col-md-8 col-sm-12">
                             <section id="description">
                                 <header><h2>Property Description</h2></header>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                    bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
-                                    Duis euismod placerat rhoncus. Phasellus mollis imperdiet placerat. Sed ac
-                                    turpis nisl. Mauris at ante mauris. Aliquam posuere fermentum lorem, a aliquam
-                                    mauris rutrum a. Curabitur sit amet pretium lectus, nec consequat orci.
-                                </p>
-                                <p>
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Duis et metus in libero sollicitudin venenatis eu sed enim. Nam felis
-                                    lorem, suscipit ac nisl ac, iaculis dapibus tellus. Cras ante justo, aliquet quis
-                                    placerat nec, molestie id turpis. Cras at tincidunt magna. Mauris aliquam sem sit
-                                    amet dapibus venenatis. Sed metus orci, tincidunt sed fermentum non, ornare non quam.
-                                    Aenean nec turpis at libero lobortis pretium.
-                                </p>
+                                <p>{!! $data->description !!}</p>
                             </section><!-- /#description -->
                             <section id="property-features">
-                                <header><h2>Property Description</h2></header>
+                                <?php
+                                    // Because of the pipe separation style, every element from 1 - length-1 is a feature
+                                    $features = explode("|", $data->features);
+
+                                    //TODO: check if features is empty, and see what kind of string that outputs.
+                                    // only print the header if thats okay
+                                ?>
+                                <header><h2>Features</h2></header>
                                 <ul class="list-unstyled property-features-list">
-                                    <li>Sauna</li>
-                                    <li>Fireplace or fire pit</li>
-                                    <li>Outdoor Kitchen</li>
-                                    <li>Tennis Courts</li>
-                                    <li>Trees and Landscaping</li>
-                                    <li>Sun Room</li>
-                                    <li>Family Room</li>
-                                    <li>Concrete Flooring</li>
+                                    <?php 
+                                        for($i=1;$i<count($features) - 1;$i++) {
+                                            echo "<li>", $features[$i], "</li>";
+                                        }
+                                    ?>
                                 </ul>
                             </section><!-- /#property-features -->
-                            <section id="floor-plans">
-                                <div class="floor-plans">
-                                    <header><h2>Floor Plans</h2></header>
-                                    <a href="{{ asset('/img/properties/floor-plan-big.jpg') }}" class="image-popup"><img alt="" src="{{ asset('/img/properties/floor-plan-01.jpg') }}"></a>
-                                    <a href="{{ asset('/img/properties/floor-plan-big.jpg') }}" class="image-popup"><img alt="" src="{{ asset('/img/properties/floor-plan-02.jpg') }}"></a>
-                                </div>
-                            </section><!-- /#floor-plans -->
                             <section id="property-map">
                                 <header><h2>Map</h2></header>
                                 <div class="property-detail-map-wrapper">
                                     <div class="property-detail-map" id="property-detail-map"></div>
                                 </div>
                             </section><!-- /#property-map -->
-                            <section id="video-presentation">
-                                <header><h2>Video Presentation</h2></header>
-                                <div class="video">
-                                    <iframe src="//player.vimeo.com/video/34741214?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="500" height="281" ></iframe>
-                                </div>
-                            </section><!-- /#video-presentation -->
                         </div><!-- /.col-md-8 -->
                         <div class="col-md-12 col-sm-12">
                             <section id="contact-agent">
+                                {{-- Must fill this out with just a request form. We receive requests and forward that to the landlord email provided on landlord registration. --}}
                                 <header><h2>Contact Landlord</h2></header>
                                 <div class="row">
                                     <section class="agent-form">
@@ -185,114 +161,6 @@
                                 </div><!-- /.row -->
                             </section><!-- /#contact-agent -->
                             <hr class="thick">
-                            <section id="similar-properties">
-                                <header><h2 class="no-border">Similar Properties</h2></header>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="property">
-                                            <a href="property-detail.html">
-                                                <div class="property-image">
-                                                    <img alt="" src="{{ asset('/img/properties/property-06.jpg') }}">
-                                                </div>
-                                                <div class="overlay">
-                                                    <div class="info">
-                                                        <div class="tag price">$ 11,000</div>
-                                                        <h3>3398 Lodgeville Road</h3>
-                                                        <figure>Golden Valley, MN 55427</figure>
-                                                    </div>
-                                                    <ul class="additional-info">
-                                                        <li>
-                                                            <header>Area:</header>
-                                                            <figure>240m<sup>2</sup></figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Beds:</header>
-                                                            <figure>2</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Baths:</header>
-                                                            <figure>2</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Garages:</header>
-                                                            <figure>0</figure>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                        </div><!-- /.property -->
-                                    </div><!-- /.col-md-3 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="property">
-                                            <a href="property-detail.html">
-                                                <div class="property-image">
-                                                    <img alt="" src="{{ asset('/img/properties/property-04.jpg') }}">
-                                                </div>
-                                                <div class="overlay">
-                                                    <div class="info">
-                                                        <div class="tag price">$ 38,000</div>
-                                                        <h3>2186 Rinehart Road</h3>
-                                                        <figure>Doral, FL 33178 </figure>
-                                                    </div>
-                                                    <ul class="additional-info">
-                                                        <li>
-                                                            <header>Area:</header>
-                                                            <figure>240m<sup>2</sup></figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Beds:</header>
-                                                            <figure>3</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Baths:</header>
-                                                            <figure>1</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Garages:</header>
-                                                            <figure>1</figure>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                        </div><!-- /.property -->
-                                    </div><!-- /.col-md-3 -->
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="property">
-                                            <a href="property-detail.html">
-                                                <div class="property-image">
-                                                    <img alt="" src="{{ asset('/img/properties/property-07.jpg') }}">
-                                                </div>
-                                                <div class="overlay">
-                                                    <div class="info">
-                                                        <div class="tag price">$ 325,000</div>
-                                                        <h3>3705 Brighton Circle Road</h3>
-                                                        <figure>Glenwood, MN 56334</figure>
-                                                    </div>
-                                                    <ul class="additional-info">
-                                                        <li>
-                                                            <header>Area:</header>
-                                                            <figure>240m<sup>2</sup></figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Beds:</header>
-                                                            <figure>3</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Baths:</header>
-                                                            <figure>1</figure>
-                                                        </li>
-                                                        <li>
-                                                            <header>Garages:</header>
-                                                            <figure>1</figure>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                        </div><!-- /.property -->
-                                    </div><!-- /.col-md-3 -->
-                                </div><!-- /.row-->
-                            </section><!-- /#similar-properties -->
-                            <hr class="thick">
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
                 </section><!-- /#property-detail -->
@@ -305,6 +173,7 @@
 
 @section('map-script')
 <script type="text/javascript">
+    // Need to debug why this doesn't show...
     var propertyId = 27;
     google.maps.event.addDomListener(window, 'load', initMap(propertyId, "{{ asset('/js/locations.js') }}", "{{ URL('/img/') }}"));
     $(window).load(function(){

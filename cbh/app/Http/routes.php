@@ -32,6 +32,7 @@ Route::get('logout', 'AuthController@doLogout');
 Route::get('submit', 'PropertyController@submit');
 Route::post('submit', 'PropertyController@store');
 
+Route::get('detail/{id}', 'PropertyController@propertydetail');
 Route::get('property-detail', 'PropertyController@propertydetail');
 
 /* Three different views to browse properties. Add button for swapping between them. */

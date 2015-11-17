@@ -98,10 +98,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    {!! Form::label('submit-property-type', 'Property Type') !!}
-                                                    {!! Form::select('submit-property-type',['house' => 'House', 'apartment' => 'Apartment', 'single room' => 'Single Room', 'other' => 'Other']) !!}
-                                                </div><!-- /.form-group -->
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
@@ -148,10 +144,10 @@
                                                     </div><!-- /.col-md-6 -->
                                                     <div class="col-md-6 col-sm-6">
                                                         <div class="form-group">
-                                                            {!! Form::label('submit-garage', 'Garage') !!}
-                                                            {!! Form::select('submit-garage', ['no' => 'No', 'yes' => 'Yes'])!!}
-                                                        </div><!-- /.form-group -->
-                                                    </div><!-- /.col-md-6 -->
+                                                            {!! Form::label('submit-property-type', 'Property Type') !!}
+                                                            {!! Form::select('submit-property-type',['House' => 'House', 'Apartment' => 'Apartment', 'Single Room' => 'Single Room', 'Other' => 'Other']) !!}
+                                                        </div>
+                                                    </div><!-- /.form-group -->
                                                 </div><!-- /.row -->
                                             </section><!-- /#summary -->
                                         </div><!-- /.col-md-6 -->
@@ -255,8 +251,8 @@
                                         <li>
                                             <div class="checkbox">
                                                 <label>
-                                                    {!! Form::checkbox('pool-gym', 'Pool or Gym') !!}
-                                                    Pool or Gym
+                                                    {!! Form::checkbox('garage', 'Garage') !!}
+                                                    Garage
                                                 </label>
                                             </div>
                                         </li>

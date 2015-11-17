@@ -27,7 +27,7 @@
                     <header><h1>Properties Listing</h1></header>
                     <section id="search-filter">
                         <figure><h3><i class="fa fa-search"></i>Search Results:</h3>
-                            <span class="search-count"><?php echo count($results); ?></span>
+                            <span class="search-count">{!! count($results); !!}</span>
                             <div class="sorting">
                                 <div class="form-group">
                                     <select name="sorting">
@@ -46,27 +46,20 @@
                     <section id="properties" class="display-lines">
                         <div class="property">
                             <?php
-                                $img_dir = scandir($row->image);
-                                // Always start at index 2, indices 0,1 are reserved for '.' and '..'
-
                                 $img = $row->{'featured-image'};
-
-                                // Should consider below if we want varying sizes for thumbnails.
-                                // $info = getimagesize($img);
-                                // $width = $info[0];
-                                // $height = $info[1];
+                                $id = $row->id;
                             ?>
                             <div class="property-image">
-                                <a href="property-detail.html">
-                                    <?php echo '<img alt="" src="' . $img . '">'; ?>
+                                <a href="{{ URL('detail', array('id' => $id)) }}">
+                                    {!! '<img alt="" src="' . $img . '">' !!}
                                 </a>
                             </div>
                             <div class="info">
                                 <header>
-                                    <a href="property-detail.html"><h3><?php echo stripslashes($row->address); ?></h3></a>
-                                    <figure><?php echo stripslashes($row->city) . ', ' . $row->province; ?></figure>
+                                    <a href="{{ URL('detail', array('id' => $id)) }}"><h3>{!! stripslashes($row->address) !!}</h3></a>
+                                    <figure>{!! stripslashes($row->city) . ', ' . $row->province !!}</figure>
                                 </header>
-                                <div class="tag price">$ <?php echo $row->price; ?></div>
+                                <div class="tag price">$ {!! $row->price !!}</div>
                                 <aside>
                                     <p><?php 
                                             $desc = stripslashes($row->description);
@@ -82,20 +75,21 @@
                                     </p>
                                     <dl>
                                         <dt>Area:</dt>
-                                            <dd><?php echo $row->area; ?> ft<sup>2</sup></dd>
+                                            <dd>{!! $row->area !!} ft<sup>2</sup></dd>
                                         <dt>Beds:</dt>
-                                            <dd><?php echo $row->rooms; ?></dd>
+                                            <dd>{!! $row->rooms !!}</dd>
                                         <dt>Baths:</dt>
-                                            <dd><?php echo $row->baths; ?></dd>
+                                            <dd>{!! $row->baths !!}</dd>
                                     </dl>
                                 </aside>
-                                <a href="property-detail.html" class="link-arrow">Read More</a>
+                                <a href="{{ URL('detail', array('id' => $id)) }}" class="link-arrow">Read More</a>
                             </div>
                         </div><!-- /.property -->
                         <?php 
                             } // This ends the foreach loop 
                         ?>
 
+                        {{-- Consider adding this somewhere between properties? --}}
                         <section id="advertising">
                             <a href="{{ URL('submit') }}">
                                 <div class="banner">

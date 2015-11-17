@@ -53,7 +53,7 @@ class PropertyController extends Controller
         $features .= isset($_POST['pots-pans']) ? $_POST['pots-pans']       . ' | ' : '';
         $features .= isset($_POST['balcony']) ? $_POST['balcony']           . ' | ' : '';
         $features .= isset($_POST['internet']) ? $_POST['internet']         . ' | ' : '';
-        $features .= isset($_POST['pool-gym']) ? $_POST['pool-gym']         . ' | ' : '';
+        $features .= isset($_POST['garage']) ? $_POST['garage']         . ' | ' : '';
         $features .= isset($_POST['tv']) ? $_POST['tv']                     . ' | ' : '';
         $features .= isset($_POST['washer-dryer']) ? $_POST['washer-dryer'] . ' | ' : '';
 
@@ -250,8 +250,15 @@ class PropertyController extends Controller
         return view('property.submit');
     }
 
-    public function propertydetail() {
-        return view('property.detail');
+    public function propertydetail($id) {
+        $data = DB::select(constant("PROPERTIES_BY_ID") . "'$id'");
+
+        if(count($data) != 1) {
+            return redirect('notfound');
+        } else {
+            $data = $data[0];
+        }
+        return view('property.detail')->with('data', $data);
     }
 
     public function listlines() {

@@ -39,21 +39,21 @@
                 <!-- <form role="form" id="form-create-account" method="post" > -->
                 {!! Form::open(['url' => 'create']) !!}
                     <div class="radio" id="create-account-user">
+                        <div class="radio" id="create-account-landlord">
+                            <label>
+                                {!! 
+                                    Form::radio('account-type', 'landlord', 
+                                    ['id' => 'account-type-landlord', 'required' => 'required']) 
+                                !!}
+                                <span>Landlord</span>
+                            </label>
+                        </div>
                         <label>
                             {!! 
                                 Form::radio('account-type', 'student', 
                                 ['id' => 'account-type-user', 'required' => 'required', 'class' => 'checked']) 
                             !!}
                             <span>Student</span>
-                        </label>
-                    </div>
-                    <div class="radio" id="create-account-landlord">
-                        <label>
-                            {!! 
-                                Form::radio('account-type', 'landlord', 
-                                ['id' => 'account-type-landlord', 'required' => 'required']) 
-                            !!}
-                            <span>Landlord</span>
                         </label>
                     </div>
                     <hr>
