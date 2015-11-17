@@ -168,6 +168,15 @@
 
     $properties = DB::select(constant('ALL_PROPERTIES'));
 
+    // Write the correct permissions to the locations.js file, otherwise we can't write to it on page load.
+    $err = [];
+    exec("sudo chmod a+rwx js/locations.js", $err);
+    
+    // For debugging purposes. Output should normally be empty on the chmod call.
+    if(count($err) > 0) {
+        echo "Errors: ", $err;
+    }
+
     $file = fopen("js/locations.js", "w") or die("Cannot create file!!");
 
     fwrite($file, 
@@ -190,13 +199,6 @@
 
     fwrite($file, "\n];");
     fclose($file);
-
-    // Write the correct permissions to the locations.js file, otherwise we can't write to it on page load.
-    $cmd = [];
-    exec("sudo chmod a+rwx js/locations.js", $cmd);
-    
-    // For debugging purposes. Output should normally be empty on the chmod call.
-    //echo var_dump($cmd);
 ?>
 @include('footer-big')
 
