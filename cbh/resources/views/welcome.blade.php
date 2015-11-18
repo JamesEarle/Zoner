@@ -179,25 +179,28 @@
 
     $file = fopen("js/locations.js", "w") or die("Cannot create file!!");
 
-    fwrite($file, 
-        "shortGlobalImgUrl = globalImgUrl.substring(0, globalImgUrl.length - 3);\nvar locations = [");
+    if(count($properties) > 0) {
+        fwrite($file, 
+            "shortGlobalImgUrl = globalImgUrl.substring(0, globalImgUrl.length - 3);\nvar locations = [");
 
-    // // Need a track on the number of rows so when creating the file we can put right number of commas. 
-    $count = count($properties);
-    $i = 0;
+        // // Need a track on the number of rows so when creating the file we can put right number of commas. 
+        $count = count($properties);
+        $i = 0;
 
-    foreach ($properties as $row) {
+        foreach ($properties as $row) {
 
-        //Only accessing this row property because the name contains a dash. Direct string insertion is difficult.
-        $f_image = $row->{'featured-image'};
-        $append = ++$i == $count ? "" : ", "; 
+            //Only accessing this row property because the name contains a dash. Direct string insertion is difficult.
+            $f_image = $row->{'featured-image'};
+            $append = ++$i == $count ? "" : ", "; 
 
-        $curr_prop = "\n\t['{$row->address}', '{$row->city}, {$row->province}', '\${$row->price}', {$row->latitude}, {$row->longitude}, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/$f_image'), globalImgUrl.concat(\"/property-types/home.png\")]$append";
+            $curr_prop = "\n\t['{$row->address}', '{$row->city}, {$row->province}', '\${$row->price}', {$row->latitude}, {$row->longitude}, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/$f_image'), globalImgUrl.concat(\"/property-types/home.png\")]$append";
 
-        fwrite($file, $curr_prop);
+            fwrite($file, $curr_prop);
+        }
+    } else {
+        fwrite($file, "var locations = [];");
     }
 
-    fwrite($file, "\n];");
     fclose($file);
 ?>
 @include('footer-big')
