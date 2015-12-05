@@ -106,39 +106,88 @@
                                 <?php 
                                     $email = $data->{'landlord-email'};
                                     $landlord = DB::select(constant("LANDLORD_BY_EMAIL") . "'$email'")[0];
+                                    $landlord_name = $landlord->name;
                                 ?>
-                                <header><h2>Interested?</h2></header>
+                                <header><h2>Interested? Submit a Request!</h2></header>
+                                <?php 
+                                    $readonly = false;
+                                    if(!Auth::check()) {
+                                        // If the current user is not logged in, they cannot submit a request.
+                                        echo "<h2 class=\"error\">You must be logged in as a student to submit a request.</h2>"; 
+                                        $readonly = true;
+                                    } else {
+                                        $user = Auth::user();
+                                        $all_landlords = DB::select(constant("USER_BY_LANDLORD"));
+
+                                        // If the current users email matches any landlords, don't let them submit a request
+                                        foreach($all_landlords as $i => $u) {
+                                            if($user->email == $u->email) {
+                                                $readonly = true;
+                                            }
+                                        }
+                                    }
+                                ?>
                                 <div class="row">
                                     <section class="agent-form">
                                         <div class="col-md-7 col-sm-12">
                                             <aside class="agent-info clearfix">
                                                 <div class="agent-contact-info">
-                                                    <h3>Landlord Name: <span style="font-weight:bold;text-decoration:underline;">{!! $landlord->name !!}</span></h3>
-                                                    <p>When contacting the landlord, please be specific regarding any special services or requests you'd like fulfilled. We at Cross Border Housing will always do our best to guarantee you a smooth experience when choosing your new home.</p>
+                                                    <h3>Landlord Name: <span style="font-weight:bold;text-decoration:underline;">{!! $landlord_name !!}</span></h3>
+                                                    <p>We will connect you with the landlord for this property, and let them know that you are interested! When contacting the landlord, please feel free to request any extras you'd like considered. We at Cross Border Housing will always do our best to guarantee you a smooth experience when choosing your new home.</p>
                                                     <hr>
                                                 </div>
                                             </aside><!-- /.agent-info -->
                                         </div><!-- /.col-md-7 -->
                                         <div class="col-md-5 col-sm-12">
                                             <div class="agent-form">
-                                                <form role="form" id="form-contact-agent" method="post"  class="clearfix">
+                                                {!! Form::open(['url' => 'contact-landlord', 'class' => 'clearfix']) !!}
                                                     <div class="form-group">
-                                                        <label for="form-contact-agent-name">Your Name<em>*</em></label>
-                                                        <input type="text" class="form-control" id="form-contact-agent-name" name="form-contact-agent-name" required>
+                                                        {!! Form::label('form-contact-agent-name', 'Your Name*')!!}
+                                                        <?php
+                                                            // Defines if the user should be able to submit a request, or be prompted to login
+                                                            if(!$readonly) {
+                                                                echo Form::text('form-contact-agent-name', null, ['class' => 'form-control', 'required' => 'required']);
+                                                            } else {
+                                                                echo Form::text('form-contact-agent-name', null, ['class' => 'form-control', 'required' => 'required', 'readonly']);
+                                                            }
+                                                        ?>
                                                     </div><!-- /.form-group -->
                                                     <div class="form-group">
-                                                        <label for="form-contact-agent-email">Your Email<em>*</em></label>
-                                                        <input type="email" class="form-control" id="form-contact-agent-email" name="form-contact-agent-email" required>
+                                                        {!! Form::label('form-contact-agent-email', 'Your Email*') !!}
+                                                        <?php
+                                                            if(!$readonly) {
+                                                                echo Form::email('form-contact-agent-email', null, ['class' => 'form-control', 'required' => 'required']);
+                                                            } else {
+                                                                echo Form::email('form-contact-agent-email', null, ['class' => 'form-control', 'required' => 'required', 'readonly']);
+                                                            }
+                                                        ?>
                                                     </div><!-- /.form-group -->
                                                     <div class="form-group">
-                                                        <label for="form-contact-agent-message">Your Message<em>*</em></label>
-                                                        <textarea class="form-control" id="form-contact-agent-message" rows="2" name="form-contact-agent-message" required></textarea>
+                                                        {!! Form::label('form-contact-agent-message', 'Your Message*') !!}
+                                                        <?php
+                                                            if(!$readonly) {
+                                                                echo Form::text('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '2', 'required' => 'required']);
+                                                            } else {
+                                                                echo Form::text('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '2', 'required' => 'required', 'readonly']);
+                                                            }
+                                                        ?>
                                                     </div><!-- /.form-group -->
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn pull-right btn-default" id="form-contact-agent-submit">Send a Message</button>
+                                                        <?php
+                                                            if(!$readonly) {
+                                                                echo Form::submit('Send a Message', ['class'=>'btn pull-right btn-default']);
+                                                            } else {
+                                                                echo Form::submit('Send a Message', ['class' => 'btn pull-right btn-default', 'disabled']);
+                                                            }
+                                                        ?>
                                                     </div><!-- /.form-group -->
                                                     <div id="form-contact-agent-status"></div>
-                                                </form><!-- /#form-contact -->
+                                                    {!! Form::token() !!}
+                                                    {!! Form::hidden('landlord-name',"$landlord_name") !!}
+                                                    {!! Form::hidden('landlord-email', "$email") !!}
+                                                    {!! Form::hidden('property-id', "$data->id") !!}
+                                                    {!! Form::hidden('property-address', "$data->address, $data->city $data->province") !!}
+                                                {!! Form::close() !!}
                                             </div><!-- /.agent-form -->
                                         </div><!-- /.col-md-5 -->
                                     </section><!-- /.agent-form -->
@@ -157,9 +206,7 @@
 
 @section('map-script')
 <script type="text/javascript">
-    // Need to debug why this doesn't show...
-    var propertyId = 27;
-    google.maps.event.addDomListener(window, 'load', initMap(propertyId, "{{ asset('/js/locations.js') }}", "{{ URL('/img/') }}"));
+    // Initialize the Owl Carousel for the gallery of property photos.
     $(window).load(function(){
         initializeOwl(false);
     });

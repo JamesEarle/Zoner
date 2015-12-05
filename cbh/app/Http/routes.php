@@ -28,16 +28,13 @@ Route::post('signin', 'AuthController@doSignin');
 
 Route::get('logout', 'AuthController@doLogout');
 
-/* Property Listings & Individual Properties */
+/* Submit your own property, or view the submit form. */
 Route::get('submit', 'PropertyController@submit');
 Route::post('submit', 'PropertyController@store');
 
+// View a property, given it's ID, or contact that property's landlord.
 Route::get('detail/{id}', 'PropertyController@propertydetail');
-Route::get('property-detail', 'PropertyController@propertydetail');
+Route::post('contact-landlord', 'PropertyController@contactlandlord');
 
-/* Three different views to browse properties. Add button for swapping between them. */
+// Lines list view. There are also "Masonry" and "Grid" views in the Zoner template
 Route::get('list-lines', 'PropertyController@listlines');
-
-Route::get('list-grid', 'PropertyController@listgrid');
-
-Route::get('list-masonry', 'PropertyController@listmasonry');

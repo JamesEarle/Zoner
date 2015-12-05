@@ -32,7 +32,8 @@ class PagesController extends Controller
     	Mail::send('emails.contact', 
     		['name'  => $input['form-contact-name'], 
     		 'email' => $input['form-contact-email'], 
-    		 'body'  => $input['form-contact-message']],
+    		 'body'  => $input['form-contact-message'],
+             'footer'=> "Copyright &copy; 2015. Cross Border Housing Inc. All Rights Reserved."],
     		 function($message) use($input) {
     		 	$message->from($input['form-contact-email'], $input['form-contact-name']);
     		 	$message->cc('j_earle@hotmail.com', 'James Earle');

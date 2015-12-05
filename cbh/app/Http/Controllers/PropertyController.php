@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Hash;
 use Auth;
+use Mail;
 use Request;
 use Input;
 use Validator;
@@ -261,17 +262,31 @@ class PropertyController extends Controller
         return view('property.detail')->with('data', $data);
     }
 
+    public function contactlandlord() {
+
+        $input = Request::all();
+
+        Mail::send('emails.contactlandlord', 
+            ['name'  => $input['form-contact-agent-name'], 
+             'email' => $input['form-contact-agent-email'], 
+             'body'  => $input['form-contact-agent-message'],
+             'landlord_name'  => $input['landlord-name'],
+             'landlord_email' => $input['landlord-email'],
+             'property_id' => $input['property-id'],
+             'property_address' => $input['property-address'],
+             'footer'=> "Copyright &copy; 2015. Cross Border Housing Inc. All Rights Reserved."],
+             function($message) use($input) {
+                $message->from($input['form-contact-agent-email'], $input['form-contact-agent-name']);
+                $message->cc('j_earle@hotmail.com', 'James Earle');
+                $message->to('requests@cbhousing.ca', 'Cross Border Housing Inc.');
+                $message->subject('Question From: ' . $input['form-contact-agent-name'] . ' for ' . $input['landlord-name']);
+             });
+
+        return redirect('/');
+    }
+
     public function listlines() {
         return view('property.list-lines');
     }
-
-    public function listgrid() {
-        return view('property.list-grid');
-    }
-
-    public function listmasonry() {
-        return view('property.list-masonry');
-    }
-
 
 }
