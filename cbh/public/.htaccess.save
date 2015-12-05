@@ -5,10 +5,9 @@
 
     RewriteEngine On
 
-    # Redirect www to non www
+    # Redirect www. to non www
     RewriteBase /
-    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    RewriteRule ^(.*)$ http://%1%1 [R=301,L]
+    RewriteCondRewri    
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
