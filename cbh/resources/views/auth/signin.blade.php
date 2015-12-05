@@ -30,10 +30,10 @@
                             // Checking session errors that are returned on invalid form input
                             switch(Session::get('message')) {
                                 case 'not-found':
-                                    echo '<p style="background-color:#ffcece;">It seems this email is not in our records.</p>';
+                                    echo '<h2 class="error">It seems this email is not in our records.</h2>';
                                     break;
                                 case 'bad-pass':
-                                    echo '<p style="background-color:#ffcece;">Incorrect email/password combination.</p>';
+                                    echo '<h2 class="error">Incorrect email/password combination.</p>';
                                     break;
                             }
                         ?>

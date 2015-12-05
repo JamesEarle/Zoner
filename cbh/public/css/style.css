@@ -243,6 +243,12 @@ ul.list-links li a:hover {
   width: 100%;
   z-index: -1;
 }
+
+h2.error {
+  background-color:#ffcece;
+  padding:5px !important;
+}
+
 .page-sub-page.page-submit h2 {
   border: none;
   margin-bottom: 25px;

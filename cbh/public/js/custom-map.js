@@ -4,7 +4,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var globalPropertyDetailUrl = "";
+//var globalPropertyDetailUrl = "";
 var globalScriptUrl = "";
 var globalImgUrl = "";
 
@@ -14,13 +14,13 @@ var globalImgUrl = "";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //laravelUrl passes locations.js relative to public directory to cope with changes in wamp.
-function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl,propertyDetailUrl){
+function createHomepageGoogleMap(_latitude,_longitude,scriptUrl,imgUrl) {
     setMapHeight();
     if( document.getElementById('map') != null ){
         //Require global context for jquery getScript to have same scope for URL parameters.
         globalImgUrl = imgUrl;
         globalScriptUrl = scriptUrl;
-        globalPropertyDetailUrl = propertyDetailUrl;
+        //globalPropertyDetailUrl = propertyDetailUrl;
 
         // Access locations array. Center at Brock University.
         $.getScript(scriptUrl, function(){

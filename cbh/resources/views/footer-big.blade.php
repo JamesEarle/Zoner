@@ -15,46 +15,78 @@
                     </div><!-- /.col-sm-3 -->
                     <div class="col-md-3 col-sm-3">
                         <article>
+                            <h3>Recent Properties</h3>
 
                             <?php include_once(app_path()."/queries.php"); ?>
 
                             <?php
                                 $results = DB::select(constant("PROPERTIES_BY_DATE_DESC"));
 
-                                if (count($results) < 2) die("Lacking sufficient properties");
-                            ?>
+                                $num_props = count($results);
 
-                            <h3>Recent Properties</h3>
-                            <div class="property small">
-                                <a href="{{ URL('property-detail') }}">
-                                    <div class="property-image">
-                                        <?php 
-                                            $img = $results[0]->{'featured-image'};
-                                            echo "<img alt=\"\" src=\"$img\" />";
+                                switch(count($results)) {
+                                    case 0:
+                                        echo "<script type='text/javascript'>alert('Insufficient Number of Properties');</script>";
+                                        die(1);
+                                        break; // PHP still performs cleanup, so leave this here as a safety net.
+                                    case 1:
                                         ?>
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="{{ URL('property-detail') }}"><h4><?php echo $results[0]->address ?></h4></a>
-                                    <figure><?php echo $results[0]->city, " ", $results[0]->province; ?></figure>
-                                    <div class="tag price">$<?php echo $results[0]->price; ?></div>
-                                </div>
-                            </div><!-- /.property -->
-                            <div class="property small">
-                                <a href="{{ URL('property-detail') }}">
-                                    <div class="property-image">
+                                        <div class="property small">
+                                            <?php $id = $results[0]->id; ?>
+                                            <a href="{{ URL('detail', array('id' => $id)) }}">
+                                                <div class="property-image">
+                                                    <?php 
+                                                        $img = $results[0]->{'featured-image'};
+                                                        echo "<img alt=\"\" src=\"$img\" />";
+                                                    ?>
+                                                </div>
+                                            </a>
+                                            <div class="info">
+                                                <a href="{{ URL('detail', array('id' => $id)) }}"><h4><?php echo $results[0]->address ?></h4></a>
+                                                <figure><?php echo $results[0]->city, " ", $results[0]->province; ?></figure>
+                                                <div class="tag price">$<?php echo $results[0]->price; ?></div>
+                                            </div>
+                                        </div><!-- /.property -->
                                         <?php 
-                                            $img = $results[1]->{'featured-image'};
-                                            echo "<img alt=\"\" src=\"$img\" />";
+                                        break;
+                                    default:
                                         ?>
-                                    </div>
-                                </a>
-                                <div class="info">
-                                    <a href="{{ URL('property-detail') }}"><h4><?php echo $results[1]->address ?></h4></a>
-                                    <figure><?php echo $results[0]->city, " ", $results[1]->province; ?></figure>
-                                    <div class="tag price">$<?php echo $results[1]->price; ?></div>
-                                </div>
-                            </div><!-- /.property -->
+                                        <div class="property small">
+                                            <?php $id = $results[0]->id; ?>
+                                            <a href="{{ URL('detail', array('id' => $id)) }}">
+                                                <div class="property-image">
+                                                    <?php 
+                                                        $img = $results[0]->{'featured-image'};
+                                                        echo "<img alt=\"\" src=\"$img\" />";
+                                                    ?>
+                                                </div>
+                                            </a>
+                                            <div class="info">
+                                                <a href="{{ URL('detail', array('id' => $id)) }}"><h4><?php echo $results[0]->address ?></h4></a>
+                                                <figure><?php echo $results[0]->city, " ", $results[0]->province; ?></figure>
+                                                <div class="tag price">$<?php echo $results[0]->price; ?></div>
+                                            </div>
+                                        </div><!-- /.property -->
+                                        <div class="property small">
+                                            <?php $id = $results[1]->id; ?>
+                                            <a href="{{ URL('detail', array('id' => $id)) }}">
+                                                <div class="property-image">
+                                                    <?php 
+                                                        $img = $results[1]->{'featured-image'};
+                                                        echo "<img alt=\"\" src=\"$img\" />";
+                                                    ?>
+                                                </div>
+                                            </a>
+                                            <div class="info">
+                                                <a href="{{ URL('detail', array('id' => $id)) }}"><h4><?php echo $results[1]->address ?></h4></a>
+                                                <figure><?php echo $results[0]->city, " ", $results[1]->province; ?></figure>
+                                                <div class="tag price">$<?php echo $results[1]->price; ?></div>
+                                            </div>
+                                        </div><!-- /.property -->
+                                        <?php 
+                                        break;
+                                }
+                            ?>
                         </article>
                     </div><!-- /.col-sm-3 -->
                     <div class="col-md-3 col-sm-3">

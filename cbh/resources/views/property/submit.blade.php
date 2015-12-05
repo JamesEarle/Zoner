@@ -25,7 +25,7 @@
                             <section id="basic-information">
                                 <?php
                                     if(!Auth::check()) {
-                                        echo "<h2 style=\"background-color:#ffcece;\">You must be logged in as a landlord to submit a property.</h2>";
+                                        echo "<h2 class=\"error\">You must be logged in as a landlord to submit a property.</h2>";
                                     } else {
                                         $email = Auth::user()->email;
 
@@ -333,7 +333,7 @@
 <!-- Constraint checking on form inputs.  -->
 <script type="text/javascript">
         function checkConstraints(e) {
-            if(e.value.length < 140) {
+            if(e.value.length != 0 && e.value.length < 140) {
                 e.style.backgroundColor = "#FFCECE";
                 alert("Your description must be at least 140 characters");
             } else {

@@ -191,9 +191,12 @@
 
             //Only accessing this row property because the name contains a dash. Direct string insertion is difficult.
             $f_image = $row->{'featured-image'};
-            $append = ++$i == $count ? "" : ", "; 
+            $append = ++$i == $count ? "\n];" : ", "; 
+            $id = $row->id;
 
-            $curr_prop = "\n\t['{$row->address}', '{$row->city}, {$row->province}', '\${$row->price}', {$row->latitude}, {$row->longitude}, globalPropertyDetailUrl, shortGlobalImgUrl.concat('/$f_image'), globalImgUrl.concat(\"/property-types/home.png\")]$append";
+            $url = URL('detail', array('id' => $id));
+
+            $curr_prop = "\n\t['{$row->address}', '{$row->city}, {$row->province}', '\${$row->price}', {$row->latitude}, {$row->longitude}, '$url', shortGlobalImgUrl.concat('/$f_image'), globalImgUrl.concat(\"/property-types/home.png\")]$append";
 
             fwrite($file, $curr_prop);
         }
@@ -214,7 +217,7 @@
     _longitude = -79.247684;
 
     //Main screen map
-    createHomepageGoogleMap(_latitude,_longitude,"{{ asset('/js/locations.js') }}", "{{ URL('/img/') }}", "{{ URL('/property-detail/') }}");
+    createHomepageGoogleMap(_latitude,_longitude,"{{ asset('/js/locations.js') }}", "{{ URL('/img/') }}", "");
     $(window).load(function(){
         initializeOwl(false);
     });
