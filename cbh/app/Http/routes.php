@@ -31,6 +31,7 @@ Route::get('logout', 'AuthController@doLogout');
 /* Submit your own property, or view the submit form. */
 Route::get('submit', 'PropertyController@submit');
 Route::post('submit', 'PropertyController@store');
+Route::post('delete-property', 'PropertyController@delete');
 
 // View a property, given it's ID, or contact that property's landlord.
 Route::get('detail/{id}', 'PropertyController@propertydetail');

@@ -36,6 +36,8 @@
                             <?php 
                                 $all_images = scandir($data->image);
 
+                                // echo var_dump($all_images);
+
                                 for($i=2;$i<count($all_images);$i++) {
                                     $img = $data->image . '/' . $all_images[$i];
                             ?>
@@ -58,7 +60,7 @@
                                     <dt>Location</dt>
                                         <dd>{!! $data->city . ', ' . $data->province !!}</dd>
                                     <dt>Price</dt>
-                                        <dd><span class="tag price">$ {!! $data->price !!}</span></dd>
+                                        <dd><span class="tag price">${!! $data->price !!}</span></dd>
                                     <dt>Property Type:</dt>
                                         <dd>{!! $data->{'property_type'} !!}</dd>
                                     <dt>Area:</dt>
@@ -119,6 +121,7 @@
                                         foreach($all_landlords as $i => $u) {
                                             if($user->email == $u->email) {
                                                 $readonly = true;
+                                                echo "<h2 class=\"error\">You must be logged in as a student to submit a request.</h2>"; 
                                             }
                                         }
                                     }
@@ -193,6 +196,24 @@
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
                 </section><!-- /#property-detail -->
+                 <?php 
+                    if($email == $user->email) {
+                        // Current user is the landlord of this property. Allow them the option of deletion.
+                        echo "<h3>Landlord Options (Seen only by you)</h3>";
+                         echo "<p>Select here if you wish to delete this property.<span style='font-weight:bold;text-decoration:underline;'>This will permanently delete your property. The only way to undo this is to upload it again via the Submit page.</span></p>";
+                        ?>
+                        {!! Form::open(['url' => 'delete-property', 'class' => 'clearfix']) !!}
+                        {!! Form::label('confirm-email', 'Confirm your email address to delete this property.') !!}
+                        {!! Form::text('confirm-email', null, ['class' => 'form-control', 'placeholder' => 'Enter your email']) !!}
+                        <div class="warning center">
+                            {!! Form::submit('Delete Property', ['class' => 'warning btn center btn-default']) !!}
+                        </div>
+                        {!! Form::hidden('property-id', "$data->id") !!}
+                        {!! Form::token() !!}
+                        {!! Form::close() !!}
+                        <?php
+                    }
+                ?>
             </div><!-- /.col-md-9 -->
             <!-- end Property Detail Content -->
         </div> <!-- row -->

@@ -151,10 +151,10 @@ class PropertyController extends Controller
         
         // Move the remaining images in the gallery to the destination folder. Images are optional so check 
         // if the variable is set first.
-        if(isset($_POST['images'])) {
+        $images = Input::file('images');
+        if($images[0] !== null) {
 
             // Get the remaining images, if there are any. An extra gallery is optional.
-            $images = Input::file('images');
             $image_count = count($images);
 
             foreach ($images as $img) {
@@ -245,6 +245,19 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete() {
+        $input = Request::all();
+
+        if(!isset($input['confirm-email']) || Auth::user()->email != $input['confirm-email']) {
+            echo "<script type='text/javascript'>window.history.go(-1);</script>";
+            return;
+        } else {
+            $id = $input['property-id'];
+            DB::delete(constant("DELETE_PROPERTY") . "'$id'");
+        }
+        return redirect('/');
     }
 
     public function submit() {

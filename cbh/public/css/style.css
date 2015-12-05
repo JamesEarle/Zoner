@@ -1823,6 +1823,10 @@ h2.error {
   pointer-events: none;
 }
 
+.warning.btn.btn-default {
+  background-color: red;
+}
+
 .error-page {
   display: table;
   text-align: center;
