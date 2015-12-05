@@ -29,10 +29,6 @@
                     <header class="property-title">
                         <h1>{!! $data->address !!}</h1>
                         <figure>{!! $data->city . ', ' . $data->province !!}</figure>
-                        <span class="actions">
-                            <!--<a href="#" class="fa fa-print"></a>-->
-                            <a href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
-                        </span>
                     </header>
                     <section id="property-gallery">
                         <div class="owl-carousel property-carousel">
