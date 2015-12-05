@@ -102,7 +102,7 @@
                                 <figure class="icon"><i class="fa fa-folder"></i></figure>
                             </a>
                             <aside class="description">
-                                <header><h3>Options</h3></header>
+                                <header><h3>Variety</h3></header>
                                 <p>Explore our wide range of properties</p>
                                 <a href="{{ URL('list-lines') }}" class="link-arrow">Read More</a>
                             </aside>

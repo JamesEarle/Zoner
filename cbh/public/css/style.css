@@ -1290,7 +1290,7 @@ h2.error {
 }
 
 .agent-form .agent-info {
-  padding-left: 140px;
+  padding-left: 0px;
   position: relative;
 }
 .agent-form .agent-info h3 {

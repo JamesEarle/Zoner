@@ -61,7 +61,8 @@
                                 </header>
                                 <div class="tag price">$ {!! $row->price !!}</div>
                                 <aside>
-                                    <p><?php 
+                                    <p>
+                                        <?php 
                                             $desc = stripslashes($row->description);
                                             if(strlen($desc) > 150) {
                                                 echo substr($desc, 0, 155) . '...';

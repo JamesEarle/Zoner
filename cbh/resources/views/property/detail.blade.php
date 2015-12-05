@@ -19,7 +19,8 @@
         if(!isset($data)) {
             echo '<h2 style="background-color:#ffcece;">Whoops! Looks like something went wrong.</h2>';
             die('Data unset, property ID not found.');
-        } ?>
+        } 
+    ?>
     <div class="container">
         <div class="row">
             <!-- Property Detail Content -->
@@ -97,41 +98,24 @@
                                     ?>
                                 </ul>
                             </section><!-- /#property-features -->
-                            <section id="property-map">
-                                <header><h2>Map</h2></header>
-                                <div class="property-detail-map-wrapper">
-                                    <div class="property-detail-map" id="property-detail-map"></div>
-                                </div>
-                            </section><!-- /#property-map -->
                         </div><!-- /.col-md-8 -->
                         <div class="col-md-12 col-sm-12">
                             <section id="contact-agent">
                                 {{-- Must fill this out with just a request form. We receive requests and forward that to the landlord email provided on landlord registration. --}}
-                                <header><h2>Contact Landlord</h2></header>
+
+                                <?php 
+                                    $email = $data->{'landlord-email'};
+                                    $landlord = DB::select(constant("LANDLORD_BY_EMAIL") . "'$email'")[0];
+                                ?>
+                                <header><h2>Interested?</h2></header>
                                 <div class="row">
                                     <section class="agent-form">
                                         <div class="col-md-7 col-sm-12">
                                             <aside class="agent-info clearfix">
-                                                <figure><a href="agent-detail.html"><img alt="" src="{{ asset('/img/agent-01.jpg') }}"></a></figure>
                                                 <div class="agent-contact-info">
-                                                    <h3>Robert Farley</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
-                                                        bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
-                                                        Duis euismod placerat rhoncus.
-                                                    </p>
-                                                    <dl>
-                                                        <dt>Phone:</dt>
-                                                        <dd>(123) 456 789</dd>
-                                                        <dt>Mobile:</dt>
-                                                        <dd>888 123 456 789</dd>
-                                                        <dt>Email:</dt>
-                                                        <dd><a href="mailto:#">john.doe@example.com</a></dd>
-                                                        <dt>Skype:</dt>
-                                                        <dd>john.doe</dd>
-                                                    </dl>
+                                                    <h3>Landlord Name: <span style="font-weight:bold;text-decoration:underline;">{!! $landlord->name !!}</span></h3>
+                                                    <p>When contacting the landlord, please be specific regarding any special services or requests you'd like fulfilled. We at Cross Border Housing will always do our best to guarantee you a smooth experience when choosing your new home.</p>
                                                     <hr>
-                                                    <a href="agent-detail.html" class="link-arrow">Full Profile</a>
                                                 </div>
                                             </aside><!-- /.agent-info -->
                                         </div><!-- /.col-md-7 -->
