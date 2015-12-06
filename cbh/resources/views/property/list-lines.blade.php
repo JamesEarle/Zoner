@@ -18,7 +18,22 @@
         </ol>
     </div>
     <!-- end Breadcrumb -->
-    <?php $results = DB::select(constant('ALL_PROPERTIES')); ?>
+    <?php 
+
+        if(!isset($search)) {
+            // Generic view, show all properties in the database.
+            $results = DB::select(constant('ALL_PROPERTIES'));             
+        } else {
+            // We came from a search box somewhere, filter based on search query.
+            if(strlen($search['region']) == 0) {
+                // No region was specified, look through address or city columns in properties table
+                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%" . $search['search-box-property-id'] . "%' OR `city` LIKE '%" . $search['search-box-property-id'] . "%' ");
+            } else {
+                // Filter by similarities in the region AND the search query.
+                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%" . $search['search-box-property-id'] . "%' AND `city` LIKE '%" . $search['region'] . "%'");
+            }
+        }
+    ?>
     <div class="container">
         <div class="row">
             <!-- Results -->

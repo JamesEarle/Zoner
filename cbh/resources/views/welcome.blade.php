@@ -29,52 +29,26 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
                         <div class="search-box map">
-                            <form role="form" id="form-map" class="form-map form-search">
-                                <h2>Search Your Property</h2>
+                            {!! Form::open(['url' => 'list-lines', 'id' => 'form-map', 'class' => 'form-map form-search']) !!}
+                                <h2>Find Your Next Home</h2>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="search-box-property-id" placeholder="Property ID">
+                                    {!! Form::text('search-box-property-id', null, ['class' => 'form-control', 'placeholder' => 'Address, City, etc.']) !!}
                                 </div>
                                 <div class="form-group">
-                                    <select name="type">
-                                        <option value="">Status</option>
-                                        <option value="1">Rent</option>
-                                        <option value="2">Sale</option>
-                                    </select>
+                                    {!! Form::select('region', [
+                                        '' => 'Region',
+                                        'Niagara Falls' => 'Niagara Falls',
+                                        'Niagara-on-the-Lake' => 'Niagara-on-the-Lake',
+                                        'St. Catharines' => 'St. Catharines',
+                                        'Thorold' => 'Thorold',
+                                        'Welland' => 'Welland'
+                                    ]) !!}
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    <select name="province">
-                                        <option value="">Province</option>
-                                        <option value="1">ON</option>
-                                        <option value="2">BC</option>
-                                        <option value="3">QC</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select name="city">
-                                        <option value="">City</option>
-                                        <?php 
-                                            // $prov = ''; //define a variable based on the selected province
-                                            $results = DB::select(constant('ALL_LOCATIONS'));
-                                            $ctr = 1;
-                                            foreach($results as $data) {
-                                                echo "<option value='$ctr'>" . $data->city . "</option>";
-                                                $ctr++;
-                                            }
-                                        ?>
-                                    </select>
+                                    {!! Form::submit('Serach Now', ['class' => 'btn btn-default']) !!}
                                 </div><!-- /.form-group -->
-                                <div class="form-group">
-                                    <select name="property-type">
-                                        <option value="">Property Type</option>
-                                        <option value="1">Apartment</option>
-                                        <option value="2">Condominium</option>
-                                        <option value="5">House</option>
-                                    </select>
-                                </div><!-- /.form-group -->
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default">Search Now</button>
-                                </div><!-- /.form-group -->
-                            </form><!-- /#form-map -->
+                                {!! Form::token() !!}
+                            {!! Form::close() !!}
                         </div><!-- /.search-box.map -->
                     </div><!-- /.col-md-3 -->
                 </div><!-- /.row -->

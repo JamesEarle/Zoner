@@ -298,6 +298,12 @@ class PropertyController extends Controller
         return redirect('/');
     }
 
+    public function listspecified() {
+
+        $input = Request::all();
+        return view('property.list-lines')->with('search', $input);
+    }
+
     public function listlines() {
         return view('property.list-lines');
     }

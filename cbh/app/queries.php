@@ -2,9 +2,9 @@
 //Query constants to be used globally.
 
 /* SELECTION QUERIES */
-define("ALL_LOCATIONS", "SELECT * FROM `locations`");
-
 define("ALL_PROPERTIES", "SELECT * FROM `properties`");
+
+define("PROPERTIES_FILTERED", "SELECT * FROM `properties` WHERE `address` LIKE");
 
 define("LANDLORD_BY_EMAIL", "SELECT * FROM `users` WHERE `email`=");
 

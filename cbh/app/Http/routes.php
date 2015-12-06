@@ -39,3 +39,4 @@ Route::post('contact-landlord', 'PropertyController@contactlandlord');
 
 // Lines list view. There are also "Masonry" and "Grid" views in the Zoner template
 Route::get('list-lines', 'PropertyController@listlines');
+Route::post('list-lines', 'PropertyController@listspecified');
