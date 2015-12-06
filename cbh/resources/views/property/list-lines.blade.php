@@ -59,7 +59,7 @@
                                     <a href="{{ URL('detail', array('id' => $id)) }}"><h3>{!! stripslashes($row->address) !!}</h3></a>
                                     <figure>{!! stripslashes($row->city) . ', ' . $row->province !!}</figure>
                                 </header>
-                                <div class="tag price">$ {!! $row->price !!}</div>
+                                <div class="tag price">${!! $row->price !!}</div>
                                 <aside>
                                     <p>
                                         <?php 

@@ -4,14 +4,14 @@
         <div class="owl-carousel testimonials-carousel">
             <blockquote class="testimonial">
                 <aside class="cite">
-                    <p>This is literally the greatest website anybody on this planet has ever used. How did I ever survive to be this age without someone making this site for me? </p>
-                    <footer>James Earle</footer>
+                    <p>Kudos! To CBH, proud to be a happy customer. I got exceptional and personalized service in every aspect, from rooms to pots and pans, all fully ready for my use! I truly felt home being with them.</p>
+                    <footer>Pujjit Mathuria</footer>
                 </aside>
             </blockquote>
             <blockquote class="testimonial">
                 <aside class="cite">
-                    <p>My web developer James Earle made this absolutely amazing website, and he is definitely a real human being that's so awesome it pushes the boundaries of modern science.</p>
-                    <footer>Alex Mohr</footer>
+                    <p>CBH showed me a great house when my other landlord turned me away in the middle of winter, if it weren't for them I would still be wandering the streets of St. Catharines!</p>
+                    <footer>Teun Slujis</footer>
                 </aside>
             </blockquote>
         </div><!-- /.testimonials-carousel -->

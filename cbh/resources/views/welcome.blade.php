@@ -153,12 +153,53 @@
         <section id="partners" class="block">
             <div class="container">
                 <header class="section-title"><h2>Our Partners</h2></header>
-                <div class="logos">
-                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-01.png') }}" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-02.png') }}" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-03.png') }}" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-04.png') }}" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="{{ asset('/img/logo-partner-05.png') }}" alt=""></a></div>
+                <div class="row">
+                    <div class="logos center">
+                        <div class="logo">
+                            <a href="https://www.brocku.ca/biolinc">
+                                <img src="{{ asset('/img/partners/biolinc.jpg') }}" alt="BioLinc">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="https://innovateniagara.com/">
+                                <img src="{{ asset('/img/partners/innovate-niagara.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://www.brocku.ca/graduate-students-association">
+                                <img src="{{ asset('/img/partners/brock-grad-association.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://mizrentals.ca/">
+                                <img src="{{ asset('/img/partners/mizrentals.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="logos center">
+                        <div class="logo">
+                            <a href="http://www.riverlions.ca/">
+                                <img src="{{ asset('/img/partners/river-lions.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://www.skrtichliving.ca/">
+                                <img src="{{ asset('/img/partners/skrtich.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://www.mooseandgoose.ca/">
+                                <img src="{{ asset('/img/partners/moose-goose.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="logo">
+                            <a href="http://www.gords.com/">
+                                <img src="{{ asset('/img/partners/gords-place.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div><!-- /.container -->
         </section><!-- /#partners -->
