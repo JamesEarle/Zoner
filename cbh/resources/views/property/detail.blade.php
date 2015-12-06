@@ -197,7 +197,7 @@
                     </div><!-- /.row -->
                 </section><!-- /#property-detail -->
                  <?php 
-                    if($email == $user->email) {
+                    if(Auth::check() && $email == $user->email) {
                         // Current user is the landlord of this property. Allow them the option of deletion.
                         echo "<h3>Landlord Options (Seen only by you)</h3>";
                          echo "<p>Select here if you wish to delete this property.<span style='font-weight:bold;text-decoration:underline;'>This will permanently delete your property. The only way to undo this is to upload it again via the Submit page.</span></p>";
