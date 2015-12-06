@@ -24,13 +24,16 @@
             // Generic view, show all properties in the database.
             $results = DB::select(constant('ALL_PROPERTIES'));             
         } else {
+
+            $s = $search['search-box-property-id'];
+
             // We came from a search box somewhere, filter based on search query.
             if(strlen($search['region']) == 0) {
                 // No region was specified, look through address or city columns in properties table
-                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%" . $search['search-box-property-id'] . "%' OR `city` LIKE '%" . $search['search-box-property-id'] . "%' ");
+                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%$s%' OR `city` LIKE '%$s%'");
             } else {
                 // Filter by similarities in the region AND the search query.
-                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%" . $search['search-box-property-id'] . "%' AND `city` LIKE '%" . $search['region'] . "%'");
+                $results = DB::select(constant('PROPERTIES_FILTERED') . " '%$s%' AND `city` LIKE '%" . $search['region'] . "%'");
             }
         }
     ?>
@@ -56,7 +59,14 @@
                         </figure>
                     </section>
                     <?php 
-                        foreach($results as $row) {
+                        if(count($results) == 0 && isset($search)) {
+                            ?>
+                                <section id="properties" class="display-lines">
+                                    <h2 class="error">Whoops! We couldn't find anything for "<?php echo $s ?>". <a href="{{ URL('/') }}">Try again?</a></h2>
+                                </section>
+                            <?php
+                        } else {
+                            foreach($results as $row) {
                     ?>  
                     <section id="properties" class="display-lines">
                         <div class="property">
@@ -102,7 +112,8 @@
                             </div>
                         </div><!-- /.property -->
                         <?php 
-                            } // This ends the foreach loop 
+                                } // This ends the foreach loop 
+                            } // Closes the else statement.
                         ?>
 
                         {{-- Consider adding this somewhere between properties? --}}
@@ -116,17 +127,6 @@
                                 </div><!-- /.banner-->
                             </a>
                         </section><!-- /#adveritsing-->
-
-                        <!-- Pagination -->
-                        <div class="center">
-                            <ul class="pagination">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                            </ul><!-- /.pagination-->
-                        </div><!-- /.center-->
                     </section><!-- /#properties-->
                 </section><!-- /#results -->
             </div><!-- /.col-md-9 -->

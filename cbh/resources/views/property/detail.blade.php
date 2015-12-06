@@ -128,7 +128,7 @@
                                 ?>
                                 <div class="row">
                                     <section class="agent-form">
-                                        <div class="col-md-7 col-sm-12">
+                                        <div class="row">
                                             <aside class="agent-info clearfix">
                                                 <div class="agent-contact-info">
                                                     <h3>Landlord Name: <span style="font-weight:bold;text-decoration:underline;">{!! $landlord_name !!}</span></h3>
@@ -137,7 +137,7 @@
                                                 </div>
                                             </aside><!-- /.agent-info -->
                                         </div><!-- /.col-md-7 -->
-                                        <div class="col-md-5 col-sm-12">
+                                        <div class="row">
                                             <div class="agent-form">
                                                 {!! Form::open(['url' => 'contact-landlord', 'class' => 'clearfix']) !!}
                                                     <div class="form-group">
@@ -165,9 +165,9 @@
                                                         {!! Form::label('form-contact-agent-message', 'Your Message*') !!}
                                                         <?php
                                                             if(!$readonly) {
-                                                                echo Form::text('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '2', 'required' => 'required']);
+                                                                echo Form::textarea('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '5', 'required' => 'required', 'placeholder' => 'How many people are in your group? Do you have any pets or other special needs? Would you like to organize trips from the airport? etc.']);
                                                             } else {
-                                                                echo Form::text('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '2', 'required' => 'required', 'readonly']);
+                                                                echo Form::textarea('form-contact-agent-message', null, ['class' => 'form-control', 'rows' => '5', 'required' => 'required', 'readonly']);
                                                             }
                                                         ?>
                                                     </div><!-- /.form-group -->
