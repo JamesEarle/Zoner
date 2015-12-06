@@ -195,8 +195,14 @@ class PropertyController extends Controller
                 . date("Y-m-d H:i:s") . '\', \''
                 . date("Y-m-d H:i:s") . '\');'
                 );
-
-            return redirect('/');
+            
+            $data = array(
+                'email' => Auth::user()->email,
+                'address' => $input['submit-address'],
+                'id' => $id
+            );
+            
+            return redirect('/')->with('upload', $data);
         } else {
             Session::flash('error', 'Error uploading files.');
         }

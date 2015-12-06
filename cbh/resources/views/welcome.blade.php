@@ -6,8 +6,43 @@
 
 @section('content')
 
+<?php 
+    // Include PHP named constants for DB queries.
+    include_once(app_path()."/queries.php");
+
+    // This session variable is only set when we are redirected after a successful property upload.
+    if(Session::get('upload')) {
+        // Only text alerts when the app is not in debug mode. 
+        $debug = env('APP_DEBUG', true);
+
+        if($debug) {
+            // Don't set these unless they are found properly in the system.
+            $sid = env('TWILIO_SID', '');
+            $auth = env('TWILIO_AUTH', '');
+            $number = env('TWILIO_NUMBER', '');
+
+            echo $number;
+
+            $client = new Services_Twilio($sid, $auth);
+
+            $data = Session::get('upload');
+
+            $email = $data['email'];
+            $address = $data['address'];
+            $id = $data['id'];
+
+            $sms = $client->account->messages->create(array(
+                'To' => "+16474043067",
+                'From' => '+12048099786',
+                'Body' => "Hey James, $email uploaded a property to CBH!\n\nAddress: $address\n\nID: $id"
+            ));
+        }
+    }
+?>
+
+
 {{-- Include PHP named constants for DB queries --}}
-<?php include_once(app_path()."/queries.php"); ?>
+<?php  ?>
 
 <div id="content">
 

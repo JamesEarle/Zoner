@@ -99,27 +99,6 @@
 </div>
 <!-- end Page Content -->
 
-<?php
- $debug = env('APP_DEBUG', true);
-
-if($debug) {
-    // Don't set these unless they are found properly in the system.
-    $sid = env('TWILIO_SID', '');
-    $auth = env('TWILIO_AUTH', '');
-    $number = env('TWILIO_NUMBER', '');
-
-    echo $number;
-
-    $client = new Services_Twilio($sid, $auth);
-
-    // $sms = $client->account->messages->sendMessage(
-    //     $number,
-    //     "Hey $name, somebody uploaded a property to CBH!"
-    // );
-
-}
-?>
-
 @endsection
 
 {{-- Any pages that use an interactive map need to yield this portion, but app.blade.php yields AFTER script.blade.php,

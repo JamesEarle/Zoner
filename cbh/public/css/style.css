@@ -1295,6 +1295,12 @@ h2.error {
   max-width: 100%;
 }
 
+section#contact-agent > div.row,
+section.agent-form > div.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
 .agent-form .agent-info {
   padding-left: 0px;
   position: relative;

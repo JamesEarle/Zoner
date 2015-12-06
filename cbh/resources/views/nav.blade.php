@@ -3,7 +3,7 @@
     <div class="secondary-navigation">
         <div class="container">
             <div class="contact">
-                <figure><strong>Phone:</strong>+1 647-404-3067</figure>
+                <figure><strong>Phone:</strong>+1 (705)-440-8237</figure>
                 <figure><strong>Email:</strong><a href="mailto:requests@cbhousing.com">requests@cbhousing.com</a></figure>
             </div>
             <div class="user-area">
