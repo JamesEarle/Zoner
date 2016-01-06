@@ -37,6 +37,7 @@ class PagesController extends Controller
     		 function($message) use($input) {
     		 	$message->from($input['form-contact-email'], $input['form-contact-name']);
     		 	$message->cc('j_earle@hotmail.com', 'James Earle');
+                $message->cc('alex@cbhousing.ca', 'Alex Mohr');
     		 	$message->to('requests@cbhousing.ca', 'Cross Border Housing Inc.');
     		 	$message->subject('Question From: ' . $input['form-contact-name']);
     		 });

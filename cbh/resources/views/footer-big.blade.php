@@ -16,19 +16,15 @@
                     <div class="col-md-3 col-sm-3">
                         <article>
                             <h3>Recent Properties</h3>
-
-                            <?php include_once(app_path()."/queries.php"); ?>
-
+                            
                             <?php
+                                include_once(app_path()."/queries.php");
+                                
                                 $results = DB::select(constant("PROPERTIES_BY_DATE_DESC"));
-
-                                $num_props = count($results);
 
                                 switch(count($results)) {
                                     case 0:
-                                        echo "<script type='text/javascript'>alert('Insufficient Number of Properties');</script>";
-                                        die(1);
-                                        break; // PHP still performs cleanup, so leave this here as a safety net.
+                                        break; // Safety net, different from default. 
                                     case 1:
                                         ?>
                                         <div class="property small">
