@@ -9,6 +9,8 @@
 <?php 
     // Include PHP named constants for DB queries.
     include_once(app_path()."/queries.php");
+    
+    // Extra comment force commmit in VS Code
 ?>
 
 <div id="content">
@@ -17,8 +19,7 @@
         <div class="geo-location-wrapper">
             <span class="btn geo-location"><i class="fa fa-map-marker"></i><span class="text">Find My Position</span></span>
         </div>
-    </div> --}}
-    
+    </div> --}}    
 
     <!-- Map -->
     <div id="map" class="has-parallax"></div>
