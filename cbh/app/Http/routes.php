@@ -11,6 +11,13 @@
 |
 */
 
+/* Login to administrative session. CBH Admins only. */
+Route::get('admin', 'AdminController@login');
+Route::post('admin', 'AdminController@doLogin');
+
+Route::get('main', 'AdminController@main');
+
+
 /* Static page routes */
 Route::get('/', 'PagesController@welcome');
 
