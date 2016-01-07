@@ -97,6 +97,17 @@ class AdminController extends Controller
     }
 
     public function login() {
+
+        $trusted = array(
+            'alex@cbhousing.ca',
+            'cody@cbhousing.ca',
+            'j_earle@hotmail.com'
+        );
+
+        if(Auth::check() && in_array(Auth::user()->email, $trusted)) {
+            return redirect('/main');
+        }
+
         return view('admin.admin');
     }
 

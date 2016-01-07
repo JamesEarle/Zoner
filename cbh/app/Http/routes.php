@@ -16,6 +16,7 @@ Route::get('admin', 'AdminController@login');
 Route::post('admin', 'AdminController@doLogin');
 
 Route::get('main', 'AdminController@main');
+Route::patch('main', ['as' => 'main']);
 
 
 /* Static page routes */

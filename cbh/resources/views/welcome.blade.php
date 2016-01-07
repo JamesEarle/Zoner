@@ -224,6 +224,7 @@
 
     fclose($file);
 ?>
+
 @include('footer-big')
 
 @endsection
