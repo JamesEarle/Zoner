@@ -48,7 +48,7 @@
                                     ]) !!}
                                 </div><!-- /.form-group -->
                                 <div class="form-group">
-                                    {!! Form::submit('Serach Now', ['class' => 'btn btn-default']) !!}
+                                    {!! Form::submit('Search Now', ['class' => 'btn btn-default']) !!}
                                 </div><!-- /.form-group -->
                                 {!! Form::token() !!}
                             {!! Form::close() !!}
