@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    public $trusted = array(
+        'alex@cbhousing.ca',
+        'cody@cbhousing.ca',
+        'j_earle@hotmail.com'
+    );
+
     public function __construct() {
         // All constant("QUERY_NAME") are defined here. Gives global access and cleaner DB calls.
         include_once(app_path()."/queries.php");
@@ -92,32 +98,40 @@ class AdminController extends Controller
         //
     }
 
+    public function security() {
+        if(!Auth::check() || !in_array(Auth::user()->email, $this->trusted)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function properties() {
+        if(!$this->security()) return redirect('/');
+
+        return view('admin.properties');
+    }
+
+    public function users() {
+        if(!$this->security()) return redirect('/');
+
+        return view('admin.users');
+    }
+
     public function main() {
+        if(!$this->security()) return redirect('/');
+
         return view('admin.main');
     }
 
     public function login() {
-
-        $trusted = array(
-            'alex@cbhousing.ca',
-            'cody@cbhousing.ca',
-            'j_earle@hotmail.com'
-        );
-
-        if(Auth::check() && in_array(Auth::user()->email, $trusted)) {
-            return redirect('/main');
+        if(Auth::check() && in_array(Auth::user()->email, $this->trusted)) {
+            return view('admin.main');
         }
 
         return view('admin.admin');
     }
 
     public function doLogin() {
-        $trusted = array(
-            'alex@cbhousing.ca',
-            'cody@cbhousing.ca',
-            'j_earle@hotmail.com'
-        );
-
         $input = Request::all();
 
         $email = $input['form-admin-email'];
