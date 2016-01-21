@@ -16,9 +16,10 @@ Route::get('admin', 'AdminController@login');
 Route::post('admin', 'AdminController@doLogin');
 
 Route::get('/admin/main', 'AdminController@main');
-// Route::patch('/admin/main', ['as' => 'main']); //why patch? I dont think we need this anymore.
 
 Route::get('/admin/users', 'AdminController@users');
+
+Route::get('/admin/users/detail/{uid}', 'AdminController@userdetail');
 
 Route::get('/admin/properties', 'AdminController@properties');
 

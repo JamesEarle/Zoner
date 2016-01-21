@@ -11,6 +11,8 @@ define("USER_BY_LANDLORD", "SELECT `email` FROM `users` WHERE `landlord`=1");
 
 define("PROPERTIES_BY_ID", "SELECT * FROM `properties` WHERE `id`=");
 
+define("USERS_BY_ID", "SELECT * FROM `users` WHERE `id`=");
+
 define("PROPERTIES_BY_DATE_DESC", "SELECT * FROM `properties` ORDER BY `created_at` DESC");
 
 define("LOCATIONS_BY_PROVINCE", "SELECT * FROM `locations` WHERE `province`=");

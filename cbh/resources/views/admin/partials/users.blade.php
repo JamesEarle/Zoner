@@ -18,6 +18,8 @@
 							$users = DB::select(constant("ALL_USERS"));
 
 							foreach($users as $u) {
+								$uid = $u->id;
+
 								echo "<tr class='admin-table-row'>";
 								echo "<td>", $u->name, "</td>";
 								echo "<td>", $u->email, "</td>";
@@ -29,10 +31,10 @@
 								}
 
 								echo "<td>", $u->created_at, "</td>";
-								echo "<td><a href='#'>Modify</a></td>";
-								echo "</tr>";
-							}
-						?>
+							?>
+								<td><a href="{{ URL('admin/users/detail', array('uid' => $uid)) }}">Modify</a></td>
+								</tr>
+							<?php } ?>
 					</tbody>
 				</table>
 			</div>

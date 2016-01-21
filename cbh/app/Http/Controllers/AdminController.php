@@ -105,6 +105,20 @@ class AdminController extends Controller
         return true;
     }
 
+    public function userdetail($uid) {
+        if(!$this->security()) return redirect('/');
+
+        $data = DB::select(constant("USERS_BY_ID") . "'$uid'");
+
+        if(count($data) != 1) {
+            return redirect('notfound');
+        } else {
+            $data = $data[0];
+        }
+
+        return view('admin.userdetail')->with('data', $data);
+    }
+
     public function properties() {
         if(!$this->security()) return redirect('/');
 
@@ -137,12 +151,12 @@ class AdminController extends Controller
         $email = $input['form-admin-email'];
         $password = $input['form-admin-password'];
 
-        if(in_array($email, $trusted)) {
+        if(in_array($email, $this->trusted)) {
 
             $result = DB::select(constant('USER_BY_EMAIL') . "'$email'");
 
             if(count($result) == 0) {
-            return redirect('signin')->with('message', 'not-found');
+                return redirect('signin')->with('message', 'not-found');
             }
 
             if(!Hash::check($password, $result[0]->password)) {
@@ -153,7 +167,7 @@ class AdminController extends Controller
                 'email' => $email,
                 'password' => $password))) {
                 // Successful login
-                return redirect('main');
+                return redirect('admin/main');
             } else {
                 // Failed login for alternate reason.
                 return redirect('signin')->with('message', 'alt');
